@@ -9,8 +9,12 @@
 #endif
 
 #ifdef _DEBUG
-#define ALLOC_CONSOLE() 	AllocConsole();                 \
-                            freopen("CONOUT$", "w", stdout);
+
+#define ALLOC_CONSOLE() __pragma(warning(push))          \
+                        __pragma(warning(disable:6031))  \
+                        AllocConsole();                  \
+                        freopen("CONOUT$", "w", stdout); \
+                        __pragma (warning(pop))
 #else
 #define ALLOC_CONSOLE() ;;
 #endif
