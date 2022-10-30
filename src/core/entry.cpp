@@ -75,14 +75,9 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
             }
         }
 
-
-
         // Tick game instance
         sf::Time dt = deltaClock.restart();
         game.Tick(dt.asSeconds());
-
-        // Update window.
-        window.display();
     }
 
 

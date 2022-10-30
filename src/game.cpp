@@ -10,7 +10,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-
+		m_CompositeFrameBuffer.create(m_Window->getSize().x, m_Window->getSize().y);
 	}
 	
 	// -----------------------------------------------------------
@@ -21,18 +21,29 @@ namespace Tmpl8
 
 	}
 
-	float xp, yp;
+	float xp, yp, scr = 10;
 	// -----------------------------------------------------------
 	// Main application tick function
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		m_Window->clear(sf::Color(0, 50, 50));
+		sf::Texture tex;
+		if (!tex.loadFromFile("assets/ball.png"))
+		{	
+			std::cout << "rip zbozo";
+		}
 
-		sf::CircleShape shape(25);
-		shape.setFillColor(sf::Color(100, 250, 50));
-		shape.setPosition({ xp, yp});
-		m_Window->draw(shape);
+		sf::Sprite sprite(tex);
+
+		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
+
+		m_CompositeFrameBuffer.draw(sprite);
+
+		m_CompositeFrameBuffer.display();
+
+		m_Window->clear();
+		m_Window->draw(sf::Sprite(m_CompositeFrameBuffer.getTexture()));
+		m_Window->display();
 	}
 
 	void Game::MouseUp(int button)
@@ -45,7 +56,7 @@ namespace Tmpl8
 
 	void Game::MouseMove(int x, int y)
 	{
-		xp = x; yp = y;
+		xp = (float)x; yp = (float)y;
 		std::cout << x << " " << y << '\n';
 	}
 
@@ -55,6 +66,11 @@ namespace Tmpl8
 
 	void Game::KeyDown(int key)
 	{
+		if(key == sf::Keyboard::Key::A)
+			scr+= 10;
+
+		if (key == sf::Keyboard::Key::D)
+			scr-= 10;
 	}
 
 };

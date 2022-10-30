@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -108,7 +108,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x86\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -120,7 +120,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x86\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y</Command>
+      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x86\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y
+xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\assets /I /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -140,7 +141,7 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x64\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -151,7 +152,8 @@
       </DataExecutionPrevention>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x64\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y</Command>
+      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x64\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y
+xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\assets /I /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -191,7 +193,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x86\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y</Command>
+      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x86\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y
+xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\assets /I /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -230,7 +233,8 @@
       </DataExecutionPrevention>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x64\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y</Command>
+      <Command>xcopy $(ProjectDir)\lib\SFML-2.5.1_x64\bin  $(ProjectDir)\bin\$(Configuration)\$(Platform) /Y
+xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\assets /I /Y /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 // Game instance class from
-// Template, BUAS version https ://www.buas.nl/games
+// Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
 #include <SFML/Graphics.hpp>
@@ -26,6 +26,7 @@ public:
 	void KeyDown(int key);
 private:
 	sf::RenderWindow* m_Window;
+	sf::RenderTexture m_CompositeFrameBuffer;
 };
 
 }; // namespace Tmpl8
