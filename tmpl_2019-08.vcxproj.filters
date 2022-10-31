@@ -3,9 +3,12 @@
   <ItemGroup>
     <ClCompile Include="src\core\entry.cpp" />
     <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\renderer\textureatlas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.h" />
+    <ClInclude Include="src\renderer\textureatlas.h" />
+    <ClInclude Include="src\core\core.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

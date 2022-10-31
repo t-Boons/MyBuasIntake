@@ -1,0 +1,64 @@
+// Copyright (C) 2022 Tygo Boons
+// All rights reserved.
+
+
+#include "textureatlas.h"
+
+namespace Renderer
+{
+
+	// Initialize class variables
+	TextureAtlas::TextureAtlas(const std::string& filepath,  uint32_t tileSize)
+		: m_TileSize(tileSize)
+	{
+		ASSERT(tileSize != 0, "TileSize can not be 0")
+
+		// Create texture with filepath.
+		sf::Texture tex;
+		if(!tex.loadFromFile(filepath))
+		{
+			ASSERT(false, "Texture file can not be loaded.")
+		}
+		
+		// Assign texture to this texture atlas.
+		m_Texture = tex;
+		m_Size = tex.getSize();
+	}
+
+	std::array<sf::Vector2f, 4> TextureAtlas::GetTextureCoordinates(uint32_t index)
+	{
+		// Initialize x & y variables.
+		float x = 0;
+		float y = 0;
+
+		// Calculate coordinate based on index.
+		if (index != 0)
+		{
+			x = index % (m_Size.x / m_TileSize);
+			y = index / (m_Size.x / m_TileSize);
+		}
+
+		ASSERT(y < m_Size.y, "Index out of range");
+
+		return GetTextureCoordinates(sf::Vector2u(x, y));
+	}
+
+	std::array<sf::Vector2f, 4> TextureAtlas::GetTextureCoordinates(const sf::Vector2u& coordinate)
+	{
+		// Convert coordinates to amount in pixels.
+		float x = coordinate.x * m_TileSize;
+		float y = coordinate.y * m_TileSize;
+
+		ASSERT(x <= m_Size.x, "Index out of range")
+		ASSERT(y <= m_Size.y, "Index out of range")
+
+		// Return array of texture coordinates that correspond to the coordinates on the texture.
+		return
+		{
+			sf::Vector2f(x, y),
+			sf::Vector2f(x + m_TileSize, y),
+			sf::Vector2f(x + m_TileSize, y + m_TileSize),
+			sf::Vector2f(x, y + m_TileSize),
+		};
+	}
+}

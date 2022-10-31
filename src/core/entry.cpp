@@ -4,27 +4,11 @@
 // Using SFML graphics library
 // found at https://www.sfml-dev.org/
 
-#if !defined(_WIN32) && !defined(WIN64)
-#error This project only supports Windows
-#endif
-
-#ifdef _DEBUG
-
-#define ALLOC_CONSOLE() __pragma(warning(push))          \
-                        __pragma(warning(disable:6031))  \
-                        AllocConsole();                  \
-                        freopen("CONOUT$", "w", stdout); \
-                        __pragma (warning(pop))
-#else
-#define ALLOC_CONSOLE() ;;
-#endif
-
-
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <Windows.h>
+#include "core.h"
 #include "../game.h"
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
@@ -33,7 +17,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
     ALLOC_CONSOLE()
 
     // Create window instance.
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Template");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "2DPlatformer");
 
     // Create game instance.
     Tmpl8::Game game(&window);
@@ -70,7 +54,6 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
             // Poll window events.
             if (event.type == sf::Event::Closed)
             {
-                game.Shutdown();
                 window.close();
             }
         }
@@ -80,6 +63,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
         game.Tick(dt.asSeconds());
     }
 
+    game.Shutdown();
 
     return 0;
 }

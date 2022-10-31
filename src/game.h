@@ -6,6 +6,8 @@
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
 #include <SFML/Graphics.hpp>
+#include "renderer/textureatlas.h"
+#include "core/core.h"
 
 namespace Tmpl8 {
 
@@ -27,6 +29,8 @@ public:
 private:
 	sf::RenderWindow* m_Window;
 	sf::RenderTexture m_CompositeFrameBuffer;
+
+	Renderer::TextureAtlas* m_Atlas;
 };
 
 }; // namespace Tmpl8
