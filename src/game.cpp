@@ -1,6 +1,4 @@
 #include "game.h"
-#include <iostream>
-#include <Windows.h>
 
 namespace Tmpl8
 {
@@ -12,7 +10,14 @@ namespace Tmpl8
 	{
 		m_CompositeFrameBuffer.create(m_Window->getSize().x, m_Window->getSize().y);
 
-		m_Atlas = new Renderer::TextureAtlas("assets/PixelArtPlatformer_Village Props_v2.1.0/tx_chest_animation.png", 32);
+		Renderer::TileProperties properties;
+		properties.ColorReferenceMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colorreference.png";
+		properties.TextureMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground.png";
+		properties.ColorMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colormap.png";
+		properties.TextureMapTileSizeInPixels = 32;
+		properties.TileSizeInGame = 32;
+
+		m_Tiles = new Renderer::TileSet(properties);
 	}
 	
 	// -----------------------------------------------------------
@@ -20,16 +25,18 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		delete m_Atlas;
+
 	}
 
 	float xp, yp, scr = 10;
+
 	// -----------------------------------------------------------
 	// Main application tick function
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
 		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
+
 		{
 			sf::VertexArray skybox(sf::Quads, 4);
 
@@ -44,35 +51,13 @@ namespace Tmpl8
 
 			sf::RenderStates states;
 			states.texture = &skyboxTex;
-
 			m_CompositeFrameBuffer.draw(skybox, states);
+
+			sf::RenderStates s;
+			s.texture = m_Tiles->GetTexture();
+			m_CompositeFrameBuffer.draw(m_Tiles->GetVertexArray(), s);
 		}
 
-		{
-			sf::VertexArray va(sf::Quads, 4);
-
-			va[0].position = { 0, 0 };
-			va[0].texCoords = m_Atlas->GetTextureCoordinates({0, 1})[0];
-
-			va[1].position = { 50, 0 };
-			va[1].texCoords = m_Atlas->GetTextureCoordinates({ 0, 1 })[1];
-
-			va[2].position = { 50, 50 };
-			va[2].texCoords = m_Atlas->GetTextureCoordinates({ 0, 1 })[2];
-
-			va[3].position = { 0, 50 };
-			va[3].texCoords = m_Atlas->GetTextureCoordinates({ 0, 1 })[3];
-
-
-			sf::Transform transform;
-			transform.translate({ xp, yp });
-			sf::RenderStates states;
-
-			states.texture = m_Atlas->GetTexture();
-			states.transform = transform;
-
-			m_CompositeFrameBuffer.draw(va, states);
-		}
 
 		m_CompositeFrameBuffer.display();
 

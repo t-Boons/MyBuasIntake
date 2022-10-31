@@ -2,7 +2,7 @@
 // All rights reserved.
 
 
-#include "textureatlas.h"
+#include "TextureAtlas.h"
 
 namespace Renderer
 {
@@ -38,7 +38,7 @@ namespace Renderer
 			y = index / (m_Size.x / m_TileSize);
 		}
 
-		ASSERT(y < m_Size.y, "Index out of range");
+		ASSERT(y < (m_Size.x / m_TileSize), "Index out of range");
 
 		return GetTextureCoordinates(sf::Vector2u(x, y));
 	}

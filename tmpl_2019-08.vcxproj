@@ -238,14 +238,16 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\core\entry.cpp" />
-    <ClCompile Include="src\game.cpp" />
-    <ClCompile Include="src\renderer\textureatlas.cpp" />
+    <ClCompile Include="src\Core\Entry.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Renderer\TextureAtlas.cpp" />
+    <ClCompile Include="src\Renderer\Tileset.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\core\core.h" />
-    <ClInclude Include="src\game.h" />
-    <ClInclude Include="src\renderer\textureatlas.h" />
+    <ClInclude Include="src\Core\Core.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Renderer\TextureAtlas.h" />
+    <ClInclude Include="src\Renderer\Tileset.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
