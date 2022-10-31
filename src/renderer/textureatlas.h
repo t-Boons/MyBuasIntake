@@ -18,7 +18,7 @@ namespace Renderer
 		// Returns the size of the atlas.
 		sf::Vector2u GetSize() const { return m_Size; }
 
-		// Returns a pointer to the texture.
+		// Returns a pointer to the texture atlas texture.
 		const sf::Texture* GetTexture() const { return &m_Texture; }
 
 		// Index layout.

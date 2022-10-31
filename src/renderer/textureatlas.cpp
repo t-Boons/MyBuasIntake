@@ -11,14 +11,14 @@ namespace Renderer
 	TextureAtlas::TextureAtlas(const std::string& filepath,  uint32_t tileSize)
 		: m_TileSize(tileSize)
 	{
-		ASSERT(tileSize != 0, "TileSize can not be 0")
-
 		// Create texture with filepath.
 		sf::Texture tex;
 		if(!tex.loadFromFile(filepath))
 		{
 			ASSERT(false, "Texture file can not be loaded.")
 		}
+
+		ASSERT(tileSize != 0, "TileSize can not be 0")
 		
 		// Assign texture to this texture atlas.
 		m_Texture = tex;
