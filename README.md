@@ -13,3 +13,6 @@ Used assets:
 
 Pixel Art Platformer - Village Props v2.1.0
 https://cainos.itch.io/pixel-art-platformer-village-props
+
+Pixel skybox
+https://gamer247.itch.io/cu-azul

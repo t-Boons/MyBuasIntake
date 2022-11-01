@@ -25,10 +25,11 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-
+		delete m_Tiles;
 	}
 
-	float xp, yp, scr = 10;
+	float xp, yp;
+	sf::Vector2f pos = { 0, 0 };
 
 	// -----------------------------------------------------------
 	// Main application tick function
@@ -36,6 +37,8 @@ namespace Tmpl8
 	void Game::Tick(float deltaTime)
 	{
 		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
+
+		m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2), (sf::Vector2f)m_Window->getSize()));
 
 		{
 			sf::VertexArray skybox(sf::Quads, 4);
@@ -52,6 +55,8 @@ namespace Tmpl8
 			sf::RenderStates states;
 			states.texture = &skyboxTex;
 			m_CompositeFrameBuffer.draw(skybox, states);
+
+			m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize()));
 
 			sf::RenderStates s;
 			s.texture = m_Tiles->GetTexture();
@@ -85,11 +90,19 @@ namespace Tmpl8
 
 	void Game::KeyDown(int key)
 	{
+		float s = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ? 50 : 10;
+
 		if(key == sf::Keyboard::Key::A)
-			scr+= 10;
+			pos.x -= s;
 
 		if (key == sf::Keyboard::Key::D)
-			scr-= 10;
+			pos.x += s;
+
+		if (key == sf::Keyboard::Key::W)
+			pos.y -= s;
+
+		if (key == sf::Keyboard::Key::S)
+			pos.y += s;
 	}
 
 };

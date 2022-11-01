@@ -48,13 +48,13 @@ namespace Renderer
 
 		for (uint32_t i = 0; i < quadAmount - 4; i += 4)
 		{
+			positionIncrement++;
 
 			// Get vertex position values.
 			uint32_t tileSize = properties.TileSizeInGame;
 			uint32_t xPosition = (positionIncrement % worldWidth) * tileSize;
 			uint32_t yPosition = (positionIncrement / worldWidth) * tileSize;
 			
-			positionIncrement++;
 
 
 			// Get the texture index from the world color lookup table.
@@ -102,9 +102,6 @@ namespace Renderer
 
 		// Get the texture size.
 		uint32_t colorReferenceSize = colorReference.getSize().x * colorReference.getSize().y;
-
-
-		// Create lookup table.
 
 		// Fill color ptr to the first element of pixel data.
 		sf::Color* colorReferenceColorsPtr = (sf::Color*)colorReference.getPixelsPtr();
