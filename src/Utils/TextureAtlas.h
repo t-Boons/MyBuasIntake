@@ -4,10 +4,10 @@
 #pragma once
 #include <string>
 #include <array>
-#include "core/core.h"
+#include "core/Core.h"
 #include <SFML/Graphics.hpp>
 
-namespace Renderer
+namespace Utils
 {
 	class TextureAtlas
 	{

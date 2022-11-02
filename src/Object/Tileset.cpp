@@ -3,7 +3,7 @@
 
 #include "Tileset.h"
 
-namespace Renderer
+namespace Object
 {
 	TileSet::TileSet(const TileProperties& properties)
 		: m_Properties(properties), m_Atlas(properties.TextureMap,
@@ -24,7 +24,7 @@ namespace Renderer
 		// Get tilesize.
 		uint32_t tileSize = properties.TileSizeInGame;
 
-		for (uint32_t i = 0; i < vertAmount - 4; i += 4)
+		for (uint32_t i	 = 0; i < vertAmount - 4; i += 4)
 		{
 			// Value increments by 1 instead of 4.
 			uint32_t singularIncrement = i * 0.25f;

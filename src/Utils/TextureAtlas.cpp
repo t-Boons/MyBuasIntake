@@ -4,7 +4,7 @@
 
 #include "TextureAtlas.h"
 
-namespace Renderer
+namespace Utils
 {
 
 	// Initialize class variables

@@ -1,14 +1,14 @@
-#pragma once
-#include <stdint.h>
-
 // Game instance class from
 // Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
+#pragma once
+
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "Core/Core.h"
-#include "Renderer/TileSet.h"
-#include "Gameplay/SkyBox.h"
+#include "Object/TileSet.h"
+#include "Object/SkyBox.h"
 
 namespace Tmpl8 {
 
@@ -27,11 +27,15 @@ public:
 	void MouseMove(int x, int y);
 	void KeyUp(int key);
 	void KeyDown(int key);
+
+	void RenderScene();
+	void UpdateInput(float deltaTime);
+
 private:
 	sf::RenderWindow* m_Window;
 	sf::RenderTexture m_CompositeFrameBuffer;
-	Renderer::TileSet* m_Tiles;
-	Gameplay::Skybox* m_SkyBox;
+	sf::View m_DefaultView;
+	std::vector<Object::Object*> m_Objects;
 };
 
 }; // namespace Tmpl8

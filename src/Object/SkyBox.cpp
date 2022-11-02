@@ -3,10 +3,10 @@
 
 #include "Skybox.h"
 
-namespace Gameplay
+namespace Object
 {
 	Skybox::Skybox(const std::string& imageFilePath, const sf::Vector2u& windowSize)
-		: m_WindowSize(windowSize)
+		: m_SkyboxView(sf::View((sf::Vector2f)windowSize * 0.5f, (sf::Vector2f)windowSize))
 	{
 		// Load skybox texture.
 		m_Texture.loadFromFile(imageFilePath);

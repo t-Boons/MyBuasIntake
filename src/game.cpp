@@ -1,5 +1,5 @@
-#include "game.h"
-#include "Utils/ColorLookupMap.h"
+#include "Game.h"
+
 namespace Tmpl8
 {
 
@@ -8,18 +8,28 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
+		// Initialize frame buffer object to render the scene to.
 		m_CompositeFrameBuffer.create(m_Window->getSize().x, m_Window->getSize().y);
 
-		Renderer::TileProperties properties;
+
+		// Initialize tileset.
+		Object::TileProperties properties;
 		properties.ColorReferenceMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colorreference.png";
 		properties.TextureMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground.png";
 		properties.ColorMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colormap.png";
 		properties.TextureMapTileSizeInPixels = 32;
 		properties.TileSizeInGame = 32;
 
-		m_Tiles = new Renderer::TileSet(properties);
+		Object::Object* worldTiles = new Object::TileSet(properties);
 
-		m_SkyBox = new Gameplay::Skybox("assets/pixelskybox.png", m_Window->getSize());
+
+		// Initialize skybox.
+		Object::Object* skyBox = new Object::Skybox("assets/pixelskybox.png", m_Window->getSize());
+
+
+		// Add initialized objects to object vector.
+		m_Objects.push_back(skyBox);
+		m_Objects.push_back(worldTiles);
 	}
 	
 	// -----------------------------------------------------------
@@ -27,8 +37,11 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		delete m_Tiles;
-		delete m_SkyBox;
+		// Free all object memory.
+		for (Object::Object* obj : m_Objects)
+		{
+			delete(obj);
+		}
 	}
 
 	float xp, yp, size = 1;
@@ -39,32 +52,8 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
-
-		// Render skybox object.
-		m_CompositeFrameBuffer.setView(m_SkyBox->GetView());
-
-		sf::RenderStates states;
-		states.texture = m_SkyBox->GetTexture();
-
-		m_CompositeFrameBuffer.draw(m_SkyBox->GetVertexArray(), states);
-
-
-		{
-
-			m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize() * size));
-
-			sf::RenderStates s;
-			s.texture = m_Tiles->GetTexture();
-			m_CompositeFrameBuffer.draw(m_Tiles->GetVertexArray(), s);
-		}
-
-
-		m_CompositeFrameBuffer.display();
-
-		m_Window->clear();
-		m_Window->draw(sf::Sprite(m_CompositeFrameBuffer.getTexture()));
-		m_Window->display();
+		UpdateInput(deltaTime);
+		RenderScene();
 	}
 
 	void Game::MouseUp(int button)
@@ -86,28 +75,68 @@ namespace Tmpl8
 
 	void Game::KeyDown(int key)
 	{
-		float s = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ? 50 : 10;
 
-		if(key == sf::Keyboard::Key::A)
+	}
+
+	void Game::RenderScene()
+	{
+
+		// Clear the composite frame buffer.
+		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
+
+		//--------------------//
+		// Render all objects.//
+		//--------------------//
+
+		for (auto& obj : m_Objects)
+		{
+			// Set a custom viewport for renderable object if the GetViewport method is overridden.
+			m_CompositeFrameBuffer.setView(obj->GetViewport() != nullptr ? *obj->GetViewport() : m_DefaultView);
+
+			// Select texture to sample from.
+			sf::RenderStates states;
+			states.texture = obj->GetTexture();
+
+			// Draw opject to composite frame buffer.
+			m_CompositeFrameBuffer.draw(obj->GetVertexArray(), states);
+		}
+
+		// Show frame buffer
+		m_CompositeFrameBuffer.display();
+
+		// Draw composite frame buffer to the screen.
+		m_Window->clear();
+		m_Window->draw(sf::Sprite(m_CompositeFrameBuffer.getTexture()));
+		m_Window->display();
+	}
+
+	void Game::UpdateInput(float deltaTime)
+	{
+		float s = (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ? 1500 : 500) * deltaTime;
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 			pos.x -= s;
 
-		if (key == sf::Keyboard::Key::D)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 			pos.x += s;
 
-		if (key == sf::Keyboard::Key::W)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 			pos.y -= s;
 
-		if (key == sf::Keyboard::Key::S)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 			pos.y += s;
 
-		if (key == sf::Keyboard::Key::Q)
-			size -= 0.05f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+			size -= 1 * deltaTime;
 
-		if (key == sf::Keyboard::Key::E)
-			size += 0.05f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::E))
+			size += 1 * deltaTime;
 
 		if (size < 0)
-			size = 0.001f;
+			size = 0.001f * deltaTime;
+
+		m_DefaultView = sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize() * size);
+
 	}
 
 };

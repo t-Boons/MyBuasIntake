@@ -7,18 +7,18 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-namespace Gameplay
+namespace Object
 {
-	class Skybox : public GameObject
+	class Skybox : public Object
 	{
 	public:
 		// Construct skybox object.
 		Skybox(const std::string& imageFilePath, const sf::Vector2u& windowSize);
 
-		// Return fullscreen view for skybox.
-		sf::View GetView() const { return sf::View((sf::Vector2f)m_WindowSize * 0.5f,
-														  (sf::Vector2f)m_WindowSize) ;}
+		// Return fullscreen viewport for skybox.
+		virtual const sf::View* GetViewport() const override { return &m_SkyboxView; }
+
 	private:
-		sf::Vector2u m_WindowSize;
+		sf::View m_SkyboxView;
 	};
 }

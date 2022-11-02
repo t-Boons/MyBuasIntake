@@ -4,13 +4,12 @@
 #pragma once
 
 #include <string>
-#include <map>
 #include <SFML/Graphics.hpp>
-#include "core/core.h"
-#include "textureatlas.h"
+#include "Utils/TextureAtlas.h"
 #include "Utils/ColorLookupMap.h"
+#include "GameObject.h"
 
-namespace Renderer
+namespace Object
 {
 	struct TileProperties
 	{
@@ -21,25 +20,18 @@ namespace Renderer
 		uint32_t TileSizeInGame;
 	};
 
-	class TileSet
+	class TileSet : public Object
 	{
 	public:
 		// Construct tileset
 		TileSet(const TileProperties& properties);
 
-		// Return vertex array.
-		const sf::VertexArray& GetVertexArray() { return m_VertexArray; }
-
-		// Return Texture atlas texture.
-		const sf::Texture* GetTexture() { return m_Atlas.GetTexture(); }
-
-	private:
-
+		// Return Texture atlas texture.	
+		virtual const sf::Texture* GetTexture() const override { return m_Atlas.GetTexture(); }
 
 	private:
 		TileProperties m_Properties;
-		TextureAtlas m_Atlas;
+		Utils::TextureAtlas m_Atlas;
 		Utils::ColorLookupMap m_LookupMap;
-		sf::VertexArray m_VertexArray;
 	};
 }
