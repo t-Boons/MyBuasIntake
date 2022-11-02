@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "Utils/ColorLookupMap.h"
 namespace Tmpl8
 {
 
@@ -18,6 +18,8 @@ namespace Tmpl8
 		properties.TileSizeInGame = 32;
 
 		m_Tiles = new Renderer::TileSet(properties);
+
+		m_SkyBox = new Gameplay::Skybox("assets/pixelskybox.png", m_Window->getSize());
 	}
 	
 	// -----------------------------------------------------------
@@ -26,9 +28,10 @@ namespace Tmpl8
 	void Game::Shutdown()
 	{
 		delete m_Tiles;
+		delete m_SkyBox;
 	}
 
-	float xp, yp;
+	float xp, yp, size = 1;
 	sf::Vector2f pos = { 0, 0 };
 
 	// -----------------------------------------------------------
@@ -38,25 +41,18 @@ namespace Tmpl8
 	{
 		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
 
-		m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2), (sf::Vector2f)m_Window->getSize()));
+		// Render skybox object.
+		m_CompositeFrameBuffer.setView(m_SkyBox->GetView());
+
+		sf::RenderStates states;
+		states.texture = m_SkyBox->GetTexture();
+
+		m_CompositeFrameBuffer.draw(m_SkyBox->GetVertexArray(), states);
+
 
 		{
-			sf::VertexArray skybox(sf::Quads, 4);
 
-			sf::Texture skyboxTex;
-			skyboxTex.loadFromFile("assets/pixelskybox.png");
-
-			skybox[0] = sf::Vertex({ 0.0f, 0.0f }, {0.0f, 0.0f});
-			skybox[1] = sf::Vertex({ 0.0f, (float)m_Window->getSize().y }, { 0.0f, (float)skyboxTex.getSize().y });
-			skybox[2] = sf::Vertex({ (float)m_Window->getSize().x, (float)m_Window->getSize().y }, { (float)skyboxTex.getSize().x, (float)skyboxTex.getSize().y });
-			skybox[3] = sf::Vertex({ (float)m_Window->getSize().x, 0.0f }, { (float)skyboxTex.getSize().x, 0.0f });
-
-
-			sf::RenderStates states;
-			states.texture = &skyboxTex;
-			m_CompositeFrameBuffer.draw(skybox, states);
-
-			m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize()));
+			m_CompositeFrameBuffer.setView(sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize() * size));
 
 			sf::RenderStates s;
 			s.texture = m_Tiles->GetTexture();
@@ -103,6 +99,15 @@ namespace Tmpl8
 
 		if (key == sf::Keyboard::Key::S)
 			pos.y += s;
+
+		if (key == sf::Keyboard::Key::Q)
+			size -= 0.05f;
+
+		if (key == sf::Keyboard::Key::E)
+			size += 0.05f;
+
+		if (size < 0)
+			size = 0.001f;
 	}
 
 };

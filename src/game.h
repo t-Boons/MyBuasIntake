@@ -7,7 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "Core/Core.h"
-#include "renderer/TileSet.h"
+#include "Renderer/TileSet.h"
+#include "Gameplay/SkyBox.h"
 
 namespace Tmpl8 {
 
@@ -30,6 +31,7 @@ private:
 	sf::RenderWindow* m_Window;
 	sf::RenderTexture m_CompositeFrameBuffer;
 	Renderer::TileSet* m_Tiles;
+	Gameplay::Skybox* m_SkyBox;
 };
 
 }; // namespace Tmpl8

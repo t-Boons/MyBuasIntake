@@ -5,12 +5,17 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Renderer\TextureAtlas.cpp" />
     <ClCompile Include="src\Renderer\Tileset.cpp" />
+    <ClCompile Include="src\Gameplay\SkyBox.cpp" />
+    <ClCompile Include="src\Utils\ColorLookupMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Renderer\TextureAtlas.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Renderer\Tileset.h" />
+    <ClInclude Include="src\Gameplay\GameObject.h" />
+    <ClInclude Include="src\Gameplay\Skybox.h" />
+    <ClInclude Include="src\Utils\ColorLookupMap.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
