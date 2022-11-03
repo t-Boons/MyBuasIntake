@@ -31,4 +31,13 @@ namespace Object
 		sf::VertexArray m_VertexArray;
 		sf::Texture m_Texture;
 	};
+
+	//-----------------------------------------------------------------------//
+	// Abstract BehaviourObject class to use for objects that have behaviour.//
+	//-----------------------------------------------------------------------//
+
+	class BehaviourObject : public Object
+	{
+		virtual void Update() {}
+	};
 }
