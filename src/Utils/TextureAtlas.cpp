@@ -1,7 +1,6 @@
 // Copyright (C) 2022 Tygo Boons
 // All rights reserved.
 
-
 #include "TextureAtlas.h"
 
 namespace Utils

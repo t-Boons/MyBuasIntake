@@ -2,6 +2,7 @@
 // All rights reserved.
 
 #pragma once
+
 #include <string>
 #include <array>
 #include "core/Core.h"
