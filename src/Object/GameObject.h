@@ -24,20 +24,14 @@ namespace Object
 		// Return viewport object. 
 		virtual const sf::View* GetViewport() const { return nullptr; }
 
+		// Update 0bject if class implements it.
+		virtual void Update(float deltaTime) {}
+
 		// Virtual destructor to make sure Object's memory is free'd correctly.
 		virtual ~Object() {}
 
 	protected:
 		sf::VertexArray m_VertexArray;
 		sf::Texture m_Texture;
-	};
-
-	//-----------------------------------------------------------------------//
-	// Abstract BehaviourObject class to use for objects that have behaviour.//
-	//-----------------------------------------------------------------------//
-
-	class BehaviourObject : public Object
-	{
-		virtual void Update() {}
 	};
 }

@@ -238,6 +238,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Object\Player.cpp" />
     <ClCompile Include="src\Utils\ColorLookupMap.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -246,6 +247,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Object\Tileset.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Object\Player.h" />
     <ClInclude Include="src\Utils\ColorLookupMap.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Game.h" />

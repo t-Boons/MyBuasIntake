@@ -9,6 +9,7 @@
 #include "Core/Core.h"
 #include "Object/TileSet.h"
 #include "Object/SkyBox.h"
+#include "Object/Player.h"
 
 namespace Tmpl8 {
 
@@ -29,7 +30,7 @@ public:
 	void KeyDown(int key);
 
 	void RenderScene();
-	void UpdateInput(float deltaTime);
+	void UpdateObjects(float deltaTime);
 
 private:
 	sf::RenderWindow* m_Window;

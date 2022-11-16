@@ -43,7 +43,7 @@ namespace Utils
 		// Get the amount of pixels in the color lookup texture.
 		uint32_t uploadColorSize = m_ColorUploadMap.getSize().x * m_ColorUploadMap.getSize().y;
 
-		// Resize vector to make it able to accomodate the 
+		// Resize vector to make it able to accomodate the full color size.
 		m_IndexData.resize(uploadColorSize);
 
 		for (size_t i = 0; i < uploadColorSize; i++)

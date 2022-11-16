@@ -23,12 +23,16 @@ namespace Tmpl8
 		Object::Object* worldTiles = new Object::TileSet(properties);
 
 
-		// Initialize skybox.
+		// Create skybox.
 		Object::Object* skyBox = new Object::Skybox("assets/pixelskybox.png", m_Window->getSize());
 
 
+		// Create player
+		Object::Object* player = new Object::Player("assets/TestPlayer.png", 32);
+
 		// Add initialized objects to object vector.
 		m_Objects.push_back(skyBox);
+		m_Objects.push_back(player);
 		m_Objects.push_back(worldTiles);
 	}
 	
@@ -52,7 +56,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Tick(float deltaTime)
 	{
-		UpdateInput(deltaTime);
+		UpdateObjects(deltaTime);
 		RenderScene();
 	}
 
@@ -110,8 +114,14 @@ namespace Tmpl8
 		m_Window->display();
 	}
 
-	void Game::UpdateInput(float deltaTime)
+	void Game::UpdateObjects(float deltaTime)
 	{
+		for (auto& obj : m_Objects)
+		{
+			obj->Update(deltaTime);
+		}
+
+
 		float s = (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ? 1500 : 500) * deltaTime;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
