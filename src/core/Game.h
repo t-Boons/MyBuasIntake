@@ -1,4 +1,4 @@
-// Game instance class from
+// Game instance class from:
 // Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
@@ -6,10 +6,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "Core/Core.h"
-#include "Object/TileSet.h"
-#include "Object/SkyBox.h"
-#include "Object/Player.h"
+#include "Core.h"
+#include "TestScene.h"
 
 namespace Tmpl8 {
 
@@ -36,7 +34,8 @@ private:
 	sf::RenderWindow* m_Window;
 	sf::RenderTexture m_CompositeFrameBuffer;
 	sf::View m_DefaultView;
-	std::vector<Object::Object*> m_Objects;
+
+	RefPtr<Core::Scene> m_ActiveScene;
 };
 
 }; // namespace Tmpl8

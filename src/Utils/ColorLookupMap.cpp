@@ -1,5 +1,4 @@
-// Copyright (C) 2022 Tygo Boons
-// All rights reserved.
+// 2022 Tygo Boons
 
 #include "ColorLookupMap.h"
 #include "Core/Core.h"

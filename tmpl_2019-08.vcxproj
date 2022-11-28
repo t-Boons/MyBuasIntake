@@ -238,23 +238,27 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Object\Player.cpp" />
+    <ClCompile Include="src\Core\Scene.cpp" />
+    <ClCompile Include="src\Core\TestScene.cpp" />
+    <ClCompile Include="src\Entity\GameObject.cpp" />
+    <ClCompile Include="src\Entity\Transform.cpp" />
     <ClCompile Include="src\Utils\ColorLookupMap.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\Object\SkyBox.cpp" />
+    <ClCompile Include="src\Core\Game.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
-    <ClCompile Include="src\Object\Tileset.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Object\Player.h" />
+    <ClInclude Include="src\Core\Scene.h" />
+    <ClInclude Include="src\Core\TestScene.h" />
+    <ClInclude Include="src\Entity\Component.h" />
+    <ClInclude Include="src\Entity\MeshRenderer.h" />
+    <ClInclude Include="src\Entity\Transform.h" />
+    <ClInclude Include="src\Renderer\Mesh.h" />
     <ClInclude Include="src\Utils\ColorLookupMap.h" />
     <ClInclude Include="src\Core\Core.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\Object\GameObject.h" />
-    <ClInclude Include="src\Object\Skybox.h" />
+    <ClInclude Include="src\Core\Game.h" />
+    <ClInclude Include="src\Entity\GameObject.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
-    <ClInclude Include="src\Object\Tileset.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

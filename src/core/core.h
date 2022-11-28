@@ -1,5 +1,4 @@
-// Copyright (C) 2022 Tygo Boons
-// All rights reserved.
+// 2022 Tygo Boons
 
 #pragma once
 
@@ -34,3 +33,14 @@
 #define LOG(message) ;;
 #define ASSERT(condition, message) ;;
 #endif
+
+
+// Simplify the shared and unique ptr names.
+
+#include <memory>
+    
+template<class T>
+using ScopePtr = std::unique_ptr<T>;
+
+template<class T>
+using RefPtr = std::shared_ptr<T>;

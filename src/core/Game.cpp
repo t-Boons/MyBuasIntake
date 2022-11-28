@@ -1,3 +1,7 @@
+// Game instance class from:
+// Template, BUAS version https://www.buas.nl/games
+// IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
+
 #include "Game.h"
 
 namespace Tmpl8
@@ -8,32 +12,8 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Init()
 	{
-		// Initialize frame buffer object to render the scene to.
-		m_CompositeFrameBuffer.create(m_Window->getSize().x, m_Window->getSize().y);
-
-
-		// Initialize tileset.
-		Object::TileProperties properties;
-		properties.ColorReferenceMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colorreference.png";
-		properties.TextureMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground.png";
-		properties.ColorMap = "assets/PixelArtPlatformer_Village Props_v2.1.0/tx_tileset_ground_colormap.png";
-		properties.TextureMapTileSizeInPixels = 32;
-		properties.TileSizeInGame = 32;
-
-		Object::Object* worldTiles = new Object::TileSet(properties);
-
-
-		// Create skybox.
-		Object::Object* skyBox = new Object::Skybox("assets/pixelskybox.png", m_Window->getSize());
-
-
-		// Create player
-		Object::Object* player = new Object::Player("assets/TestPlayer.png", 32);
-
-		// Add initialized objects to object vector.
-		m_Objects.push_back(skyBox);
-		m_Objects.push_back(player);
-		m_Objects.push_back(worldTiles);
+		m_ActiveScene = std::make_shared<Core::TestScene>();
+		m_ActiveScene->LoadScene();
 	}
 	
 	// -----------------------------------------------------------
@@ -41,11 +21,7 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		// Free all object memory.
-		for (Object::Object* obj : m_Objects)
-		{
-			delete(obj);
-		}
+
 	}
 
 	float xp, yp, size = 1;
@@ -88,23 +64,6 @@ namespace Tmpl8
 		// Clear the composite frame buffer.
 		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
 
-		//--------------------//
-		// Render all objects.//
-		//--------------------//
-
-		for (auto& obj : m_Objects)
-		{
-			// Set a custom viewport for renderable object if the GetViewport method is overridden.
-			m_CompositeFrameBuffer.setView(obj->GetViewport() != nullptr ? *obj->GetViewport() : m_DefaultView);
-
-			// Select texture to sample from.
-			sf::RenderStates states;
-			states.texture = obj->GetTexture();
-
-			// Draw opject to composite frame buffer.
-			m_CompositeFrameBuffer.draw(obj->GetVertexArray(), states);
-		}
-
 		// Show frame buffer
 		m_CompositeFrameBuffer.display();
 
@@ -116,12 +75,6 @@ namespace Tmpl8
 
 	void Game::UpdateObjects(float deltaTime)
 	{
-		for (auto& obj : m_Objects)
-		{
-			obj->Update(deltaTime);
-		}
-
-
 		float s = (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift) ? 1500 : 500) * deltaTime;
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))

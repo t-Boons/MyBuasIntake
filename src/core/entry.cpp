@@ -1,5 +1,4 @@
-// Copyright (C) 2022 Tygo Boons
-// All rights reserved.
+// 2022 Tygo Boons
 
 // Using SFML graphics library
 // found at https://www.sfml-dev.org/
@@ -8,8 +7,9 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "Core/Core.h"
+#include "Core.h"
 #include "Game.h"
+#include "Scene.h"
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
