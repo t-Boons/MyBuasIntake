@@ -9,6 +9,9 @@
     <ClCompile Include="src\Entity\Transform.cpp" />
     <ClCompile Include="src\Core\Scene.cpp" />
     <ClCompile Include="src\Core\TestScene.cpp" />
+    <ClCompile Include="src\Renderer\Mesh.cpp" />
+    <ClCompile Include="src\Entity\Camera.cpp" />
+    <ClCompile Include="src\Renderer\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -22,6 +25,8 @@
     <ClInclude Include="src\Core\TestScene.h" />
     <ClInclude Include="src\Entity\MeshRenderer.h" />
     <ClInclude Include="src\Renderer\Mesh.h" />
+    <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Entity\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

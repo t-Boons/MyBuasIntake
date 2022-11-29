@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include "Core.h"
 #include "TestScene.h"
+#include "Renderer/Renderer.h"
 
 namespace Tmpl8 {
 
@@ -15,8 +16,10 @@ class Game
 {
 public:
 	Game(sf::RenderWindow* window)
-		: m_Window(window)
-	{}
+	{
+		// Assign static window.
+		s_Window = window;
+	}
 
 	void Init();
 	void Shutdown();
@@ -30,12 +33,16 @@ public:
 	void RenderScene();
 	void UpdateObjects(float deltaTime);
 
+	static sf::RenderWindow* GetWindow() { return s_Window; }
+	static Core::Scene* GetActiveScene() { return s_ActiveScene; }
+	static void SetActiveScene(Core::Scene* scene) { s_ActiveScene = scene; }
+
 private:
-	sf::RenderWindow* m_Window;
-	sf::RenderTexture m_CompositeFrameBuffer;
+	static sf::RenderWindow* s_Window;
+	static Core::Scene* s_ActiveScene;
+
 	sf::View m_DefaultView;
 
-	RefPtr<Core::Scene> m_ActiveScene;
 };
 
 }; // namespace Tmpl8

@@ -10,6 +10,8 @@
 
 namespace Entity
 {
+	class GameObject;
+
 	class Component
 	{
 	public:
@@ -20,15 +22,7 @@ namespace Entity
 		// Update component.
 		virtual void Update() {};
 
-		// Make GameObject a friend class so it can acces the SetParent function.
-		friend class GameObject;
-
-	private:
-
-		// Set the component parent object.
-		void SetParent(GameObject* object)  { m_This = object; }
-		
-	protected:
-		GameObject* m_This;
+		// Virtual destructor for memory cleanup.
+		virtual ~Component() = default;
 	};
 }

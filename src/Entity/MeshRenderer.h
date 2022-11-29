@@ -12,13 +12,14 @@ namespace Entity
 		IMPLEMENT_COMPONENT_IDENTIFIER(MeshRenderer)
 
 	public:
-		// Load mesh in .obj format.
-		void LoadMesh(const std::string& filepath);
+
+		// Set mesh object.
+		void SetMesh(RefPtr<Renderer::Mesh> mesh) { m_Mesh = mesh; }
 
 		// Get mesh object.
-		const Renderer::Mesh& GetMesh() const { return m_Mesh; }
+		const RefPtr<Renderer::Mesh> GetMesh() const { return m_Mesh; }
 
 	private:
-		Renderer::Mesh m_Mesh;
-	}
+		RefPtr<Renderer::Mesh> m_Mesh;
+	};
 }

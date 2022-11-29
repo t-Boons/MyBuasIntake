@@ -18,8 +18,6 @@ namespace Entity
 			RecalculateTransformMatrix();
 		}
 
-		virtual void Update() override;
-
 	public:
 		// Setters.
 		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateTransformMatrix(); }
@@ -32,7 +30,7 @@ namespace Entity
 		const glm::vec3& GetScale() const { return m_LocalScale; }
 
 		// Return location, rotation and scale in one matrix.
-		const glm::mat4& GetTransformMatrix() { return m_TransformMatrix; }
+		const glm::mat4& GetTransformMatrix() const { return m_TransformMatrix; }
 
 		// Movement.
 		void Translate(const glm::vec3& translation) { m_Position += translation; RecalculateTransformMatrix(); }

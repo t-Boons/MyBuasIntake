@@ -6,14 +6,17 @@
 
 namespace Tmpl8
 {
+	// Initialize static cvariables.
+	sf::RenderWindow* Game::s_Window = nullptr;
+	Core::Scene* Game::s_ActiveScene = nullptr;
 
 	// -----------------------------------------------------------
 	// Initialize the application
 	// -----------------------------------------------------------
-	void Game::Init()
+	void Game::Start()
 	{
-		m_ActiveScene = std::make_shared<Core::TestScene>();
-		m_ActiveScene->LoadScene();
+		SetActiveScene(new Core::TestScene());
+		GetActiveScene()->LoadScene();
 	}
 	
 	// -----------------------------------------------------------
@@ -21,7 +24,8 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-
+		delete GetActiveScene();
+		delete GetWindow();
 	}
 
 	float xp, yp, size = 1;
@@ -62,15 +66,9 @@ namespace Tmpl8
 	{
 
 		// Clear the composite frame buffer.
-		m_CompositeFrameBuffer.clear(sf::Color(0, 100, 100));
+		Renderer::Renderer::Clear();
 
-		// Show frame buffer
-		m_CompositeFrameBuffer.display();
-
-		// Draw composite frame buffer to the screen.
-		m_Window->clear();
-		m_Window->draw(sf::Sprite(m_CompositeFrameBuffer.getTexture()));
-		m_Window->display();
+		Renderer::Renderer::SubmitMesh(nullptr);
 	}
 
 	void Game::UpdateObjects(float deltaTime)
@@ -98,7 +96,7 @@ namespace Tmpl8
 		if (size < 0)
 			size = 0.001f * deltaTime;
 
-		m_DefaultView = sf::View(sf::Vector2f(m_Window->getSize().x / 2, m_Window->getSize().y / 2) + pos, (sf::Vector2f)m_Window->getSize() * size);
+		m_DefaultView = sf::View(sf::Vector2f(s_Window->getSize().x / 2, s_Window->getSize().y / 2) + pos, (sf::Vector2f)s_Window->getSize() * size);
 
 	}
 

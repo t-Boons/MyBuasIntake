@@ -21,16 +21,17 @@
 #endif
 
 #ifdef _DEBUG
-#define LOG(message) std::cout << "Log: " << message << '\n';
-
+#define LOG(message) std::cout << "LOG: " << message << '\n';
+#define LOG_ERROR(message) std::cout << "ERROR: " << message << '\n';
 #define ASSERT(condition, message)  if(!(condition))                                \
                                     {                                               \
-                                        std::cout << "Assert: " << message << '\n'; \
+                                        std::cout << "ASSERT: " << message << '\n'; \
                                         DebugBreak();                               \
                                     }
 
 #else
 #define LOG(message) ;;
+#define LOGERROR(message) ;;
 #define ASSERT(condition, message) ;;
 #endif
 

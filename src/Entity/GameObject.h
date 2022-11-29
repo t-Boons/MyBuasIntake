@@ -13,7 +13,7 @@ namespace Entity
 	{
 	public:
 		GameObject(const std::string& name = "")
-			: m_Name(name), m_ObjectID(s_CurrentObjectID++)
+			: m_Name(name)
 		{
 			// Set default name if object does not have a name.
 			if (m_Name == "")
@@ -45,9 +45,6 @@ namespace Entity
 			// Add component to list
 			m_Components.push_back(component);
 
-			// Set component parent object.
-			component->SetParent(this);
-
 			return component;
 		}
 
@@ -63,13 +60,9 @@ namespace Entity
 		// Destroy this entity.
 		void Destroy();
 
-
 	private:
-		static uint32_t s_CurrentObjectID;
-
 		std::vector<RefPtr<Component>> m_Components;
 		std::string m_Name;
-		std::string m_Tag;
 		uint32_t m_ObjectID;
 	};
 }

@@ -47,7 +47,7 @@ namespace detail
 	{
 		GLM_FUNC_QUALIFIER static vec<L, T, Q> call(vec<L, floatType, Q> const& v)
 		{
-			floatType const Max = static_cast<floatType>(std::numeric_limits<T>::max()) + static_cast<floatType>(0.5);
+			floatType const Max = static_cast<floatType>(std::numeric_limits<T>::`max()) + static_cast<floatType>(0.5);
 			vec<L, floatType, Q> const Scaled(v * Max);
 			vec<L, T, Q> const Result(Scaled - static_cast<floatType>(0.5));
 			return Result;
