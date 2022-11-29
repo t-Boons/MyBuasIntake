@@ -12,7 +12,12 @@ IGAD/BUAS(NHTV)/UU - Jacco Bikker - 2006-2020
 GLM 0.9.9.8
 https://github.com/g-truc/glm 
 
+
+GLAD:
+https://glad.dav1d.de/
+
+
 Used assets:
 
-Pixel skybox
-https://gamer247.itch.io/cu-azul
+Wii tanks Tank model
+https://www.models-resource.com/wii/wiiplay/model/41959/
