@@ -2,11 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 #include "glm/glm.hpp"
+#include "VertexData.h"
 
 namespace Renderer
 {
-	#define VERTEX_SIZE 8
-
 	struct Mesh
 	{
 	public:
@@ -16,12 +15,12 @@ namespace Renderer
 		bool LoadMesh(const std::string& filePath);
 
 		// Load mesh with raw data
-		bool LoadMesh(const float* vertices, uint32_t size);
+		bool LoadMesh(const std::vector<float>& vertices, const std::vector<uint32_t> indices);
 
-	public:
-		std::vector<glm::vec3> Position;
-		std::vector<glm::vec2> TexCoordinate;
-		std::vector<glm::vec3> Normal;
-		std::vector<uint32_t> Indices;
+		// Get Vertex data.
+		const RefPtr<VertexData>& GetVertexData() const { return m_VertexData; }
+
+	private:
+		RefPtr<VertexData> m_VertexData;
 	};
 }

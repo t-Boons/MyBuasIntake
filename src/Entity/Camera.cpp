@@ -9,7 +9,7 @@ Entity::Camera::Camera()
 	// Initialize default values.
 	m_Fov = 70;
 	m_Near = 0.01f;
-	m_Far = 1000;
+	m_Far = 1000.0f;
 
 	// Calculate aspect ratio by using window size.
 	sf::Vector2f screenSize = (sf::Vector2f)Tmpl8::Game::Get()->GetWindow()->getSize();

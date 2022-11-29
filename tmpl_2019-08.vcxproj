@@ -245,11 +245,16 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Entity\GameObject.cpp" />
     <ClCompile Include="src\Entity\Transform.cpp" />
+    <ClCompile Include="src\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Renderer\Mesh.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Renderer\VertexData.cpp" />
     <ClCompile Include="src\Utils\ColorLookupMap.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="src\Core\Game.cpp" />
+    <ClCompile Include="src\Utils\File.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -261,12 +266,18 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Entity\Component.h" />
     <ClInclude Include="src\Entity\MeshRenderer.h" />
     <ClInclude Include="src\Entity\Transform.h" />
+    <ClInclude Include="src\Renderer\Buffer.h" />
+    <ClInclude Include="src\Renderer\Material.h" />
     <ClInclude Include="src\Renderer\Mesh.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Renderer\Shader.h" />
+    <ClInclude Include="src\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Renderer\VertexData.h" />
     <ClInclude Include="src\Utils\ColorLookupMap.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Core\Game.h" />
     <ClInclude Include="src\Entity\GameObject.h" />
+    <ClInclude Include="src\Utils\File.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -107,46 +107,41 @@ namespace Renderer
 			return false;
 		}
 
-		// Clear any old data that was in the mesh.
-		Indices.clear();
-		Position.clear();
-		Normal.clear();
-		TexCoordinate.clear();
+		std::vector<float> vertices;
+		std::vector<uint32_t> indices;
 
 		// Fill vertices & indices with correct data
 		for (uint32_t i = 0; i < vertexIndices.size(); i++)
 		{
-			Indices.push_back(i);
+			indices.push_back(i);
 
-			Position.push_back(tempVertices[vertexIndices[i] - 1]);
-			TexCoordinate.push_back(tempTexcoords[uvIndices[i] - 1]);
-			Normal.push_back(tempNormals[normalIndices[i] - 1]);
+			vertices.push_back(tempVertices[vertexIndices[i] - 1].x);
+			vertices.push_back(tempVertices[vertexIndices[i] - 1].y);
+			vertices.push_back(tempVertices[vertexIndices[i] - 1].z);
+
+			vertices.push_back(tempTexcoords[uvIndices[i] - 1].x);
+			vertices.push_back(tempTexcoords[uvIndices[i] - 1].y);
+
+			vertices.push_back(tempNormals[normalIndices[i] - 1].x);
+			vertices.push_back(tempNormals[normalIndices[i] - 1].y);
+			vertices.push_back(tempNormals[normalIndices[i] - 1].z);
 		}
 
-		return true;
+		return LoadMesh(vertices, indices);
 	}
 
-	bool Mesh::LoadMesh(const float* vertices, uint32_t size)
+	bool Mesh::LoadMesh(const std::vector<float>& vertices, const std::vector<uint32_t> indices)
 	{
-		uint32_t elementCount = size / VERTEX_SIZE;
-
-		if (size % 8 != 0 || size < 8)
+		// Create vertex data layout.
+		std::vector<VertexDataElement> vertexDataLayout =
 		{
-			LOG_ERROR("Incomplete vertex data")
-			return false;
-		}
+			{GL_FLOAT, 3},
+			{GL_FLOAT, 2},
+			{GL_FLOAT, 3}
+		};
 
-		// Fill mesh data.
-		for (size_t i = 0; i < elementCount; i++)
-		{
-			Indices.push_back(i);
-
-			uint32_t index = i * VERTEX_SIZE;
-
-			Position.push_back(glm::vec3(vertices[index]));
-			TexCoordinate.push_back(glm::vec2(vertices[index + 3]));
-			Normal.push_back(glm::vec3(vertices[index + 5]));
-		}
+		// Fill vertex data for mesh.
+		m_VertexData = std::make_shared<VertexData>(vertexDataLayout, vertices, indices);
 
 		return true;
 	}

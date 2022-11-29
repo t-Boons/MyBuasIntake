@@ -14,6 +14,11 @@
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="lib\glad\src\glad.c" />
     <ClCompile Include="src\Core\SceneManager.cpp" />
+    <ClCompile Include="src\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Utils\File.cpp" />
+    <ClCompile Include="src\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Renderer\VertexData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -31,6 +36,12 @@
     <ClInclude Include="src\Entity\Camera.h" />
     <ClInclude Include="lib\glad\include\glad\glad.h" />
     <ClInclude Include="src\Core\SceneManager.h" />
+    <ClInclude Include="src\Renderer\Shader.h" />
+    <ClInclude Include="src\Utils\File.h" />
+    <ClInclude Include="src\Renderer\Material.h" />
+    <ClInclude Include="src\Renderer\Buffer.h" />
+    <ClInclude Include="src\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Renderer\VertexData.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

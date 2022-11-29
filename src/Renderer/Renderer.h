@@ -10,7 +10,8 @@
 #include "Entity/GameObject.h"
 #include "Entity/Camera.h"
 #include "Entity/Transform.h"
-#include "Renderer/Mesh.h"
+#include "Mesh.h"
+#include "Material.h"
 #include "glm/glm.hpp"
 
 namespace Renderer
@@ -26,10 +27,10 @@ namespace Renderer
 
 		static void Init();
 
-		static void BeginScene(const Entity::Transform* transform, const Entity::Camera* camera);
+		static void BeginScene(const RefPtr<Entity::Transform> transform, const RefPtr<Entity::Camera> camera);
 		static void EndScene();
 
-		static void SubmitMesh(const Mesh* mesh);
+		static void SubmitMesh(const RefPtr<Mesh> mesh, const RefPtr<Material> material);
 
 		static void Clear(const glm::vec3& color = { 0, 0, 0 });
 
