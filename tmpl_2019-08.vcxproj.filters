@@ -12,6 +12,8 @@
     <ClCompile Include="src\Renderer\Mesh.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="lib\glad\src\glad.c" />
+    <ClCompile Include="src\Core\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -27,6 +29,8 @@
     <ClInclude Include="src\Renderer\Mesh.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Entity\Camera.h" />
+    <ClInclude Include="lib\glad\include\glad\glad.h" />
+    <ClInclude Include="src\Core\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

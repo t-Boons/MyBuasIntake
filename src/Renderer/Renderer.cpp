@@ -8,6 +8,12 @@ namespace Renderer
 {
 	RendererData Renderer::s_Data = RendererData();
 
+	void Renderer::Init()
+	{
+		// Initialize GLAD
+		gladLoadGLLoader((GLADloadproc)(sf::Context::getFunction));
+	}
+
 	void Renderer::Renderer::BeginScene(const Entity::Transform* transform, const Entity::Camera* camera)
 	{
 		// Update view projection matrix.

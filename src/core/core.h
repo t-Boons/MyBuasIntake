@@ -31,7 +31,7 @@
 
 #else
 #define LOG(message) ;;
-#define LOGERROR(message) ;;
+#define LOG_ERROR(message) ;;
 #define ASSERT(condition, message) ;;
 #endif
 

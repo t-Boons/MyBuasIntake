@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "glad/glad.h"
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -22,6 +23,9 @@ namespace Renderer
 	class Renderer
 	{
 	public:
+
+		static void Init();
+
 		static void BeginScene(const Entity::Transform* transform, const Entity::Camera* camera);
 		static void EndScene();
 

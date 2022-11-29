@@ -12,7 +12,8 @@ Entity::Camera::Camera()
 	m_Far = 1000;
 
 	// Calculate aspect ratio by using window size.
-	float aspect = Tmpl8::Game::GetWindow()->getSize().x / Tmpl8::Game::GetWindow()->getSize().y;
+	sf::Vector2f screenSize = (sf::Vector2f)Tmpl8::Game::Get()->GetWindow()->getSize();
+	float aspect = screenSize.x / screenSize.y;
 	m_Aspect = aspect;
 
 

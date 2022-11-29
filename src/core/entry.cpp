@@ -16,45 +16,28 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
     // Allocate console if in debug configuration.
     ALLOC_CONSOLE()
 
-    // Create window instance.
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "2DPlatformer");
 
     // Create game instance.
-    Tmpl8::Game game(&window);
-    game.Init();
+    Tmpl8::Game game(Tmpl8::Game::GetWindowProperties(), new Core::SceneManager());
+
+    // Call game start method.
+    game.Start();
 
     // Create sfml clock to use to get delta time.
     sf::Clock deltaClock;
 
     // Main window loop
-    while (window.isOpen())
+    while (game.GetWindow()->isOpen())
     {
 
         // Poll SFML events.
         sf::Event event;
-        while (window.pollEvent(event))
+        while (game.GetWindow()->pollEvent(event))
         {
-            // Poll key events.
-            if (event.type == sf::Event::KeyPressed)
-                game.KeyDown(event.key.code);
-
-            if (event.type == sf::Event::KeyReleased)
-                game.KeyUp(event.key.code);
-
-            // Poll mouse events.
-            if (event.type == sf::Event::MouseButtonPressed)
-                game.MouseDown(event.mouseButton.button);
-
-            if (event.type == sf::Event::MouseButtonReleased)
-                game.MouseUp(event.mouseButton.button);
-
-            if (event.type == sf::Event::MouseMoved)
-                game.MouseMove(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
-
             // Poll window events.
             if (event.type == sf::Event::Closed)
             {
-                window.close();
+                game.GetWindow()->close();
             }
         }
 

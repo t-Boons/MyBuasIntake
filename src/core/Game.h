@@ -1,3 +1,6 @@
+// 2022 Tygo Boons
+// This version is heavily modified
+//
 // Game instance class from:
 // Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
@@ -7,42 +10,47 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Core.h"
-#include "TestScene.h"
+#include "SceneManager.h"
 #include "Renderer/Renderer.h"
 
 namespace Tmpl8 {
 
-class Game
-{
-public:
-	Game(sf::RenderWindow* window)
+	class Game
 	{
-		// Assign static window.
-		s_Window = window;
-	}
+	public:
+		Game(sf::RenderWindow* window, Core::SceneManager* sceneManager)
+			: m_Window(window), m_SceneManager(sceneManager)
+		{
+			// Fill singleton instance with this.
+			s_Instance = this;
+		}
 
-	void Init();
-	void Shutdown();
-	void Tick( float deltaTime );
-	void MouseUp(int button);
-	void MouseDown(int button);
-	void MouseMove(int x, int y);
-	void KeyUp(int key);
-	void KeyDown(int key);
+		// Runs when the game starts.
+		void Start();
 
-	void RenderScene();
-	void UpdateObjects(float deltaTime);
+		// Runs when game is shut down.
+		void Shutdown();
 
-	static sf::RenderWindow* GetWindow() { return s_Window; }
-	static Core::Scene* GetActiveScene() { return s_ActiveScene; }
-	static void SetActiveScene(Core::Scene* scene) { s_ActiveScene = scene; }
+		// Runs every frame.
+		void Tick(float deltaTime);
 
-private:
-	static sf::RenderWindow* s_Window;
-	static Core::Scene* s_ActiveScene;
+		// Get window instance.
+		sf::RenderWindow* GetWindow() const { return m_Window; }
 
-	sf::View m_DefaultView;
+		// Get scene manager instance.
+		Core::SceneManager* GetSceneManager() const { return m_SceneManager; }
 
-};
+		// Static method to get the Game instance.
+		static Game* Get() { return s_Instance; }
+
+		// Get window initialization properties.
+		static sf::RenderWindow* GetWindowProperties();
+
+	private:
+		sf::RenderWindow* m_Window;
+		Core::SceneManager* m_SceneManager;
+
+		static Game* s_Instance;
+	};
 
 }; // namespace Tmpl8
