@@ -34,11 +34,6 @@ namespace Tmpl8
 		m_Material->Shader = new Renderer::Shader("assets/shaders/Basic3DShader.glsl");
 		m_Material->Texture->loadFromFile("assets/Tanks/textures/enemy/tank_marin.png");
 
-
-		m_Transform = std::make_shared<Entity::Transform>();
-		m_Transform->SetPosition({ 0, 0, -5 });
-		m_Transform->SetScale({ 0.1f, 0.1f, 0.1f });
-
 		m_Camera = std::make_shared<Entity::Camera>();
 	}
 	
@@ -51,28 +46,42 @@ namespace Tmpl8
 	}
 	glm::vec3 pos = { 0, 0, 0 };
 	glm::vec3 rotation = { 0, 0, 0 };
+	glm::vec2 mDelta = { 0, 0 };
 	// -----------------------------------------------------------
 	// Main application tick function
 	// -----------------------------------------------------------
+	float dt = 0;
 	void Game::Tick(float deltaTime)
 	{
-		Renderer::Renderer::BeginScene(m_Transform, m_Camera);
+		Renderer::Renderer::BeginScene(m_Camera);
 
 		Renderer::Renderer::Clear();
-		m_Window->clear();
-		Renderer::Renderer::SubmitMesh(m_Mesh, m_Material);
 
-		pos.x += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? 0 : 2 * deltaTime;
-		pos.x -= sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? 0 : 2 * deltaTime;
-		pos.y += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? 0 : 2 * deltaTime;
-		pos.y -= sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? 0 : 2 * deltaTime;
-		pos.z += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? 0 : 2 * deltaTime;
-		pos.z -= sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? 0 : 2 * deltaTime;
-		rotation.y += sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) ? 200 * deltaTime : 0;
-		rotation.x += sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) ? 200 * deltaTime : 0;
+		RefPtr<Entity::Transform> tr = std::make_shared<Entity::Transform>();
+		dt += deltaTime;
+		tr->SetPosition({ 0, 0, sin(dt * 10) * 5});
+		tr->SetScale({ 0.1f, 0.1f, 0.1f });
+		Renderer::Renderer::SubmitMesh(tr, m_Mesh, m_Material);
 
-		m_Transform->SetPosition(pos);
-		m_Transform->SetRotation(rotation);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? glm::vec3(0.0f) : m_Camera->GetForward() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? glm::vec3(0.0f) : -m_Camera->GetForward() * (deltaTime * 10);
+
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? glm::vec3(0.0f) : m_Camera->GetRight() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? glm::vec3(0.0f) : -m_Camera->GetRight() * (deltaTime * 10);
+
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? glm::vec3(0.0f) : m_Camera->GetUp() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? glm::vec3(0.0f) : -m_Camera->GetUp() * (deltaTime * 10);
+
+		glm::vec2 delta = (mDelta - glm::vec2(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) * 0.25f;
+		mDelta = { sf::Mouse::getPosition().x, sf::Mouse::getPosition().y };
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		{
+				rotation.y += delta.x;
+				rotation.x += delta.y;
+		}
+
+		m_Camera->SetPosition(pos);
+		m_Camera->SetRotation(rotation);
 
 		Renderer::Renderer::EndScene();
 

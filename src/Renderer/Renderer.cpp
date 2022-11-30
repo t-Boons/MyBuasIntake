@@ -21,11 +21,11 @@ namespace Renderer
 		glDepthFunc(GL_LESS);
 	}
 
-	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Transform> transform, const RefPtr<Entity::Camera> camera)
+	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
 		Game::Get()->GetWindow()->popGLStates();
 		// Update view projection matrix.
-		s_Data.m_ViewProjectionMatrix = camera->GetProjectionMatrix() * transform->GetTransformMatrix();
+		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
@@ -33,13 +33,14 @@ namespace Renderer
 		Game::Get()->GetWindow()->pushGLStates();
 	}
 
-	void Renderer::SubmitMesh(const RefPtr<Mesh> mesh, const RefPtr<Material> material)
+	void Renderer::SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material)
 	{
 		// Bind vertex array with the data vertex layout.
 		mesh->GetVertexData()->GetVertexArray()->Bind();
 
 		// Bind shader and upload camera view projection matrix from framedata.
 		material->Shader->Bind();
+		material->Shader->UploadUniformMat4("uModel", transform->GetTransformMatrix());
 		material->Shader->UploadUniformMat4("uViewProjection", s_Data.m_ViewProjectionMatrix);
 
 		sf::Texture::bind(material->Texture, sf::Texture::Normalized);

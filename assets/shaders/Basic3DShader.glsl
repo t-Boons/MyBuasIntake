@@ -6,6 +6,7 @@
     layout(location = 2) in vec3 aNormal;
 
     uniform mat4 uViewProjection;
+    uniform mat4 uModel;
 
     out float intensity;
     out vec2 oTexCoord;
@@ -18,7 +19,7 @@
         vec3 dirLight = clamp(normalize(-vec3(-0.5f, -1.0f, -0.2f)) + 0.25f, 0, 1);
 
         intensity = clamp(dot(dirLight, aNormal), 0, 1);
-        gl_Position = uViewProjection * vec4(aPosition.x, aPosition.y, aPosition.z, 1);
+        gl_Position = uViewProjection * uModel * vec4(aPosition.x, aPosition.y, aPosition.z, 1);
     }
 
 #type fragment

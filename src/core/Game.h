@@ -60,7 +60,6 @@ namespace Tmpl8 {
 		RefPtr<Renderer::Material> m_Material;
 		RefPtr<Renderer::Mesh> m_Mesh;
 
-		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<Entity::Camera> m_Camera;
 	};
 

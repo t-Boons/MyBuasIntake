@@ -17,4 +17,22 @@ namespace Entity
 		// Multiply position, rotation and scale matrix.
 		m_TransformMatrix = translate * rotation * scale;
 	}
+
+	const glm::vec3& Transform::GetForward() const
+	{
+		auto& a = m_TransformMatrix;
+		return  glm::normalize(glm::vec3(a[0].z, a[1].z, a[2].z));
+	}
+
+	const glm::vec3& Transform::GetRight() const
+	{
+		auto& a = m_TransformMatrix;
+		return glm::normalize(-glm::vec3(a[0].x, a[1].x, a[2].x));
+	}
+
+	const glm::vec3& Transform::GetUp() const
+	{
+		auto& a = m_TransformMatrix;
+		return glm::normalize(-glm::vec3(a[0].y, a[1].y, a[2].y));
+	}
 }

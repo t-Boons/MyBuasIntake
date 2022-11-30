@@ -27,10 +27,10 @@ namespace Renderer
 
 		static void Init();
 
-		static void BeginScene(const RefPtr<Entity::Transform> transform, const RefPtr<Entity::Camera> camera);
+		static void BeginScene(const RefPtr<Entity::Camera> camera);
 		static void EndScene();
 
-		static void SubmitMesh(const RefPtr<Mesh> mesh, const RefPtr<Material> material);
+		static void SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material);
 
 		static void Clear(const glm::vec3& color = { 0, 0, 0 });
 
