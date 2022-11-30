@@ -11,8 +11,9 @@
 
 namespace Renderer
 {
-	Mesh::Mesh()
+	Mesh::Mesh(const std::string& filepath)
 	{
+		LoadMesh(filepath);
 	}
 
 	bool Renderer::Mesh::LoadMesh(const std::string& filePath)

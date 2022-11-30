@@ -38,13 +38,13 @@ namespace Entity
 		const glm::vec3& GetScale() const { return m_LocalScale; }
 
 		// Get Forward vector.
-		const glm::vec3& GetForward() const;
+		const glm::vec3 GetForward() const;
 
 		// Get Up vector.
-		const glm::vec3& GetUp() const;
+		const glm::vec3 GetUp() const;
 
 		// Get Right vector.
-		const glm::vec3& GetRight() const;
+		const glm::vec3 GetRight() const;
 		
 		// Return location, rotation and scale in one matrix.
 		const glm::mat4& GetTransformMatrix() const { return m_TransformMatrix; }

@@ -50,17 +50,21 @@ namespace Tmpl8 {
 		// Get window initialization properties.
 		static sf::RenderWindow* GetWindowProperties();
 
+
+		void UpdateTemporaryCameraMovement(float deltatime);
+
 	private:
 		sf::RenderWindow* m_Window;
 		Core::SceneManager* m_SceneManager;
 
 		static Game* s_Instance;
 
-
-		RefPtr<Renderer::Material> m_Material;
-		RefPtr<Renderer::Mesh> m_Mesh;
-
 		RefPtr<Entity::Camera> m_Camera;
+
+
+		glm::vec3 pos = { 0, 0, 0 };
+		glm::vec3 rotation = { 0, 0, 0 };
+		glm::vec2 mDelta = { 0, 0 };
 	};
 
 }; // namespace Tmpl8

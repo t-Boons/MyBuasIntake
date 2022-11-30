@@ -29,13 +29,13 @@ namespace Entity
 		const glm::vec3& GetViewRotation() const { return m_Rotation; }
 
 		// Get Forward vector.
-		const glm::vec3& GetViewForward() const;
+		const glm::vec3 GetViewForward() const;
 
 		// Get Up vector.
-		const glm::vec3& GetViewUp() const;
+		const glm::vec3 GetViewUp() const;
 
 		// Get Right vector.
-		const glm::vec3& GetViewRight() const;
+		const glm::vec3 GetViewRight() const;
 
 		// Move Object in to direction.
 		void Translate(const glm::vec3& translation) { m_Position += translation; RecalculateViewProjectionMatrix(); }

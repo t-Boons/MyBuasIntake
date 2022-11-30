@@ -18,8 +18,14 @@ namespace Core
 		// Destroy all gameobjects and unload the scene.
 		void UnloadScene();
 
+		// start scene.
+		void Start();
+
 		// Update scene.
 		void Update();
+
+		// Spawn game object
+		void AddToScene(RefPtr<Entity::GameObject> object);
 
 		// Return reference to GameObject vector.
 		const std::vector<RefPtr<Entity::GameObject>>& GetEntities() const { return m_Entities; }

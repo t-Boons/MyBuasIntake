@@ -13,8 +13,10 @@ namespace Renderer
 		// Initialize GLAD
 		gladLoadGLLoader((GLADloadproc)(sf::Context::getFunction));
 
+		// Pop SFML Opengl calls so they do not interfere.
 		Game::Get()->GetWindow()->popGLStates();
 
+		// Set opengl settings.
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 		glCullFace(GL_BACK);
@@ -23,13 +25,16 @@ namespace Renderer
 
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
+		// Pop SFML Opengl calls so they do not interfere.
 		Game::Get()->GetWindow()->popGLStates();
+
 		// Update view projection matrix.
 		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
+		// Apply the saved SFML Opengl calls.
 		Game::Get()->GetWindow()->pushGLStates();
 	}
 
@@ -38,14 +43,16 @@ namespace Renderer
 		// Bind vertex array with the data vertex layout.
 		mesh->GetVertexData()->GetVertexArray()->Bind();
 
-		// Bind shader and upload camera view projection matrix from framedata.
+		// Bind shader and upload required matrices.
 		material->Shader->Bind();
 		material->Shader->UploadUniformMat4("uModel", transform->GetTransformMatrix());
 		material->Shader->UploadUniformMat4("uViewProjection", s_Data.m_ViewProjectionMatrix);
 
-		sf::Texture::bind(material->Texture, sf::Texture::Normalized);
+		// Bind used texture.
+		material->Texture->Bind();
 
 		material->Shader->UploadUniformTextureSlot("uTexture", 0);
+
 		// Get element count.
 		uint32_t count = mesh->GetVertexData()->GetIndexBuffer()->GetElementCount();
 

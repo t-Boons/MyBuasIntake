@@ -4,7 +4,11 @@ namespace Core
 {
 	void SceneManager::SetActiveScene(Scene* scene)
 	{
-		s_ActiveScene->UnloadScene();
+		// Unload scene if assigned.
+		if (s_ActiveScene)
+		{
+			s_ActiveScene->UnloadScene();
+		}
 
 		s_ActiveScene = scene;
 

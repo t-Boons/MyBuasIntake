@@ -2,18 +2,35 @@
 
 #include "Scene.h"
 
-void Core::Scene::UnloadScene()
+namespace Core
 {
-	// Destroy this instance.
-	delete(this);
-}
-
-void Core::Scene::Update()
-{
-	// Update all entity Components.
-	for (auto& obj : m_Entities)
+	void Scene::UnloadScene()
 	{
-		obj->UpdateComponents();
+		// Destroy this instance.
+		delete(this);
 	}
 
+	void Scene::Update()
+	{
+		// Update all entity Components.
+		for (auto& obj : m_Entities)
+		{
+			obj->UpdateComponents();
+		}
+	}
+
+	void Scene::Start()
+	{
+		// Update all entity Components.
+		for (auto& obj : m_Entities)
+		{
+			obj->StartComponents();
+		}
+	}
+
+	void Scene::AddToScene(RefPtr<Entity::GameObject> object)
+	{
+		// Add entity to component list.
+		m_Entities.push_back(object);
+	}
 }

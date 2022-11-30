@@ -3,13 +3,21 @@
 #include <SFML/Graphics.hpp>
 #include "glm/glm.hpp"
 #include "VertexData.h"
+#include <string>
 
 namespace Renderer
 {
 	struct Mesh
 	{
 	public:
-		Mesh();
+
+		// Static method to easily create mesh.
+		static RefPtr<Mesh> Create(std::string filepath)
+		{
+			return std::make_shared<Renderer::Mesh>(filepath);
+		}
+
+		Mesh(const std::string& filepath);
 
 		// Load mesh from file path.
 		bool LoadMesh(const std::string& filePath);

@@ -7,7 +7,7 @@
 namespace Entity
 {
 
-	Entity::Camera::Camera()
+	Camera::Camera()
 	{
 		// Initialize default values.
 		m_Fov = 70;
@@ -47,19 +47,19 @@ namespace Entity
 		m_ProjectionMatrix = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far);
 	}
 
-	const glm::vec3& Camera::GetForward() const
+	const glm::vec3 Camera::GetViewForward() const
 	{
 		auto& a = m_ViewMatrix;
 		return  glm::normalize(glm::vec3(a[0].z, a[1].z, a[2].z));
 	}
 
-	const glm::vec3& Camera::GetRight() const
+	const glm::vec3 Camera::GetViewRight() const
 	{
 		auto& a = m_ViewMatrix;
 		return glm::normalize(-glm::vec3(a[0].x, a[1].x, a[2].x));
 	}
 
-	const glm::vec3& Camera::GetUp() const
+	const glm::vec3 Camera::GetViewUp() const
 	{
 		auto& a = m_ViewMatrix;
 		return glm::normalize(-glm::vec3(a[0].y, a[1].y, a[2].y));
