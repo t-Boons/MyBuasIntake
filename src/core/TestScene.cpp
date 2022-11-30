@@ -3,6 +3,7 @@
 #include "TestScene.h"
 #include "Entity/GameObject.h"
 #include "Entity/MeshRenderer.h"
+#include "Gameplay/TankMovement.h"
 
 namespace Core
 {
@@ -20,6 +21,7 @@ namespace Core
 
 		tank->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
 
+		tank->AddComponent<Gameplay::TankMovement>(std::make_shared<Gameplay::TankMovement>());
 
 		AddToScene(tank);
 	}
