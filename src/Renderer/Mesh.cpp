@@ -22,7 +22,7 @@ namespace Renderer
 
 		if (file == NULL)
 		{
-			LOG_ERROR("Could not open file!")
+			ASSERT(false, "Could not open file!")
 			return false;
 		}
 
@@ -33,7 +33,7 @@ namespace Renderer
 
 		if (fileType != "obj")
 		{
-			LOG_ERROR("No filetype other than .obj supported for now")
+			ASSERT(false, "No filetype other than .obj supported for now")
 			return false;
 		}
 
@@ -81,7 +81,7 @@ namespace Renderer
 
 				if (matches != 9)
 				{
-					LOG_ERROR("Indices could not be read! Model probably not triangulated")
+					ASSERT(false, "Indices could not be read! Model probably not triangulated")
 					return false;
 				}
 
@@ -103,7 +103,7 @@ namespace Renderer
 
 		if (vertexIndices.empty())
 		{
-			LOG_ERROR("File does not contain correct data!")
+			ASSERT(false, "File does not contain correct data!")
 			return false;
 		}
 

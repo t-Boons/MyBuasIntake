@@ -62,13 +62,14 @@ namespace Tmpl8
 		m_Window->clear();
 		Renderer::Renderer::SubmitMesh(m_Mesh, m_Material);
 
-		pos.x += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? 0 : 1 * deltaTime;
-		pos.x -= sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? 0 : 1 * deltaTime;
-		pos.y += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? 0 : 1 * deltaTime;
-		pos.y -= sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? 0 : 1 * deltaTime;
-		pos.z += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? 0 : 1 * deltaTime;
-		pos.z -= sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? 0 : 1 * deltaTime;
+		pos.x += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? 0 : 2 * deltaTime;
+		pos.x -= sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? 0 : 2 * deltaTime;
+		pos.y += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? 0 : 2 * deltaTime;
+		pos.y -= sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? 0 : 2 * deltaTime;
+		pos.z += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? 0 : 2 * deltaTime;
+		pos.z -= sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? 0 : 2 * deltaTime;
 		rotation.y += sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) ? 200 * deltaTime : 0;
+		rotation.x += sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) ? 200 * deltaTime : 0;
 
 		m_Transform->SetPosition(pos);
 		m_Transform->SetRotation(rotation);
