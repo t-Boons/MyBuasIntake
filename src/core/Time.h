@@ -15,10 +15,10 @@ namespace Core
 		static void	Tick();
 
 		// Get Delta time.
-		static float DeltaTime() { return s_Instance->m_DeltaTime; }
+		static float GetDeltaTime() { return s_Instance->m_DeltaTime; }
 
 		// Get Elapsed time.
-		static float ElapsedTime() { return s_Instance->m_ElapsedTime; }
+		static float GetElapsedTime() { return s_Instance->m_ElapsedTime; }
 
 	private:
 

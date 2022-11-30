@@ -20,7 +20,6 @@ namespace Entity
 		// Return componnt type name.
 		virtual std::string GetTypeName() const = 0;
 		
-
 		// Start is called before the first update.
 		virtual void Start() {};
 
@@ -30,9 +29,7 @@ namespace Entity
 		// Virtual destructor for memory cleanup.
 		virtual ~Component() = default;
 
-		void SetParent(GameObject* parent);
-
 	public:
-		GameObject* Parent;
+		GameObject* Parent = nullptr;
 	};
 }

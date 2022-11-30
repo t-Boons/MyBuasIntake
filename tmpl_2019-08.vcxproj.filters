@@ -21,7 +21,6 @@
     <ClCompile Include="src\Renderer\VertexData.cpp" />
     <ClCompile Include="src\Gameplay\TankMovement.cpp" />
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
-    <ClCompile Include="src\Entity\Component.cpp" />
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
   </ItemGroup>

@@ -11,7 +11,7 @@ namespace Entity
 		// Set default name if object does not have a name.
 		if (m_Name == "")
 		{
-			m_Name = "New Game Object ";
+			m_Name = "New Game Object";
 		}
 
 		// Add default Transform Component.

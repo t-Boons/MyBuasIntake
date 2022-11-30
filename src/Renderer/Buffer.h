@@ -52,7 +52,7 @@ namespace Renderer
 		// Unbind index buffer.
 		void UnBind();
 
-		inline uint32_t GetElementCount() const { return m_Indices.size(); }
+		inline uint32_t GetElementCount() const { return static_cast<uint32_t>(m_Indices.size()); }
 
 	private:
 		std::vector<uint32_t> m_Indices;

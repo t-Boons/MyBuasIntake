@@ -77,7 +77,7 @@ namespace Tmpl8
 
 		m_SceneManager->GetActiveScene()->Update();
 		Core::Time::Tick();
-		UpdateTemporaryCameraMovement(Core::Time::DeltaTime());
+		UpdateTemporaryCameraMovement(Core::Time::GetDeltaTime());
 
 		Renderer::Renderer::EndScene();
 

@@ -3,6 +3,7 @@
 #pragma once
 #include "Core/Core.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 namespace Entity
 {
@@ -34,8 +35,8 @@ namespace Entity
 			// Add component to list
 			m_Components.push_back(component);
 
-			// Set component parent reference.	
-			(GameObject*)(component.get()->Parent) = this;
+			// Set component parent reference to this.	
+			static_cast<GameObject*>(component.get()->Parent) = this;
 
 			return component;
 		}

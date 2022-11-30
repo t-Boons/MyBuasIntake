@@ -244,7 +244,6 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Core\TestScene.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
-    <ClCompile Include="src\Entity\Component.cpp" />
     <ClCompile Include="src\Entity\GameObject.cpp" />
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
     <ClCompile Include="src\Entity\Transform.cpp" />
