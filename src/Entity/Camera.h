@@ -17,25 +17,25 @@ namespace Entity
 
 	public:
 		// Set Object position..
-		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateViewProjectionMatrix(); }
+		void SetViewPoint(const glm::vec3& position) { m_Position = position; RecalculateViewProjectionMatrix(); }
 
 		// Set Object rotation in degrees.
-		void SetRotation(const glm::vec3& rotation) { m_Rotation = rotation;  RecalculateViewProjectionMatrix(); }
+		void SetViewRotation(const glm::vec3& rotation) { m_Rotation = rotation;  RecalculateViewProjectionMatrix(); }
 
 		// Get object position.
-		const glm::vec3& GetPosition() const { return m_Position; }
+		const glm::vec3& GetViewPoint() const { return m_Position; }
 
 		// Get Object rotation.
-		const glm::vec3& GetRotation() const { return m_Rotation; }
+		const glm::vec3& GetViewRotation() const { return m_Rotation; }
 
 		// Get Forward vector.
-		const glm::vec3& GetForward() const;
+		const glm::vec3& GetViewForward() const;
 
 		// Get Up vector.
-		const glm::vec3& GetUp() const;
+		const glm::vec3& GetViewUp() const;
 
 		// Get Right vector.
-		const glm::vec3& GetRight() const;
+		const glm::vec3& GetViewRight() const;
 
 		// Move Object in to direction.
 		void Translate(const glm::vec3& translation) { m_Position += translation; RecalculateViewProjectionMatrix(); }

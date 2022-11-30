@@ -63,14 +63,14 @@ namespace Tmpl8
 		tr->SetScale({ 0.1f, 0.1f, 0.1f });
 		Renderer::Renderer::SubmitMesh(tr, m_Mesh, m_Material);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? glm::vec3(0.0f) : m_Camera->GetForward() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? glm::vec3(0.0f) : -m_Camera->GetForward() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? glm::vec3(0.0f) : m_Camera->GetRight() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? glm::vec3(0.0f) : -m_Camera->GetRight() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? glm::vec3(0.0f) : m_Camera->GetUp() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? glm::vec3(0.0f) : -m_Camera->GetUp() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
 
 		glm::vec2 delta = (mDelta - glm::vec2(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) * 0.25f;
 		mDelta = { sf::Mouse::getPosition().x, sf::Mouse::getPosition().y };
@@ -80,8 +80,8 @@ namespace Tmpl8
 				rotation.x += delta.y;
 		}
 
-		m_Camera->SetPosition(pos);
-		m_Camera->SetRotation(rotation);
+		m_Camera->SetViewPoint(pos);
+		m_Camera->SetViewRotation(rotation);
 
 		Renderer::Renderer::EndScene();
 
