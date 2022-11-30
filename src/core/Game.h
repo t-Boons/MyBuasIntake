@@ -36,7 +36,7 @@ namespace Tmpl8 {
 		void Shutdown();
 
 		// Runs every frame.
-		void Tick(float deltaTime);
+		void Tick();
 
 		// Get window instance.
 		inline sf::RenderWindow* GetWindow() const { return m_Window; }

@@ -7,13 +7,10 @@
 namespace Entity
 {
 
-	Camera::Camera()
+	Camera::Camera(float fov, float znear, float zfar)
 	{
-		// Initialize default values.
-		m_Fov = 70;
-		m_Near = 0.01f;
-		m_Far = 1000.0f;
-
+		SetProjection(fov, znear, zfar);
+		
 		// Calculate aspect ratio by using window size.
 		sf::Vector2f screenSize = (sf::Vector2f)Tmpl8::Game::Get()->GetWindow()->getSize();
 		float aspect = screenSize.x / screenSize.y;
@@ -23,6 +20,14 @@ namespace Entity
 		// Update projection matrix.
 		RecalculateProjectionMatrix();
 		RecalculateViewProjectionMatrix();
+	}
+
+	void Camera::SetProjection(float fov, float znear, float zfar)
+	{
+		m_Fov = fov;
+		m_Near = znear;
+		m_Far = zfar;
+
 	}
 
 	void Camera::RecalculateViewProjectionMatrix()

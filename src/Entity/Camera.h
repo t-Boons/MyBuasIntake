@@ -13,9 +13,11 @@ namespace Entity
 		IMPLEMENT_COMPONENT_IDENTIFIER(Camera)
 
 	public:
-		Camera();
+		Camera(float fov = 70, float znear = 0.01f, float zfar = 1000.0f);
 
-	public:
+		// Set camera projection properties.
+		void SetProjection(float fov, float znear, float zfar);
+		
 		// Set Object position..
 		void SetViewPoint(const glm::vec3& position) { m_Position = position; RecalculateViewProjectionMatrix(); }
 

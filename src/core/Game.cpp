@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "Core/TestScene.h"
+#include "Time.h"
 
 namespace Tmpl8
 {
@@ -68,15 +69,15 @@ namespace Tmpl8
 	// -----------------------------------------------------------
 	// Main application tick function
 	// -----------------------------------------------------------
-	void Game::Tick(float deltaTime)
+	void Game::Tick()
 	{
 		Renderer::Renderer::BeginScene(m_Camera);
 
 		Renderer::Renderer::Clear();
 
 		m_SceneManager->GetActiveScene()->Update();
-
-		UpdateTemporaryCameraMovement(deltaTime);
+		Core::Time::Tick();
+		UpdateTemporaryCameraMovement(Core::Time::DeltaTime());
 
 		Renderer::Renderer::EndScene();
 
