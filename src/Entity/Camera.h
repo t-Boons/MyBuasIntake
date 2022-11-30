@@ -39,12 +39,6 @@ namespace Entity
 		// Get Right vector.
 		const glm::vec3 GetViewRight() const;
 
-		// Move Object in to direction.
-		void Translate(const glm::vec3& translation) { m_Position += translation; RecalculateViewProjectionMatrix(); }
-
-		// Rotation Object.
-		void Rotate(const glm::vec3& rotation) { m_Rotation += rotation; RecalculateViewProjectionMatrix(); }
-
 		// Return Camera matrix.
 		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
 

@@ -2,18 +2,13 @@
 
 #include "GameObject.h"
 #include "Transform.h"
+#include "Core/Game.h"
 
 namespace Entity
 {
 	GameObject::GameObject(const std::string& name)
 		: m_Name(name)
 	{
-		// Set default name if object does not have a name.
-		if (m_Name == "")
-		{
-			m_Name = "New Game Object";
-		}
-
 		// Add default Transform Component.
 		RefPtr<Transform> a(new Transform);
 		AddComponent(a);
@@ -33,13 +28,21 @@ namespace Entity
 		// Loop through all components
 		for (auto& c : m_Components)
 		{
-			c->Update();
+			if (c)
+			{
+				c->Update();
+			}
 		}
 	}
 
 	void GameObject::Destroy()
 	{
+		// TODO Make it so it deletes properly after the update loop.
 		m_Components.clear();
-		delete(this);
+	}
+
+	RefPtr<GameObject> GameObject::Find(const std::string& name)
+	{
+		return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindEntityByName(name);
 	}
 }

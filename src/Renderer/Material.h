@@ -13,12 +13,7 @@ namespace Renderer
 	{
 	public:
 
-		// Static method to easily create material.
-		static RefPtr<Material> Create(const RefPtr<Texture>& texture = nullptr, const RefPtr<Shader>& shader = nullptr)
-		{
-			return std::make_shared<Material>(texture, shader);
-		}
-
+		MAKE_SHARED_TWOPARAM(Material, const RefPtr<Texture>&, texture, const RefPtr<Shader>&, shader)
 
 		Material(const RefPtr<Texture>& texture, const RefPtr<Shader>& shader)
 			: Texture(texture), Shader(shader)

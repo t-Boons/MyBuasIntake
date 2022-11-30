@@ -11,11 +11,7 @@ namespace Renderer
 	{
 	public:
 
-		// Static method to easily create material.
-		static RefPtr<Texture> Create(const std::string& filepath)
-		{
-			return std::make_shared<Renderer::Texture>(filepath);
-		}
+		MAKE_SHARED_ONEPARAM(Texture, const std::string&, filepath)
 
 		Texture(const std::string& filepath);
 

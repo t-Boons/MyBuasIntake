@@ -15,6 +15,6 @@ namespace Core
 		void SetActiveScene(Scene* scene);
 
 	private:
-		Core::Scene* s_ActiveScene;
+		Scene* s_ActiveScene;
 	};
 }

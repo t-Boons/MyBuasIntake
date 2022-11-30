@@ -2,8 +2,6 @@
 
 #include "Renderer.h"
 
-using namespace Tmpl8;
-
 namespace Renderer
 {
 	RendererData Renderer::s_Data = RendererData();
@@ -14,7 +12,7 @@ namespace Renderer
 		gladLoadGLLoader((GLADloadproc)(sf::Context::getFunction));
 
 		// Pop SFML Opengl calls so they do not interfere.
-		Game::Get()->GetWindow()->popGLStates();
+		Core::Game::Get()->GetWindow()->popGLStates();
 
 		// Set opengl settings.
 		glEnable(GL_DEPTH_TEST);
@@ -26,7 +24,7 @@ namespace Renderer
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
 		// Pop SFML Opengl calls so they do not interfere.
-		Game::Get()->GetWindow()->popGLStates();
+		Core::Game::Get()->GetWindow()->popGLStates();
 
 		// Update view projection matrix.
 		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
@@ -35,7 +33,7 @@ namespace Renderer
 	void Renderer::EndScene()
 	{
 		// Apply the saved SFML Opengl calls.
-		Game::Get()->GetWindow()->pushGLStates();
+		Core::Game::Get()->GetWindow()->pushGLStates();
 	}
 
 	void Renderer::SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material)

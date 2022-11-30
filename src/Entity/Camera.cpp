@@ -12,8 +12,9 @@ namespace Entity
 		SetProjection(fov, znear, zfar);
 		
 		// Calculate aspect ratio by using window size.
-		sf::Vector2f screenSize = (sf::Vector2f)Tmpl8::Game::Get()->GetWindow()->getSize();
+		sf::Vector2f screenSize = (sf::Vector2f)Core::Game::Get()->GetWindow()->getSize();
 		float aspect = screenSize.x / screenSize.y;
+
 		m_Aspect = aspect;
 
 
@@ -24,10 +25,12 @@ namespace Entity
 
 	void Camera::SetProjection(float fov, float znear, float zfar)
 	{
+		// Update camera values.
 		m_Fov = fov;
 		m_Near = znear;
 		m_Far = zfar;
 
+		RecalculateProjectionMatrix();
 	}
 
 	void Camera::RecalculateViewProjectionMatrix()

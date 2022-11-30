@@ -12,7 +12,9 @@ namespace Entity
 	class GameObject
 	{
 	public:
-		GameObject(const std::string& name = "");
+		GameObject(const std::string& name);
+
+		MAKE_SHARED_ONEPARAM(GameObject, const std::string&, name)
 
 		template<class T>
 		const RefPtr<T> GetComponent()
@@ -53,6 +55,9 @@ namespace Entity
 
 		// Destroy this entity.
 		void Destroy();
+
+		// Find object with name.
+		static RefPtr<GameObject> Find(const std::string& name);
 
 	private:
 		std::vector<RefPtr<Component>> m_Components;

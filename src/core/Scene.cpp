@@ -33,4 +33,18 @@ namespace Core
 		// Add entity to component list.
 		m_Entities.push_back(object);
 	}
+	const RefPtr<Entity::GameObject> Scene::FindEntityByName(const std::string& name)
+	{
+		// See if any of the entity names match.
+		for (auto& entity : m_Entities)
+		{
+			// Return if names match.
+			if (entity->GetName() == name)
+			{
+				return entity;
+			}
+		}
+
+		return nullptr;
+	}
 }

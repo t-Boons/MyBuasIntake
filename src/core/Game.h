@@ -17,7 +17,8 @@
 #include "Entity/Transform.h"
 #include "Entity/Camera.h"
 
-namespace Tmpl8 {
+namespace Core
+{
 
 	class Game
 	{
@@ -49,9 +50,6 @@ namespace Tmpl8 {
 
 		// Get window initialization properties.
 		static sf::RenderWindow* GetWindowProperties();
-
-
-		void UpdateTemporaryCameraMovement(float deltatime);
 
 	private:
 		sf::RenderWindow* m_Window;

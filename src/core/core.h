@@ -45,3 +45,27 @@ using ScopePtr = std::unique_ptr<T>;
 
 template<class T>
 using RefPtr = std::shared_ptr<T>;
+
+
+// Macros to simplify shared ptr creation of a class instance.
+
+#define MAKE_SHARED(type)\
+    public:\
+        static RefPtr<type> Create()\
+        {\
+            return std::make_shared<type>();\
+        }
+
+#define MAKE_SHARED_ONEPARAM(type, paramtype, paramname)\
+    public:\
+        static RefPtr<type> Create(paramtype paramname)\
+        {\
+            return std::make_shared<type>(paramname);\
+        }
+
+#define MAKE_SHARED_TWOPARAM(type, param1type, param1name, param2type, param2name)\
+ 	public:\
+        static RefPtr<type> Create(param1type param1name, param2type param2name)\
+        {\
+            return std::make_shared<type>(param1name, param2name);\
+        }

@@ -5,6 +5,7 @@
 #include <string>
 #include "Core.h"
 #include "Entity/GameObject.h"
+#include "Entity/Camera.h"
 
 namespace Core
 {
@@ -30,8 +31,17 @@ namespace Core
 		// Return reference to GameObject vector.
 		const std::vector<RefPtr<Entity::GameObject>>& GetEntities() const { return m_Entities; }
 
+		// Set active render camera.
+		void SetActiveCamera(const RefPtr<Entity::Camera>& camera) { m_ActiveCamera = camera; }
+
+		// Get active render camera.
+		const RefPtr<Entity::Camera> GetActiveCamera() const { return m_ActiveCamera; }
+
+		// Finds the entity with name.
+		const RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);
+
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
-		std::string m_Name;
+		RefPtr<Entity::Camera> m_ActiveCamera;
 	};
 }

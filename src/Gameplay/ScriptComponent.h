@@ -9,14 +9,14 @@ namespace Gameplay
 	{
 	public:
 
-		// GetComponent abstraction.
+		// Get component of this gameobject.
 		template<class T>
 		const RefPtr<T> GetComponent()
 		{
 			return Parent->GetComponent<T>();
 		}
 
-		// AddComponent abstraction for GameObject.
+		// AddComponent to this gameobject.
 		template<class T>
 		const RefPtr<T> AddComponent()
 		{

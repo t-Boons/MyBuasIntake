@@ -11,11 +11,7 @@ namespace Renderer
 	{
 	public:
 
-		// Static method to easily create mesh.
-		static RefPtr<Mesh> Create(std::string filepath)
-		{
-			return std::make_shared<Renderer::Mesh>(filepath);
-		}
+		MAKE_SHARED_ONEPARAM(Mesh, const std::string&, filepath)
 
 		Mesh(const std::string& filepath);
 

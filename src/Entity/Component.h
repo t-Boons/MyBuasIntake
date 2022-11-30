@@ -7,9 +7,12 @@
 #include "GameObject.h"
 
 // Macro to make component name implementation easier.
-#define IMPLEMENT_COMPONENT_IDENTIFIER(name) 		public:\
+
+#define IMPLEMENT_COMPONENT_IDENTIFIER(name) 	public:\
 													virtual std::string GetTypeName() const override { return #name; } \
-													static std::string GetStaticName() { return #name; }
+													static std::string GetStaticName() { return #name; }\
+													static RefPtr<name> Create() { return std::make_shared<name>(); }
+
 
 namespace Entity
 {

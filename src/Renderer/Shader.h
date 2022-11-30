@@ -19,11 +19,7 @@ namespace Renderer
 	{
 	public:
 
-		// Static method to easily create shader.
-		static RefPtr<Shader> Create(std::string filepath)
-		{
-			return std::make_shared<Renderer::Shader>(filepath);
-		}
+		MAKE_SHARED_ONEPARAM(Shader, const std::string&, filepath)
 
 		// Create a shader instance with filepath to shader.
 		Shader(const std::string& filepath);
