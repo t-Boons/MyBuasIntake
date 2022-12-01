@@ -41,7 +41,7 @@ namespace Core
 		const RefPtr<Entity::Camera> GetActiveCamera() const { return m_ActiveCamera; }
 
 		// Finds the entity with name.
-		const RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);
+		const RefPtr<Entity::GameObject>& FindEntityByName(const std::string& name);
 
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;

@@ -10,21 +10,21 @@ namespace Core
 		delete(this);
 	}
 
-	void Scene::Update()
+	void Scene::Start()
 	{
-		// Update all entity Components.
-		for (auto& obj : m_Entities)
+		// Start all entity Components.
+		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
-			obj->UpdateComponents();
+			m_Entities[i]->StartComponents();
 		}
 	}
 
-	void Scene::Start()
+	void Scene::Update()
 	{
 		// Update all entity Components.
-		for (auto& obj : m_Entities)
+		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
-			obj->StartComponents();
+			m_Entities[i]->UpdateComponents();
 		}
 	}
 
@@ -47,7 +47,7 @@ namespace Core
 		}
 	}
 
-	const RefPtr<Entity::GameObject> Scene::FindEntityByName(const std::string& name)
+	const RefPtr<Entity::GameObject>& Scene::FindEntityByName(const std::string& name)
 	{
 		// See if any of the entity names match.
 		for (auto& entity : m_Entities)

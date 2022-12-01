@@ -60,7 +60,7 @@ namespace Entity
 		bool QueuedForDeletion();
 
 		// Find object with name.
-		static RefPtr<GameObject> Find(const std::string& name);
+		static const RefPtr<GameObject>& Find(const std::string& name);
 
 	private:
 		std::vector<RefPtr<Component>> m_Components;

@@ -54,23 +54,5 @@ namespace Utils
 
 		// Update camera rotation;
 		m_Camera->SetViewRotation(m_Camera->GetViewRotation() + GetRotationDeltaFromInput());
-
-		auto tank1 = Entity::GameObject::Find("Tank");
-		auto tank2 = Entity::GameObject::Find("Tank2");
-
-		if (tank2 && tank1)
-		{
-			if (tank2->GetComponent<Entity::Transform>())
-			{
-				tank2->GetComponent<Entity::Transform>()->SetPosition(-tank1->GetComponent<Entity::Transform>()->GetPosition());
-			}
-		}
-
-		// TODO Temp
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			if(tank2)
-				tank2->Destroy();
-		}
 	}
 }
