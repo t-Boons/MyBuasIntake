@@ -11,14 +11,22 @@
     out float intensity;
     out vec2 oTexCoord;
 
+    float GetLightIntensity()
+    {
+        vec3 dirLight = clamp(normalize(-vec3(-0.5f, -1.0f, -0.2f)), 0, 1);
+
+        mat3 normalMatrix = mat3(uViewProjection * uModel);
+        normalMatrix = inverse(normalMatrix);
+        normalMatrix = transpose(normalMatrix);
+        return clamp(dot(dirLight, normalMatrix * aNormal), 0, 1);
+    }
 
     void main()
     {
         oTexCoord = aTexCoord;
 
-        vec3 dirLight = clamp(normalize(-vec3(-0.5f, -1.0f, -0.2f)) + 0.25f, 0, 1);
+        intensity = GetLightIntensity();
 
-        intensity = clamp(dot(dirLight, aNormal), 0, 1);
         gl_Position = uViewProjection * uModel * vec4(aPosition.x, aPosition.y, aPosition.z, 1);
     }
 

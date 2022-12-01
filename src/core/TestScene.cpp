@@ -14,20 +14,17 @@ namespace Core
 		// Load Tank.
 		RefPtr<Entity::GameObject> tank = Entity::GameObject::Create("Tank");
 
-		{
+		tank->AddComponent<Entity::MeshRenderer>(Entity::MeshRenderer::Create());
+		tank->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Tanks/TankPlayer.obj"));
 
-			tank->AddComponent<Entity::MeshRenderer>(Entity::MeshRenderer::Create());
-			tank->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Tanks/TankPlayer.obj"));
+		RefPtr<Renderer::Texture> tex = Renderer::Texture::Create("assets/Tanks/textures/enemy/tank_marin.png");
+		RefPtr<Renderer::Shader> shader = Renderer::Shader::Create("assets/shaders/Basic3DShader.glsl");
+		RefPtr<Renderer::Material> material = Renderer::Material::Create(tex, shader);
 
-			RefPtr<Renderer::Texture> tex = Renderer::Texture::Create("assets/Tanks/textures/enemy/tank_marin.png");
-			RefPtr<Renderer::Shader> shader = Renderer::Shader::Create("assets/shaders/Basic3DShader.glsl");
-			RefPtr<Renderer::Material> material = Renderer::Material::Create(tex, shader);
+		tank->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
 
-			tank->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
+		tank->AddComponent<Gameplay::TankMovement>(Gameplay::TankMovement::Create());
 
-			tank->AddComponent<Gameplay::TankMovement>(Gameplay::TankMovement::Create());
-		}
-		
 		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
 		flyCam->AddComponent<Utils::FlyingCamera>(Utils::FlyingCamera::Create());
 
@@ -35,23 +32,10 @@ namespace Core
 
 		flyCam->GetComponent<Utils::FlyingCamera>()->SetCameraReference(camera);
 
-		// Load Tank2.
-		RefPtr<Entity::GameObject> tank2 = Entity::GameObject::Create("Tank2");
-
-		tank2->AddComponent<Entity::MeshRenderer>(Entity::MeshRenderer::Create());
-		tank2->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Tanks/TankPlayer.obj"));
-
-		RefPtr<Renderer::Texture> tex = Renderer::Texture::Create("assets/Tanks/textures/enemy/tank_marin.png");
-		RefPtr<Renderer::Shader> shader = Renderer::Shader::Create("assets/shaders/Basic3DShader.glsl");
-		RefPtr<Renderer::Material> material = Renderer::Material::Create(tex, shader);
-
-		tank2->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
-
 		SetActiveCamera(camera);
 
 		AddToScene(flyCam);
 		AddToScene(tank);
-		AddToScene(tank2);
 	}
 
 }
