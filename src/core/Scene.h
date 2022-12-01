@@ -28,6 +28,9 @@ namespace Core
 		// Spawn game object
 		void AddToScene(RefPtr<Entity::GameObject> object);
 
+		// Removes game object from scene
+		void RemoveFromScene(Entity::GameObject* object);
+
 		// Return reference to GameObject vector.
 		const std::vector<RefPtr<Entity::GameObject>>& GetEntities() const { return m_Entities; }
 

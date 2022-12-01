@@ -25,20 +25,36 @@ namespace Entity
 
 	void GameObject::UpdateComponents()
 	{
+		// Return if object has to be deleted.
+		if (QueuedForDeletion())
+			return;
+
 		// Loop through all components
-		for (auto& c : m_Components)
+		for (size_t i = 0; i < m_Components.size(); i++)
 		{
-			if (c)
-			{
-				c->Update();
-			}
+			m_Components[i]->Update();
 		}
 	}
 
 	void GameObject::Destroy()
 	{
-		// TODO Make it so it deletes properly after the update loop.
-		m_Components.clear();
+		ASSERT(this != nullptr, "The object you're trying to destroy is nullptr.")
+
+		m_QueueForDeletion = true;
+	}
+
+	bool GameObject::QueuedForDeletion()
+	{
+		if (m_QueueForDeletion)
+		{
+			// Delete components.
+			m_Components.clear();
+
+			// Remove this object from the scene.
+			Core::Game::Get()->GetSceneManager()->GetActiveScene()->RemoveFromScene(this);
+		}
+
+		return m_QueueForDeletion;
 	}
 
 	RefPtr<GameObject> GameObject::Find(const std::string& name)

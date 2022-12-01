@@ -56,11 +56,15 @@ namespace Entity
 		// Destroy this entity.
 		void Destroy();
 
+		// Check if object is queued for deletion.
+		bool QueuedForDeletion();
+
 		// Find object with name.
 		static RefPtr<GameObject> Find(const std::string& name);
 
 	private:
 		std::vector<RefPtr<Component>> m_Components;
 		std::string m_Name;
+		bool m_QueueForDeletion = false;
 	};
 }
