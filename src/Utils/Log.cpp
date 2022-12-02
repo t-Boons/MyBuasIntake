@@ -2,6 +2,7 @@
 // Taken from other project I created:
 // https://github.com/TygoB-B5/BEngine/blob/Engine/Engine/Src/Utils/Log.cpp
 
+#include "mypch.h"
 #include "Log.h"
 #include "Core/Core.h"
 

@@ -1,8 +1,7 @@
 // 2022 Tygo Boons
 
 #pragma once
-#include <vector>
-#include <string>
+
 #include "Core.h"
 #include "Entity/GameObject.h"
 #include "Entity/Camera.h"

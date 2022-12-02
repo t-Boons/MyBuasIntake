@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "glm/glm.hpp"
 #include "VertexData.h"
-#include <string>
 
 namespace Renderer
 {

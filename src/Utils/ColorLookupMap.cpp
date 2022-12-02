@@ -1,5 +1,6 @@
 // 2022 Tygo Boons
 
+#include "mypch.h"
 #include "ColorLookupMap.h"
 #include "Core/Core.h"
 

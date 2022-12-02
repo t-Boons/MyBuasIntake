@@ -5,6 +5,7 @@
 // Heavily inspired from.
 // http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
 
+#include "mypch.h"
 #include "Mesh.h"
 #include "Core/Core.h"
 #include "glm/glm.hpp"

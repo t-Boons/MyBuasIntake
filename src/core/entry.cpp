@@ -3,6 +3,10 @@
 // Using SFML graphics library
 // found at https://www.sfml-dev.org/
 
+#include "mypch.h"
+
+#include <Windows.h>
+
 #include <SFML/System.hpp>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>

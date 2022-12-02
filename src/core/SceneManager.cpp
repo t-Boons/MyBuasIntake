@@ -1,3 +1,6 @@
+// 2022 Tygo Boons
+
+#include "mypch.h"
 #include "SceneManager.h"
 
 namespace Core

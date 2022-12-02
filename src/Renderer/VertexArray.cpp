@@ -3,6 +3,7 @@
 // Implemented from other project:
 // https://github.com/TygoB-B5/BEngine/tree/Engine/Engine/Src/Renderer
 
+#include "mypch.h"
 #include "VertexArray.h"
 #include "Core/Core.h"
 

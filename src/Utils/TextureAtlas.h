@@ -2,8 +2,6 @@
 
 #pragma once
 
-#include <string>
-#include <array>
 #include "core/Core.h"
 #include <SFML/Graphics.hpp>
 

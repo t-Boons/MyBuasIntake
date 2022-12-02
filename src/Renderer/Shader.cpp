@@ -5,12 +5,11 @@
 // Inspiration:
 // https://www.khronos.org/opengl/wiki/Shader_Compilation
 
-
+#include "mypch.h"
 #include "Shader.h"
 #include "Core/Core.h"
 #include "Utils/File.h"
 #include "glad/glad.h"
-#include <sstream>
 
 namespace Renderer
 {

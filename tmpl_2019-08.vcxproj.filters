@@ -25,6 +25,7 @@
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Utils\FlyingCamera.cpp" />
     <ClCompile Include="src\Utils\Log.cpp" />
+    <ClCompile Include="src\mypch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Utils\FlyingCamera.h" />
     <ClInclude Include="src\Utils\Log.h" />
+    <ClInclude Include="src\mypch.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

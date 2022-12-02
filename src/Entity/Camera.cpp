@@ -1,5 +1,6 @@
 // 2022 Tygo Boons
 
+#include "mypch.h"
 #include "Camera.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "Core/Game.h"

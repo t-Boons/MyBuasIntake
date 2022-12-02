@@ -4,12 +4,6 @@
 
 #pragma once
 
-#include <chrono>
-#include <time.h>
-#include <sstream>
-#include <iomanip>
-#include <Windows.h>
-
 // Define LOG_INIT to initialize logging system.
 // #define LOG_INIT
 

@@ -1,5 +1,6 @@
 // 2022 Tygo Boons
 
+#include "mypch.h"
 #include "TextureAtlas.h"
 
 namespace Utils

@@ -2,6 +2,7 @@
 // Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
+#include "mypch.h"
 #include "Game.h"
 #include "Core/TestScene.h"
 #include "Time.h"
