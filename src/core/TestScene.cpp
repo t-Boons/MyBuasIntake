@@ -37,5 +37,4 @@ namespace Core
 		AddToScene(flyCam);
 		AddToScene(tank);
 	}
-
 }

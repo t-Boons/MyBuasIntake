@@ -24,6 +24,7 @@
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Utils\FlyingCamera.cpp" />
+    <ClCompile Include="src\Utils\Log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Utils\FlyingCamera.h" />
+    <ClInclude Include="src\Utils\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

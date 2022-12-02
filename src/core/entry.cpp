@@ -13,10 +13,6 @@
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
-	// Allocate console if in debug configuration.
-	ALLOC_CONSOLE()
-
-
 	// Create game instance.
 	Core::Game game(Core::Game::GetWindowProperties(), new Core::SceneManager());
 

@@ -47,8 +47,8 @@ namespace Core
 
 		Renderer::Renderer::Clear();
 
-		m_SceneManager->GetActiveScene()->Update();
 		Core::Time::Tick();
+		m_SceneManager->GetActiveScene()->Update();
 
 		Renderer::Renderer::EndScene();
 

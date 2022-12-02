@@ -260,6 +260,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Core\Game.cpp" />
     <ClCompile Include="src\Utils\File.cpp" />
     <ClCompile Include="src\Utils\FlyingCamera.cpp" />
+    <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +289,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Entity\GameObject.h" />
     <ClInclude Include="src\Utils\File.h" />
     <ClInclude Include="src\Utils\FlyingCamera.h" />
+    <ClInclude Include="src\Utils\Log.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
