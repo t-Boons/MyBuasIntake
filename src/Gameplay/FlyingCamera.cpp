@@ -43,6 +43,11 @@ namespace Gameplay
 		return rotation;
 	}
 
+	void FlyingCamera::Start()
+	{
+		m_Camera = GetComponent<Entity::Camera>();
+	}
+
 
 	void FlyingCamera::Update()
 	{

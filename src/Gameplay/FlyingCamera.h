@@ -14,9 +14,7 @@ namespace Gameplay
 		IMPLEMENT_COMPONENT_IDENTIFIER(FlyingCamera)
 
 	public:
-
-		// Set reference used for the flyingcamera component.
-		void SetCameraReference(const RefPtr<Entity::Camera>& camera) { m_Camera = camera; }
+		virtual void Start() override;
 
 		virtual void Update() override;
 

@@ -15,7 +15,7 @@ namespace Core
 		// Load Tank.
 		RefPtr<Entity::GameObject> tank = Entity::GameObject::Create("Tank");
 
-		tank->AddComponent<Entity::MeshRenderer>(Entity::MeshRenderer::Create());
+		tank->AddComponent(Entity::MeshRenderer::Create());
 		tank->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Tanks/TankPlayer.obj"));
 
 		RefPtr<Renderer::Texture> tex = Renderer::Texture::Create("assets/Tanks/textures/enemy/tank_marin.png");
@@ -24,16 +24,14 @@ namespace Core
 
 		tank->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
 
-		tank->AddComponent<Gameplay::TankMovement>(Gameplay::TankMovement::Create());
+		tank->AddComponent(Gameplay::TankMovement::Create());
 
 		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
-		flyCam->AddComponent<Gameplay::FlyingCamera>(Gameplay::FlyingCamera::Create());
+		flyCam->AddComponent(Gameplay::FlyingCamera::Create());
 
-		RefPtr<Entity::Camera> camera = Entity::Camera::Create();
+		flyCam->AddComponent(Entity::Camera::Create());
 
-		flyCam->GetComponent<Gameplay::FlyingCamera>()->SetCameraReference(camera);
-
-		SetActiveCamera(camera);
+		SetActiveCamera(flyCam->GetComponent<Entity::Camera>());
 
 		AddToScene(flyCam);
 		AddToScene(tank);
