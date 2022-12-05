@@ -37,10 +37,13 @@ namespace Physics
 		AABB();
 
 		// Check if point is inside of AABB.
-		bool Intersects(const glm::vec3& point);
+		bool IsPointInsideBounds(const glm::vec3& point);
 
 		// Check if AABB is inside of AABB.
-		RefPtr<Collision> Intersects(const RefPtr<AABB>& aabb);
+		bool IsAABBInsideBounds(const AABB& aabb);
+
+		// Check if AABB is inside of AABB.
+		RefPtr<Collision> Intersecting(const AABB& aabb);
 
 		// Get the closest point to edge inside of aabb.
 		glm::vec3 GetClosestPoint(const glm::vec3& point);

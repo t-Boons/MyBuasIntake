@@ -33,20 +33,20 @@ namespace Utils
 		// Calculate coordinate based on index.
 		if (index != 0)
 		{
-			x = index % (m_Size.x / m_TileSize);
-			y = index / (m_Size.x / m_TileSize);
+			x = static_cast<float>(index % (m_Size.x / m_TileSize));
+			y = static_cast<float>(index / (m_Size.x / m_TileSize));
 		}
 
 		ASSERT(y < (m_Size.x / m_TileSize), "Index out of range");
 
-		return GetTextureCoordinates(sf::Vector2u(x, y));
+		return GetTextureCoordinates(sf::Vector2u(static_cast<uint32_t>(x), static_cast<uint32_t>(y)));
 	}
 
 	std::array<sf::Vector2f, 4> TextureAtlas::GetTextureCoordinates(const sf::Vector2u& coordinate)
 	{
 		// Convert coordinates to amount in pixels.
-		float x = coordinate.x * m_TileSize;
-		float y = coordinate.y * m_TileSize;
+		float x = static_cast<uint32_t>(coordinate.x * m_TileSize);
+		float y = static_cast<uint32_t>(coordinate.y * m_TileSize);
 
 		ASSERT(x <= m_Size.x, "Index out of range")
 		ASSERT(y <= m_Size.y, "Index out of range")

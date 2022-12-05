@@ -12,32 +12,33 @@ namespace Physics
 		memset(&Points, 0, sizeof(Points));
 	}
 
-	bool AABB::Intersects(const glm::vec3& point)
+	bool AABB::IsPointInsideBounds(const glm::vec3& point)
 	{
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
 
 			// Calculate if point intersects with aabb.
 			return(
-				point.x > Points[0].x && point.x < Points[1].x&&
-				point.y > Points[0].x && point.y < Points[1].y&&
-				point.z > Points[0].x && point.z < Points[1].z
+				point.x >= Points[0].x && point.x <= Points[1].x &&
+				point.y >= Points[0].x && point.y <= Points[1].y &&
+				point.z >= Points[0].x && point.z <= Points[1].z
 				);
 	}
 
-	RefPtr<Collision> AABB::Intersects(const RefPtr<AABB>& aabb)
+	RefPtr<Collision> AABB::Intersecting(const AABB& aabb)
 	{
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
 
-			// Check if any of the 2 points of intersecting.
-			bool intersectsp0 = Intersects(aabb->Points[0]);
-		bool intersectsp1 = Intersects(aabb->Points[1]);
+		// Check if any of the 2 points of intersecting.
+		bool intersecting = IsAABBInsideBounds(aabb);
 
 		// Get hitoffset to correct collision
-		glm::vec3 hitOffset = GetClosestPoint(intersectsp0 ? Points[0] : Points[1]);
+		glm::vec3 hitOffset = { 0,0,0 };
 
-		if (intersectsp0 || intersectsp1)
+		// TODO Make AABB correction work.
+
+		if (intersecting)
 		{
 			// Create new collision object.
 			RefPtr<Collision> collision = std::make_shared<Collision>();
@@ -50,8 +51,24 @@ namespace Physics
 		return nullptr;
 	}
 
-	glm::vec3 AABB::GetClosestPoint(const glm::vec3& point)
+	bool AABB::IsAABBInsideBounds(const AABB& aabb)
 	{
+		// Check if collider is not inverted
+		ASSERT(!IsInverted(), "Collider can not be negative")
+
+		// Calculates if 2 aabbs are intersecting.
+		return (
+			aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x &&
+			aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y &&
+			aabb.Points[0].z <= Points[1].z && aabb.Points[1].z >= Points[0].z
+			);
+	}
+
+	glm::vec3 AABB::GetClosestPoint(const glm::vec3& point)
+	{ 
+		// Check if collider is not inverted
+		ASSERT(!IsInverted(), "Collider can not be negative")
+
 		// Get the center of the AABB.
 		glm::vec3 center = (Points[1] - Points[0]) * 0.5f;
 

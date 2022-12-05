@@ -4,7 +4,7 @@
 #include "TankMovement.h"
 #include "Core/Game.h"
 #include "Core/Time.h"
-#include "Core/core.h"5
+#include "Core/core.h"
 
 using namespace Entity;
 
