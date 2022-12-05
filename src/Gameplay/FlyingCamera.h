@@ -7,7 +7,7 @@
 #include "Entity/Transform.h"
 #include "glm/glm.hpp"
 
-namespace Utils
+namespace Gameplay
 {
 	class FlyingCamera : public Gameplay::ScriptComponent
 	{

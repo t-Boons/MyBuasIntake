@@ -252,9 +252,9 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Core\Scene.cpp" />
-    <ClCompile Include="src\Core\SceneManager.cpp" />
-    <ClCompile Include="src\Core\TestScene.cpp" />
+    <ClCompile Include="src\Scene\Scene.cpp" />
+    <ClCompile Include="src\Scene\SceneManager.cpp" />
+    <ClCompile Include="src\Scene\TestScene.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Entity\GameObject.cpp" />
@@ -282,15 +282,15 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="src\Core\Game.cpp" />
     <ClCompile Include="src\Utils\File.cpp" />
-    <ClCompile Include="src\Utils\FlyingCamera.cpp" />
+    <ClCompile Include="src\Gameplay\FlyingCamera.cpp" />
     <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\glad\include\glad\glad.h" />
-    <ClInclude Include="src\Core\Scene.h" />
-    <ClInclude Include="src\Core\SceneManager.h" />
-    <ClInclude Include="src\Core\TestScene.h" />
+    <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\SceneManager.h" />
+    <ClInclude Include="src\Scene\TestScene.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Entity\Camera.h" />
     <ClInclude Include="src\Entity\Component.h" />
@@ -312,7 +312,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Core\Game.h" />
     <ClInclude Include="src\Entity\GameObject.h" />
     <ClInclude Include="src\Utils\File.h" />
-    <ClInclude Include="src\Utils\FlyingCamera.h" />
+    <ClInclude Include="src\Gameplay\FlyingCamera.h" />
     <ClInclude Include="src\Utils\Log.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
   </ItemGroup>

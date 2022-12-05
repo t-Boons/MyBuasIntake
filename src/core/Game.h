@@ -9,7 +9,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Core.h"
-#include "SceneManager.h"
+#include "Scene/SceneManager.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Material.h"
 #include "Renderer/Mesh.h"

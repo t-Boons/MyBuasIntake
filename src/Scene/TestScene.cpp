@@ -6,7 +6,7 @@
 #include "Entity/MeshRenderer.h"
 #include "Gameplay/TankMovement.h"
 #include "Entity/Camera.h"
-#include "Utils/FlyingCamera.h"
+#include "Gameplay/FlyingCamera.h"
 
 namespace Core
 {
@@ -27,11 +27,11 @@ namespace Core
 		tank->AddComponent<Gameplay::TankMovement>(Gameplay::TankMovement::Create());
 
 		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
-		flyCam->AddComponent<Utils::FlyingCamera>(Utils::FlyingCamera::Create());
+		flyCam->AddComponent<Gameplay::FlyingCamera>(Gameplay::FlyingCamera::Create());
 
 		RefPtr<Entity::Camera> camera = Entity::Camera::Create();
 
-		flyCam->GetComponent<Utils::FlyingCamera>()->SetCameraReference(camera);
+		flyCam->GetComponent<Gameplay::FlyingCamera>()->SetCameraReference(camera);
 
 		SetActiveCamera(camera);
 

@@ -7,13 +7,13 @@
     <ClCompile Include="src\Utils\ColorLookupMap.cpp" />
     <ClCompile Include="src\Entity\GameObject.cpp" />
     <ClCompile Include="src\Entity\Transform.cpp" />
-    <ClCompile Include="src\Core\Scene.cpp" />
-    <ClCompile Include="src\Core\TestScene.cpp" />
+    <ClCompile Include="src\Scene\Scene.cpp" />
+    <ClCompile Include="src\Scene\TestScene.cpp" />
     <ClCompile Include="src\Renderer\Mesh.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="lib\glad\src\glad.c" />
-    <ClCompile Include="src\Core\SceneManager.cpp" />
+    <ClCompile Include="src\Scene\SceneManager.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
     <ClCompile Include="src\Utils\File.cpp" />
     <ClCompile Include="src\Renderer\Buffer.cpp" />
@@ -23,7 +23,7 @@
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
-    <ClCompile Include="src\Utils\FlyingCamera.cpp" />
+    <ClCompile Include="src\Gameplay\FlyingCamera.cpp" />
     <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\mypch.cpp" />
   </ItemGroup>
@@ -35,14 +35,14 @@
     <ClInclude Include="src\Utils\ColorLookupMap.h" />
     <ClInclude Include="src\Entity\Component.h" />
     <ClInclude Include="src\Entity\Transform.h" />
-    <ClInclude Include="src\Core\Scene.h" />
-    <ClInclude Include="src\Core\TestScene.h" />
+    <ClInclude Include="src\Scene\Scene.h" />
+    <ClInclude Include="src\Scene\TestScene.h" />
     <ClInclude Include="src\Entity\MeshRenderer.h" />
     <ClInclude Include="src\Renderer\Mesh.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Entity\Camera.h" />
     <ClInclude Include="lib\glad\include\glad\glad.h" />
-    <ClInclude Include="src\Core\SceneManager.h" />
+    <ClInclude Include="src\Scene\SceneManager.h" />
     <ClInclude Include="src\Renderer\Shader.h" />
     <ClInclude Include="src\Utils\File.h" />
     <ClInclude Include="src\Renderer\Material.h" />
@@ -53,7 +53,7 @@
     <ClInclude Include="src\Gameplay\ScriptComponent.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Core\Time.h" />
-    <ClInclude Include="src\Utils\FlyingCamera.h" />
+    <ClInclude Include="src\Gameplay\FlyingCamera.h" />
     <ClInclude Include="src\Utils\Log.h" />
     <ClInclude Include="src\mypch.h" />
   </ItemGroup>

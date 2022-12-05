@@ -13,7 +13,7 @@
 
 #include "Core.h"
 #include "Game.h"
-#include "Scene.h"
+#include "Scene/Scene.h"
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {

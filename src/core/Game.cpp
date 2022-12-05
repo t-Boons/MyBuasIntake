@@ -4,7 +4,7 @@
 
 #include "mypch.h"
 #include "Game.h"
-#include "Core/TestScene.h"
+#include "Scene/TestScene.h"
 #include "Time.h"
 
 namespace Core

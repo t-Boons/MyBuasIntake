@@ -4,7 +4,7 @@
 #include "FlyingCamera.h"
 #include "Core/Time.h"
 
-namespace Utils
+namespace Gameplay
 {
 	glm::vec3 FlyingCamera::GetPositionDeltaFromInput()
 	{
