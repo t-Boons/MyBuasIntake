@@ -4,6 +4,7 @@
 #include "TankMovement.h"
 #include "Core/Game.h"
 #include "Core/Time.h"
+#include "Core/core.h"5
 
 using namespace Entity;
 
@@ -18,7 +19,6 @@ namespace Gameplay
 	void TankMovement::Update()
 	{
 		float dt = Core::Time::GetDeltaTime();
-
 		m_Transform->Translate(sf::Keyboard::isKeyPressed(sf::Keyboard::T) ? m_Transform->GetForward() * dt * 25.0f : glm::vec3(0.0f));
 		m_Transform->Translate(sf::Keyboard::isKeyPressed(sf::Keyboard::G) ? m_Transform->GetForward() * -dt * 25.0f : glm::vec3(0.0f));
 

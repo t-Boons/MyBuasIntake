@@ -26,6 +26,7 @@
     <ClCompile Include="src\Gameplay\FlyingCamera.cpp" />
     <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\mypch.cpp" />
+    <ClCompile Include="src\Physics\AABB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -56,6 +57,8 @@
     <ClInclude Include="src\Gameplay\FlyingCamera.h" />
     <ClInclude Include="src\Utils\Log.h" />
     <ClInclude Include="src\mypch.h" />
+    <ClInclude Include="src\Physics\AABB.h" />
+    <ClInclude Include="src\Entity\BoxCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

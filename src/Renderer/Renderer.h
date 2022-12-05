@@ -7,7 +7,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Core/Game.h"
-#include "Entity/GameObject.h"
 #include "Entity/Camera.h"
 #include "Entity/Transform.h"
 #include "Mesh.h"
@@ -25,14 +24,21 @@ namespace Renderer
 	{
 	public:
 
+		// Initialize the renderer.
 		static void Init();
 
+		// Begin the scene drawing.
 		static void BeginScene(const RefPtr<Entity::Camera> camera);
+		
+		// End scene drawing.
 		static void EndScene();
 
+		// Draw mesh.
 		static void SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material);
 
+		// Clear render buffer..
 		static void Clear(const glm::vec3& color = { 0, 0, 0 });
+
 
 
 	private:

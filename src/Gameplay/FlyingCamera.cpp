@@ -28,9 +28,12 @@ namespace Gameplay
 	{
 		glm::vec3 rotation = { 0, 0, 0 };
 
+		// Calculate mouse movmement delta.
 		glm::vec2 delta = (m_MouseDelta - glm::vec2(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y)) * 0.25f;
 
 		m_MouseDelta = { sf::Mouse::getPosition().x, sf::Mouse::getPosition().y };
+
+		// Assign movement when pressing right button on yuur mouse.
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 		{
 			rotation.y += delta.x;

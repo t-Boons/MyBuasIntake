@@ -7,6 +7,22 @@
 
 namespace Entity
 {
+
+	/*
+			|	
+			|	      y+	
+			|		  | z-
+			|     	  |/  
+			|  x+ ----o---- x+  
+			|	     /| 
+			|	    z+|  
+			|	      y- 
+			o--------------------
+	
+		 Tranformation Axis reference.
+	*/
+
+
 	class Transform : public Component
 	{
 		IMPLEMENT_COMPONENT_IDENTIFIER(Transform)

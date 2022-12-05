@@ -49,8 +49,12 @@
 
 // Simple to_string macro.
 #include <string>
-#define TOTEXT(value) std::to_string(value)
+#define STR(value) std::to_string(value)
 
+// Macros to print vectors more easily
+#define VEC2STR(vector) STR(vector.x) + ", " + STR(vector.y) 
+#define VEC3STR(vector) STR(vector.x) + ", " + STR(vector.y) + ", " + STR(vector.z)
+#define VEC4STR(vector) STR(vector.x) + ", " + STR(vector.y) + ", " + STR(vector.z) + ", " + TOSTR(vector.w)
 
 // Simplify the shared and unique ptr names.
 #include <memory>

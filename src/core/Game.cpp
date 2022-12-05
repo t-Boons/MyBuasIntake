@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Scene/TestScene.h"
 #include "Time.h"
+#include "Physics/AABB.h"
 
 namespace Core
 {
@@ -29,6 +30,12 @@ namespace Core
 		GetSceneManager()->SetActiveScene(new Core::TestScene);
 
 		m_SceneManager->GetActiveScene()->Start();
+
+
+		Physics::AABB aabb;
+		aabb.Points[0] = { 0.1f, 0.1f, 0.1f };
+		aabb.Points[1] = { 1, 2.1f, 2 };
+
 	}
 
 	// -----------------------------------------------------------
