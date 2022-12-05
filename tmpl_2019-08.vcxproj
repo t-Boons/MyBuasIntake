@@ -252,6 +252,8 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Entity\BoxCollider.cpp" />
+    <ClCompile Include="src\Gameplay\TestBehaviour.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
@@ -290,6 +292,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
   <ItemGroup>
     <ClInclude Include="lib\glad\include\glad\glad.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
+    <ClInclude Include="src\Gameplay\TestBehaviour.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />

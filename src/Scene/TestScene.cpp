@@ -7,6 +7,8 @@
 #include "Gameplay/TankMovement.h"
 #include "Entity/Camera.h"
 #include "Gameplay/FlyingCamera.h"
+#include "Entity/BoxCollider.h"
+#include "Gameplay/TestBehaviour.h"
 
 namespace Core
 {
@@ -26,6 +28,8 @@ namespace Core
 
 		tank->AddComponent(Gameplay::TankMovement::Create());
 
+
+
 		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
 		flyCam->AddComponent(Gameplay::FlyingCamera::Create());
 
@@ -34,6 +38,35 @@ namespace Core
 		SetActiveCamera(flyCam->GetComponent<Entity::Camera>());
 
 		AddToScene(flyCam);
-		AddToScene(tank);
+		//AddToScene(tank);
+
+
+
+
+		
+		RefPtr<Entity::GameObject> cube0 = Entity::GameObject::Create("Cube0");
+		{
+			cube0->AddComponent(Entity::BoxCollider::Create());
+			cube0->AddComponent(Gameplay::TestBehaviour::Create());
+
+			auto meshr = cube0->AddComponent(Entity::MeshRenderer::Create());
+			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
+			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
+		}
+
+		RefPtr<Entity::GameObject> cube1 = Entity::GameObject::Create("Cube1");
+		{
+			cube1->AddComponent(Entity::BoxCollider::Create());
+			auto meshr = cube1->AddComponent(Entity::MeshRenderer::Create());
+			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
+			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
+
+			cube1->GetComponent<Entity::Transform>()->Translate({ 0, -10, 0 });
+			cube1->GetComponent<Entity::Transform>()->SetScale({ 10, 1, 10 });
+		}
+
+
+		AddToScene(cube0);
+		AddToScene(cube1);
 	}
 }

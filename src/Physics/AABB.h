@@ -13,7 +13,7 @@ namespace Physics
 		       /|          /|	|	      y+	
 		      / |         / |	|		  | z-
 		     /  |        /  |	|     	  |/ 
-		     ---A-------B   |	|  x+ ----o---- x+ 
+		     ---A-------B   |	|  x- ----o---- x+ 
 		    |  /        |  /	|	     /|
 		    | /         | /		|	    z+| 
 		    |/          |/		|	      y-
@@ -26,24 +26,22 @@ namespace Physics
 			  Points[1] is B.
 	*/
 
-
-	struct Collision
+	class AABB
 	{
-		glm::vec3 HitOffset;
-	};
-
-	struct AABB
-	{
+	public:
 		AABB();
+
+		// Set size of bounding box.
+		void SetSize(const glm::vec3& size);
+
+		// Set position of bounding box.
+		void SetPosition(const glm::vec3& position);
 
 		// Check if point is inside of AABB.
 		bool IsPointInsideBounds(const glm::vec3& point);
 
 		// Check if AABB is inside of AABB.
-		bool IsAABBInsideBounds(const AABB& aabb);
-
-		// Check if AABB is inside of AABB.
-		RefPtr<Collision> Intersecting(const AABB& aabb);
+		bool Intersects(const AABB& aabb);
 
 		// Get the closest point to edge inside of aabb.
 		glm::vec3 GetClosestPoint(const glm::vec3& point);
@@ -51,6 +49,19 @@ namespace Physics
 		// Returns if the AABB is inverted.
 		bool IsInverted();
 
+		// Recalculate bounding box points.
+		void RecalculatePoints();
+
+	public:
+		// Overload getter operator to get AABB points.
+		const glm::vec3& operator [](int i) const
+		{
+			ASSERT(i < 2, "Only 2 points on Bounding box")
+			return Points[i];
+		}
+
+	private:
 		std::array<glm::vec3, 2> Points;
+		glm::vec3 Position, Size;
 	};
 }

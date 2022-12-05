@@ -16,7 +16,7 @@ namespace Gameplay
 			return Parent->GetComponent<T>();
 		}
 
-		// AddComponent to this gameobject.
+		// Add Component to this gameobject.
 		template<class T>
 		const RefPtr<T> AddComponent()
 		{

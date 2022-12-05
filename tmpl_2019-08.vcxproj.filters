@@ -27,6 +27,8 @@
     <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\mypch.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
+    <ClCompile Include="src\Entity\BoxCollider.cpp" />
+    <ClCompile Include="src\Gameplay\TestBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -59,6 +61,7 @@
     <ClInclude Include="src\mypch.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
+    <ClInclude Include="src\Gameplay\TestBehaviour.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

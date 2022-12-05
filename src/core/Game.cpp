@@ -30,22 +30,6 @@ namespace Core
 		GetSceneManager()->SetActiveScene(new Core::TestScene);
 
 		m_SceneManager->GetActiveScene()->Start();
-
-
-		Physics::AABB aabb;
-		Physics::AABB aabb2;
-
-		aabb.Points[0] = { 1, 1, 1 };
-		aabb.Points[1] = { 2, 2, 2 };
-
-		aabb2.Points[0] = { 0, 0, 0 };
-		aabb2.Points[1] = { 10, 10, 10 };
-
-		if (aabb.Intersecting(aabb2))
-		{
-			LOG("Sus");
-		}
-
 	}
 
 	// -----------------------------------------------------------

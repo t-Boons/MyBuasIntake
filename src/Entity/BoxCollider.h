@@ -3,8 +3,8 @@
 #pragma once
 
 #include "Component.h"
-#include "Renderer/Mesh.h"
-#include "Renderer/Material.h"
+#include "Transform.h"
+#include "Physics/AABB.h"
 
 namespace Entity
 {
@@ -14,6 +14,13 @@ namespace Entity
 
 	public:
 
+		virtual void Start() override;
+
 		virtual void Update() override;
+
+	private:
+		RefPtr<Transform> m_Transform;
+		glm::vec3 m_OldPosition;
+		Physics::AABB m_BoundingBox;
 	};
 }
