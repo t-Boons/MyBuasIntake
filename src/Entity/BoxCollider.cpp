@@ -23,12 +23,12 @@ namespace Entity
 	void BoxCollider::TryCollision(const RefPtr<BoxCollider>& collider)
 	{
 		// See if collider intersects this one.
-		RefPtr<Physics::Collision> intersects = Intersects(collider);
+		bool intersects = Intersects(collider);
 
 		if (intersects)
 		{
 			// Calculate collision hit normal.
-			m_Transform->SetPosition(m_LastValidPosition + intersects->Normal);
+			m_Transform->SetPosition(m_LastValidPosition);
 		}
 
 		// Update old position to position this frame.

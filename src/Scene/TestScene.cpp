@@ -34,7 +34,7 @@ namespace Core
 		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
 		flyCam->AddComponent(Gameplay::FlyingCamera::Create());
 
-		flyCam->AddComponent(Entity::Camera::Create());
+		auto cam = flyCam->AddComponent(Entity::Camera::Create());
 
 		SetActiveCamera(flyCam->GetComponent<Entity::Camera>());
 

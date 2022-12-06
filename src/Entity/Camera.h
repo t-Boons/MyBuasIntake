@@ -13,10 +13,19 @@ namespace Entity
 		IMPLEMENT_COMPONENT_IDENTIFIER(Camera)
 
 	public:
-		Camera(float fov = 70, float znear = 0.01f, float zfar = 1000.0f);
+		enum class Projection
+		{
+			Perspective, Ortographic
+		};
 
-		// Set camera projection properties.
-		void SetProjection(float fov, float znear, float zfar);
+	public:
+		Camera();
+
+		// Set perspective projection properties.
+		void SetPerspectiveProjection(float fov, float znear, float zfar);
+
+		// Set ortographic projection properties
+		void SetOrtographicProjection(float size, float znear, float zfar);
 		
 		// Set Object position..
 		void SetViewPoint(const glm::vec3& position) { m_Position = position; RecalculateViewProjectionMatrix(); }
@@ -48,11 +57,13 @@ namespace Entity
 		void RecalculateViewProjectionMatrix();
 
 	private:
+		float m_Size;
 		glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
 		glm::vec3 m_Rotation = { 0.0f, 0.0f, 0.0f };
 		glm::mat4 m_ProjectionMatrix;
 		glm::mat4 m_ViewProjectionMatrix;
 		glm::mat4 m_ViewMatrix;
+		Projection m_Projection;
 		float m_Fov, m_Near, m_Far, m_Aspect;
 	};
 }

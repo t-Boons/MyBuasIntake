@@ -22,7 +22,7 @@ namespace Entity
 		void TryCollision(const RefPtr<BoxCollider>& collider);
 
 		// See if this collider intersects with another colilder.
-		RefPtr<Physics::Collision> Intersects(const RefPtr<BoxCollider>& collider) { return m_BoundingBox.Intersects(collider->m_BoundingBox); }
+		bool Intersects(const RefPtr<BoxCollider>& collider) { return m_BoundingBox.Intersects(collider->m_BoundingBox); }
 
 	private:
 		RefPtr<Transform> m_Transform;

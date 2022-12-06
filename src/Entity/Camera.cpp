@@ -8,9 +8,9 @@
 namespace Entity
 {
 
-	Camera::Camera(float fov, float znear, float zfar)
+	Camera::Camera()
 	{
-		SetProjection(fov, znear, zfar);
+		SetPerspectiveProjection(70, 0.01f, 1000.0f);
 		
 		// Calculate aspect ratio by using window size.
 		sf::Vector2f screenSize = (sf::Vector2f)Core::Game::Get()->GetWindow()->getSize();
@@ -18,16 +18,31 @@ namespace Entity
 
 		m_Aspect = aspect;
 
-
 		// Update projection matrix.
 		RecalculateProjectionMatrix();
 		RecalculateViewProjectionMatrix();
 	}
 
-	void Camera::SetProjection(float fov, float znear, float zfar)
+	void Camera::SetPerspectiveProjection(float fov, float znear, float zfar)
 	{
+		// Set projection type.
+		m_Projection = Projection::Perspective;
+
 		// Update camera values.
 		m_Fov = fov;
+		m_Near = znear;
+		m_Far = zfar;
+
+		RecalculateProjectionMatrix();
+	}
+
+	void Camera::SetOrtographicProjection(float size, float znear, float zfar)
+	{
+		// Set projection type.
+		m_Projection = Projection::Ortographic;
+
+		// Update camera values.
+		m_Size = size;
 		m_Near = znear;
 		m_Far = zfar;
 
@@ -53,7 +68,12 @@ namespace Entity
 	void Entity::Camera::RecalculateProjectionMatrix()
 	{
 		// Calculate perspective matrix.
-		m_ProjectionMatrix = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far);
+		switch (m_Projection)
+		{
+			case Projection::Perspective: m_ProjectionMatrix = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far); break;
+			case Projection::Ortographic: m_ProjectionMatrix = glm::ortho(0.0f, m_Size * m_Aspect, 0.0f, m_Size / m_Aspect, m_Near, m_Far); break;
+		}
+
 	}
 
 	const glm::vec3 Camera::GetViewForward() const
