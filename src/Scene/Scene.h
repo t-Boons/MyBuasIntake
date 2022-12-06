@@ -5,6 +5,7 @@
 #include "Core/Core.h"
 #include "Entity/GameObject.h"
 #include "Entity/Camera.h"
+#include "Physics/PhysicsEnviroment.h"
 
 namespace Core
 {
@@ -44,6 +45,7 @@ namespace Core
 
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
+		Physics::PhysicsEnviroment m_PhysicsEnviroment;
 		RefPtr<Entity::Camera> m_ActiveCamera;
 	};
 }

@@ -29,7 +29,7 @@ namespace Physics
 		RecalculatePoints();
 	}
 
-	bool AABB::IsPointInsideBounds(const glm::vec3& point)
+	bool AABB::IsPointInsideBounds(const glm::vec3& point) const
 	{
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
@@ -42,7 +42,7 @@ namespace Physics
 				);
 	}
 
-	bool AABB::Intersects(const AABB& aabb)
+	bool AABB::Intersects(const AABB& aabb) const
 	{
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
@@ -55,7 +55,7 @@ namespace Physics
 				);
 	}
 
-	glm::vec3 AABB::GetClosestPoint(const glm::vec3& point)
+	glm::vec3 AABB::GetClosestPoint(const glm::vec3& point) const
 	{ 
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
@@ -72,7 +72,7 @@ namespace Physics
 		return { x, y, z };
 	}
 
-	bool AABB::IsInverted()
+	bool AABB::IsInverted() const
 	{	
 		// See if point B is lower than point a because that is invalid.
 		return Points[0].x > Points[1].x ||

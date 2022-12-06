@@ -18,17 +18,20 @@ namespace Entity
 
 		// Update bounding box scale.
 		m_BoundingBox.SetSize(m_Transform->GetScale());
+	}
 
-		auto obj = GameObject::Find("Cube1");
-		if (obj->GetName() != Parent->GetName())
+	void BoxCollider::TryCollision(const RefPtr<BoxCollider>& collider)
+	{
+		// See if collider intersects this one.
+		RefPtr<Physics::Collision> intersects = Intersects(collider);
+
+		if (intersects)
 		{
-			auto collision = obj->GetComponent<Entity::BoxCollider>()->m_BoundingBox.Intersects(m_BoundingBox);
-			if (collision)
-			{
-				m_Transform->SetPosition(m_OldPosition);
-			}
+			// Calculate collision hit normal.
+			m_Transform->SetPosition(m_LastValidPosition + intersects->Normal);
 		}
 
-		m_OldPosition = m_Transform->GetPosition();
+		// Update old position to position this frame.
+		m_LastValidPosition = m_Transform->GetPosition();
 	}
 }

@@ -32,6 +32,12 @@ namespace Entity
 	public:
 		Transform()
 		{
+			// Initialize values.
+			m_Position = { 0.0f, 0.0f, 0.0f };
+			m_Rotation = glm::quat(glm::vec3(0, 0, 0));
+			m_LocalScale = { 1.0f, 1.0f, 1.0f };
+			m_TransformMatrix = glm::mat4(1.0f);
+
 			// Assign transform matrix by calculating.
 			RecalculateTransformMatrix();
 		}
@@ -78,10 +84,10 @@ namespace Entity
 		void RecalculateTransformMatrix();
 
 	private:
-		glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
-		glm::quat m_Rotation = glm::quat(glm::vec3(0, 0, 0));
-		glm::vec3 m_LocalScale = { 1.0f, 1.0f, 1.0f };
+		glm::vec3 m_Position;
+		glm::quat m_Rotation;
+		glm::vec3 m_LocalScale;
 
-		glm::mat4 m_TransformMatrix = glm::mat4(1.0f);
+		glm::mat4 m_TransformMatrix;
 	};
 }

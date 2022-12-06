@@ -38,16 +38,16 @@ namespace Physics
 		void SetPosition(const glm::vec3& position);
 
 		// Check if point is inside of AABB.
-		bool IsPointInsideBounds(const glm::vec3& point);
+		bool IsPointInsideBounds(const glm::vec3& point) const;
 
 		// Check if AABB is inside of AABB.
-		bool Intersects(const AABB& aabb);
+		bool Intersects(const AABB& aabb) const;
 
 		// Get the closest point to edge inside of aabb.
-		glm::vec3 GetClosestPoint(const glm::vec3& point);
+		glm::vec3 GetClosestPoint(const glm::vec3& point)  const;
 
 		// Returns if the AABB is inverted.
-		bool IsInverted();
+		bool IsInverted() const;
 
 		// Recalculate bounding box points.
 		void RecalculatePoints();

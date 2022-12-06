@@ -9,6 +9,7 @@
 #include "Gameplay/FlyingCamera.h"
 #include "Entity/BoxCollider.h"
 #include "Gameplay/TestBehaviour.h"
+#include "Entity/PhysicsBody.h"
 
 namespace Core
 {
@@ -52,6 +53,8 @@ namespace Core
 			auto meshr = cube0->AddComponent(Entity::MeshRenderer::Create());
 			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
 			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
+
+			cube0->AddComponent(Entity::PhysicsBody::Create());
 		}
 
 		RefPtr<Entity::GameObject> cube1 = Entity::GameObject::Create("Cube1");

@@ -255,6 +255,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Gameplay\TestBehaviour.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
+    <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
     <ClCompile Include="src\Scene\TestScene.cpp" />
@@ -292,8 +293,10 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
   <ItemGroup>
     <ClInclude Include="lib\glad\include\glad\glad.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
+    <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Gameplay\TestBehaviour.h" />
     <ClInclude Include="src\Physics\AABB.h" />
+    <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />
     <ClInclude Include="src\Scene\TestScene.h" />

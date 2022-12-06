@@ -27,16 +27,47 @@ namespace Core
 		{
 			m_Entities[i]->UpdateComponents();
 		}
+
+		// Update all physics.
+		m_PhysicsEnviroment.Update();
 	}
 
 	void Scene::AddToScene(RefPtr<Entity::GameObject> object)
 	{
+		// Add pbodies and colliders if the object has any.
+		auto pbody = object->GetComponent<Entity::PhysicsBody>();
+		auto collider = object->GetComponent<Entity::BoxCollider>();
+
+		if (pbody)
+		{
+			m_PhysicsEnviroment.RegisterComponent(pbody);
+		}
+
+		if (collider)
+		{
+			m_PhysicsEnviroment.RegisterComponent(collider);
+		}
+
 		// Add entity to component list.
 		m_Entities.push_back(object);
 	}
 
 	void Scene::RemoveFromScene(Entity::GameObject* object)
 	{
+		// Remove pbodies and colliders if the object has any.
+		auto pbody = object->GetComponent<Entity::PhysicsBody>();
+		auto collider = object->GetComponent<Entity::BoxCollider>();
+
+		if (pbody)
+		{
+			m_PhysicsEnviroment.RemoveComponent(pbody);
+		}
+
+		if (collider)
+		{
+			m_PhysicsEnviroment.RemoveComponent(collider);
+		}
+
 		// Find object match.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
