@@ -15,18 +15,26 @@ namespace Entity
 	public:
 
 		virtual void Start() override;
-
 		virtual void Update() override;
-
-		// Try to see if this object collides with collide rand fix the transform if it does.
-		void TryCollision(const RefPtr<BoxCollider>& collider);
 
 		// See if this collider intersects with another colilder.
 		bool Intersects(const RefPtr<BoxCollider>& collider) { return m_BoundingBox.Intersects(collider->m_BoundingBox); }
 
+		// Update the last valid position outside of any colliders.
+		void UpdateLastValidPosition();
+
+		// Reset to the last valid position.
+		void ResetToLastValidPosition();
+
 	private:
-		RefPtr<Transform> m_Transform;
+		void UpdateScaleAndPosition();
+
+	public:
 		glm::vec3 m_LastValidPosition;
+
+	private:
+		bool m_Intersects;
+		RefPtr<Transform> m_Transform;
 		Physics::AABB m_BoundingBox;
 	};
 }

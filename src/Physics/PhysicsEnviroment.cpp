@@ -56,17 +56,32 @@ namespace Physics
 			if (!currentPBodyCollider)
 				continue;
 
-			// Compare all collision boxes.
-			for (size_t c = 0; c < m_ColliderComponents.size(); c++)
+			if (AnyIntersections(currentPBodyCollider))
 			{
-				// Ignore this collider because it is the collider on the physics body.
-				if (m_ColliderComponents[c] == currentPBodyCollider)
-					continue;
-
-				// Update collision for the specific collider.
-				currentPBodyCollider->TryCollision(m_ColliderComponents[c]);
+				currentPBodyCollider->ResetToLastValidPosition();
 			}
 
+			currentPBodyCollider->UpdateLastValidPosition();
 		}
+	}
+
+	bool PhysicsEnviroment::AnyIntersections(const RefPtr<Entity::BoxCollider>& collider)
+	{
+		collider->Update();
+
+		// See if collider intersects this one.
+		bool intersects = false;
+
+		// See if there is a collision with any of the colliders.
+		for (auto& col : m_ColliderComponents)
+		{
+			// If colliding and object is not this collider.
+			if (collider->Intersects(col) && col != collider)
+			{
+				intersects = true;
+			}
+		}
+
+		return intersects;
 	}
 }

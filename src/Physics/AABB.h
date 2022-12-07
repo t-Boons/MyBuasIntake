@@ -3,7 +3,8 @@
 #pragma once
 
 #include "glm/glm.hpp"
-#include "Core/core.h"
+#include "Core/Core.h"
+#include "Entity/GameObject.h"
 
 namespace Physics
 {
@@ -25,6 +26,12 @@ namespace Physics
 			  Points[0] is A.
 			  Points[1] is B.
 	*/
+
+	struct Collision
+	{
+		glm::vec3 Normal;
+		RefPtr<Entity::GameObject> Object;
+	};
 
 	class AABB
 	{

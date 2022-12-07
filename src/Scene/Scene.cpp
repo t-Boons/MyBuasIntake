@@ -22,14 +22,15 @@ namespace Core
 
 	void Scene::Update()
 	{
+
+		// Update all physics.
+		m_PhysicsEnviroment.Update();
+
 		// Update all entity Components.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
 			m_Entities[i]->UpdateComponents();
 		}
-
-		// Update all physics.
-		m_PhysicsEnviroment.Update();
 	}
 
 	void Scene::AddToScene(RefPtr<Entity::GameObject> object)

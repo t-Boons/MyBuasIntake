@@ -25,6 +25,9 @@ namespace Physics
 		void Update();
 
 	private:
+		bool AnyIntersections(const RefPtr<Entity::BoxCollider>& collider);
+
+	private:
 
 		std::vector<RefPtr<Entity::BoxCollider>> m_ColliderComponents;
 		std::vector<RefPtr<Entity::PhysicsBody>> m_PhysicsBodyComponents;

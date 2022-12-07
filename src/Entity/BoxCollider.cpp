@@ -3,15 +3,11 @@
 #include "mypch.h"
 
 #include "BoxCollider.h"
+#include "Core/Time.h"
 
 namespace Entity
 {
-	void BoxCollider::Start()
-	{
-		m_Transform = Parent->GetComponent<Transform>();
-	}
-
-	void BoxCollider::Update()
+	void BoxCollider::UpdateScaleAndPosition()
 	{
 		// Update bounding box position.
 		m_BoundingBox.SetPosition(m_Transform->GetPosition());
@@ -20,18 +16,22 @@ namespace Entity
 		m_BoundingBox.SetSize(m_Transform->GetScale());
 	}
 
-	void BoxCollider::TryCollision(const RefPtr<BoxCollider>& collider)
+	void BoxCollider::Start()
 	{
-		// See if collider intersects this one.
-		bool intersects = Intersects(collider);
+		m_Transform = Parent->GetComponent<Transform>();
+	}
 
-		if (intersects)
-		{
-			// Calculate collision hit normal.
-			m_Transform->SetPosition(m_LastValidPosition);
-		}
+	void BoxCollider::Update()
+	{
+		UpdateScaleAndPosition();
+	}
 
-		// Update old position to position this frame.
+	void BoxCollider::UpdateLastValidPosition()
+	{
 		m_LastValidPosition = m_Transform->GetPosition();
+	}
+	void BoxCollider::ResetToLastValidPosition()
+	{
+		m_Transform->SetPosition(m_LastValidPosition);
 	}
 }

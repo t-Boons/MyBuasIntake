@@ -53,22 +53,22 @@ namespace Entity
 		void SetScale(const glm::vec3& scale) { m_LocalScale = scale;  RecalculateTransformMatrix(); }
 
 		// Get object position.
-		const glm::vec3& GetPosition() const { return m_Position; }
+		glm::vec3 GetPosition() const { return m_Position; }
 
 		// Get Object rotation.
-		const glm::quat& GetRotation() const { return m_Rotation; }
+		glm::quat GetRotation() const { return m_Rotation; }
 
 		// Get Object scale.
-		const glm::vec3& GetScale() const { return m_LocalScale; }
+		glm::vec3 GetScale() const { return m_LocalScale; }
 
 		// Get Forward vector.
-		const glm::vec3 GetForward() const;
+		glm::vec3 GetForward() const;
 
 		// Get Up vector.
-		const glm::vec3 GetUp() const;
+		glm::vec3 GetUp() const;
 
 		// Get Right vector.
-		const glm::vec3 GetRight() const;
+		glm::vec3 GetRight() const;
 		
 		// Return location, rotation and scale in one matrix.
 		const glm::mat4& GetTransformMatrix() const { return m_TransformMatrix; }

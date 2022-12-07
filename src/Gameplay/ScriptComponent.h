@@ -2,6 +2,7 @@
 
 #pragma once
 #include "Entity/Component.h"
+#include "Physics/AABB.h"
 
 namespace Gameplay
 {
@@ -22,5 +23,8 @@ namespace Gameplay
 		{
 			return Parent->AddComponent<T>();
 		}
+
+		// Runs when object is colliding with another object.
+		virtual void OnCollisionEnter(const RefPtr<Physics::Collision> collision) {}
 	};
 }
