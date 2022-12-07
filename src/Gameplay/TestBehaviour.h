@@ -16,6 +16,7 @@ namespace Gameplay
 		virtual void Start() override;
 
 		virtual void Update() override;
+		virtual void OnCollisionEnter() override;
 
 	public:
 		RefPtr<Entity::Transform> m_Transform;

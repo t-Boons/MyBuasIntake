@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Core/Game.h"
+#include "Gameplay/ScriptComponent.h"
 
 namespace Entity
 {
@@ -37,6 +38,20 @@ namespace Entity
 		}
 	}
 
+	void GameObject::UpdateCollisionEvents()
+	{
+		// Run collision event for every scriptcomponent
+		for (auto& c : m_Components)
+		{
+			Gameplay::ScriptComponent* scriptComponent = dynamic_cast<Gameplay::ScriptComponent*>(c.get());
+
+			if (scriptComponent)
+			{
+				scriptComponent->OnCollisionEnter();
+			}
+		}
+	}
+
 	void GameObject::Destroy()
 	{
 		ASSERT(this != nullptr, "The object you're trying to destroy is nullptr.")
@@ -48,11 +63,11 @@ namespace Entity
 	{
 		if (m_QueueForDeletion)
 		{
-			// Delete components.
-			m_Components.clear();
-
 			// Remove this object from the scene.
 			Core::Game::Get()->GetSceneManager()->GetActiveScene()->RemoveFromScene(this);
+
+			// Delete components.
+			m_Components.clear();
 		}
 
 		return m_QueueForDeletion;

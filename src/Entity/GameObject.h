@@ -50,6 +50,9 @@ namespace Entity
 		// Update all components.
 		void UpdateComponents();
 
+		// Update collision events.
+		void UpdateCollisionEvents();
+
 		// Get entity name.
 		const std::string& GetName() const { return m_Name; }
 

@@ -26,6 +26,18 @@ namespace Core
 		// Update all physics.
 		m_PhysicsEnviroment.Update();
 
+		for (int i = 0; i < m_CollisionEventsCount; i++)
+		{
+			for (size_t i = 0; i < m_Entities.size(); i++)
+			{
+				m_Entities[i]->UpdateCollisionEvents();
+			}
+		}
+
+		// Reset event counter.
+		m_CollisionEventsCount = 0;
+
+
 		// Update all entity Components.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{

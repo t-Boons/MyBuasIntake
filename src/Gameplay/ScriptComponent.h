@@ -1,8 +1,8 @@
 // 2022 Tygo Boons
 
 #pragma once
+
 #include "Entity/Component.h"
-#include "Physics/AABB.h"
 
 namespace Gameplay
 {
@@ -25,6 +25,6 @@ namespace Gameplay
 		}
 
 		// Runs when object is colliding with another object.
-		virtual void OnCollisionEnter(const RefPtr<Physics::Collision> collision) {}
+		virtual void OnCollisionEnter() {}
 	};
 }

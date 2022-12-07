@@ -2,6 +2,8 @@
 
 #include "mypch.h"
 #include "PhysicsEnviroment.h"
+#include "Core/Game.h"
+#include "Entity/GameObject.h"
 
 namespace Physics
 {
@@ -54,11 +56,17 @@ namespace Physics
 
 			// Continue if the pbody does not have a collider.
 			if (!currentPBodyCollider)
+			{
 				continue;
+			}
 
 			if (AnyIntersections(currentPBodyCollider))
 			{
 				currentPBodyCollider->ResetToLastValidPosition();
+
+
+				// Add collision event to scene.
+				Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent();
 			}
 
 			currentPBodyCollider->UpdateLastValidPosition();
@@ -67,6 +75,7 @@ namespace Physics
 
 	bool PhysicsEnviroment::AnyIntersections(const RefPtr<Entity::BoxCollider>& collider)
 	{
+		// Update collider to make sure the position and scale are fully updated.
 		collider->Update();
 
 		// See if collider intersects this one.

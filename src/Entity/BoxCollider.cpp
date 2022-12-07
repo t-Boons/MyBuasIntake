@@ -7,7 +7,12 @@
 
 namespace Entity
 {
-	void BoxCollider::UpdateScaleAndPosition()
+	void BoxCollider::Start()
+	{
+		m_Transform = Parent->GetComponent<Transform>();
+	}
+
+	void BoxCollider::Update()
 	{
 		// Update bounding box position.
 		m_BoundingBox.SetPosition(m_Transform->GetPosition());
@@ -16,20 +21,25 @@ namespace Entity
 		m_BoundingBox.SetSize(m_Transform->GetScale());
 	}
 
-	void BoxCollider::Start()
-	{
-		m_Transform = Parent->GetComponent<Transform>();
-	}
-
-	void BoxCollider::Update()
-	{
-		UpdateScaleAndPosition();
-	}
-
 	void BoxCollider::UpdateLastValidPosition()
 	{
 		m_LastValidPosition = m_Transform->GetPosition();
 	}
+
+	glm::vec3 BoxCollider::GetNormalFromLastValidPosition() const
+	{
+		// Calculate normalized vector between lastPosition and current position.
+		glm::vec3 normal = glm::normalize(m_Transform->GetPosition() - m_LastValidPosition);
+
+		// Set vector to 0 if normal is NAN.
+		if (isnan(normal.x))
+		{
+			normal = { 0, 0, 0 };
+		}
+
+		return normal;
+	}
+
 	void BoxCollider::ResetToLastValidPosition()
 	{
 		m_Transform->SetPosition(m_LastValidPosition);

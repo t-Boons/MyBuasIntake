@@ -27,12 +27,6 @@ namespace Physics
 			  Points[1] is B.
 	*/
 
-	struct Collision
-	{
-		glm::vec3 Normal;
-		RefPtr<Entity::GameObject> Object;
-	};
-
 	class AABB
 	{
 	public:

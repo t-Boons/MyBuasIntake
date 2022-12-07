@@ -20,5 +20,13 @@ namespace Gameplay
 		pos.x = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) * 5 + sf::Keyboard::isKeyPressed(sf::Keyboard::Right) * -5;
 
 		m_Transform->Translate(pos * Core::Time::GetDeltaTime());
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			Parent->Destroy();
+	}
+
+	void TestBehaviour::OnCollisionEnter()
+	{
+		LOG_ERROR("Collided")
 	}
 }

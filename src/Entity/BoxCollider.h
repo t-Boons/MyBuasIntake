@@ -8,6 +8,7 @@
 
 namespace Entity
 {
+
 	class BoxCollider : public Component
 	{
 		IMPLEMENT_COMPONENT_IDENTIFIER(BoxCollider)
@@ -23,17 +24,16 @@ namespace Entity
 		// Update the last valid position outside of any colliders.
 		void UpdateLastValidPosition();
 
+		// Get direction normal.
+		glm::vec3 GetNormalFromLastValidPosition() const;
+
 		// Reset to the last valid position.
 		void ResetToLastValidPosition();
 
-	private:
-		void UpdateScaleAndPosition();
 
-	public:
+	private:
 		glm::vec3 m_LastValidPosition;
-
-	private:
-		bool m_Intersects;
+		glm::vec3 m_DirectionNormal;
 		RefPtr<Transform> m_Transform;
 		Physics::AABB m_BoundingBox;
 	};
