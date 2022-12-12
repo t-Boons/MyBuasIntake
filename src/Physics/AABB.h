@@ -4,7 +4,6 @@
 
 #include "glm/glm.hpp"
 #include "Core/Core.h"
-#include "Entity/GameObject.h"
 
 namespace Physics
 {
@@ -27,6 +26,12 @@ namespace Physics
 			  Points[1] is B.
 	*/
 
+	struct Collision
+	{
+	public:
+		glm::vec3 Normal;
+	};
+
 	class AABB
 	{
 	public:
@@ -42,10 +47,7 @@ namespace Physics
 		bool IsPointInsideBounds(const glm::vec3& point) const;
 
 		// Check if AABB is inside of AABB.
-		bool Intersects(const AABB& aabb) const;
-
-		// Get the closest point to edge inside of aabb.
-		glm::vec3 GetClosestPoint(const glm::vec3& point)  const;
+		RefPtr<Collision> Intersects(const AABB& aabb);
 
 		// Returns if the AABB is inverted.
 		bool IsInverted() const;
@@ -62,6 +64,7 @@ namespace Physics
 		}
 
 	private:
+		glm::vec3 Normal;
 		std::array<glm::vec3, 2> Points;
 		glm::vec3 Position, Size;
 	};

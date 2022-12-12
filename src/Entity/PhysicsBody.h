@@ -11,11 +11,5 @@ namespace Entity
 	class PhysicsBody : public Component
 	{
 		IMPLEMENT_COMPONENT_IDENTIFIER(PhysicsBody)
-
-	public:
-
-	private:
-		RefPtr<Transform> m_Transform;
-
 	};
 }

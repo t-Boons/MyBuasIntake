@@ -21,6 +21,11 @@ namespace Entity
 		m_BoundingBox.SetSize(m_Transform->GetScale());
 	}
 
+	RefPtr<Physics::Collision> BoxCollider::Intersects(const RefPtr<BoxCollider>& collider)
+	{
+		return m_BoundingBox.Intersects(collider->m_BoundingBox);
+	}
+
 	void BoxCollider::UpdateLastValidPosition()
 	{
 		m_LastValidPosition = m_Transform->GetPosition();

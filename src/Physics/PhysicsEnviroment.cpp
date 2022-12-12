@@ -60,37 +60,44 @@ namespace Physics
 				continue;
 			}
 
-			if (AnyIntersections(currentPBodyCollider))
+			// Get collision event.
+			RefPtr<Collision> colEvent = AnyIntersections(currentPBodyCollider);
+
+			// Run if event was found.
+			if (colEvent)
 			{
 				currentPBodyCollider->ResetToLastValidPosition();
 
-
 				// Add collision event to scene.
-				Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent();
+				Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent(colEvent);
 			}
 
 			currentPBodyCollider->UpdateLastValidPosition();
 		}
 	}
 
-	bool PhysicsEnviroment::AnyIntersections(const RefPtr<Entity::BoxCollider>& collider)
+	RefPtr<Collision> PhysicsEnviroment::AnyIntersections(const RefPtr<Entity::BoxCollider>& collider)
 	{
 		// Update collider to make sure the position and scale are fully updated.
 		collider->Update();
-
-		// See if collider intersects this one.
-		bool intersects = false;
 
 		// See if there is a collision with any of the colliders.
 		for (auto& col : m_ColliderComponents)
 		{
 			// If colliding and object is not this collider.
-			if (collider->Intersects(col) && col != collider)
+			if (col != collider)
 			{
-				intersects = true;
+				// Get collision event.
+				RefPtr<Collision> colliderEvent = collider->Intersects(col);
+
+				// Return if collision was detected.
+				if (colliderEvent)
+				{
+					return colliderEvent;
+				}
 			}
 		}
 
-		return intersects;
+		return nullptr;
 	}
 }

@@ -44,11 +44,11 @@ namespace Core
 		const RefPtr<Entity::GameObject>& FindEntityByName(const std::string& name);
 
 		// Add a collision event that will be ran next frame.
-		void AddCollisionEnterEvent() { m_CollisionEventsCount++; }
+		void AddCollisionEnterEvent(RefPtr<Physics::Collision> collision) { m_CollisionEvents.push_back(collision); }
 
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
-		int m_CollisionEventsCount;
+		std::vector<RefPtr<Physics::Collision>> m_CollisionEvents;
 		Physics::PhysicsEnviroment m_PhysicsEnviroment;
 		RefPtr<Entity::Camera> m_ActiveCamera;
 

@@ -6,6 +6,7 @@
 
 namespace Physics
 {
+
 	class PhysicsEnviroment
 	{
 	public:
@@ -25,7 +26,7 @@ namespace Physics
 		void Update();
 
 	private:
-		bool AnyIntersections(const RefPtr<Entity::BoxCollider>& collider);
+		RefPtr<Collision> AnyIntersections(const RefPtr<Entity::BoxCollider>& collider);
 
 	private:
 

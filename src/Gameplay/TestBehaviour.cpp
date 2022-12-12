@@ -18,6 +18,7 @@ namespace Gameplay
 
 		pos.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Up) * 5 + sf::Keyboard::isKeyPressed(sf::Keyboard::Down) * -5;
 		pos.x = sf::Keyboard::isKeyPressed(sf::Keyboard::Left) * 5 + sf::Keyboard::isKeyPressed(sf::Keyboard::Right) * -5;
+		pos.z = sf::Keyboard::isKeyPressed(sf::Keyboard::N) * 5 + sf::Keyboard::isKeyPressed(sf::Keyboard::M) * -5;
 
 		m_Transform->Translate(pos * Core::Time::GetDeltaTime());
 
@@ -25,8 +26,9 @@ namespace Gameplay
 			Parent->Destroy();
 	}
 
-	void TestBehaviour::OnCollisionEnter()
+	void TestBehaviour::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
 		LOG_ERROR("Collided")
+		LOG_ERROR(VEC3STR(collision->Normal))
 	}
 }

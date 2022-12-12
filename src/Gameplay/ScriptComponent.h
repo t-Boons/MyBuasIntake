@@ -25,6 +25,6 @@ namespace Gameplay
 		}
 
 		// Runs when object is colliding with another object.
-		virtual void OnCollisionEnter() {}
+		virtual void OnCollisionEnter(RefPtr<Physics::Collision> collision) {}
 	};
 }

@@ -19,7 +19,7 @@ namespace Entity
 		virtual void Update() override;
 
 		// See if this collider intersects with another colilder.
-		bool Intersects(const RefPtr<BoxCollider>& collider) { return m_BoundingBox.Intersects(collider->m_BoundingBox); }
+		RefPtr<Physics::Collision> Intersects(const RefPtr<BoxCollider>& collider);
 
 		// Update the last valid position outside of any colliders.
 		void UpdateLastValidPosition();

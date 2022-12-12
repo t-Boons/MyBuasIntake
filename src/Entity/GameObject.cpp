@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Core/Game.h"
-#include "Gameplay/ScriptComponent.h"
+#include "Gameplay/ScriptComponent.h" 
 
 namespace Entity
 {
@@ -38,7 +38,7 @@ namespace Entity
 		}
 	}
 
-	void GameObject::UpdateCollisionEvents()
+	void GameObject::UpdateCollisionEvents(RefPtr<Physics::Collision> collision)
 	{
 		// Run collision event for every scriptcomponent
 		for (auto& c : m_Components)
@@ -47,7 +47,7 @@ namespace Entity
 
 			if (scriptComponent)
 			{
-				scriptComponent->OnCollisionEnter();
+				scriptComponent->OnCollisionEnter(collision);
 			}
 		}
 	}

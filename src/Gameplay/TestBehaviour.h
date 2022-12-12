@@ -5,6 +5,7 @@
 #include "ScriptComponent.h"
 #include "Core/Core.h"
 #include "Entity/Transform.h"
+#include "Physics/AABB.h"
 
 namespace Gameplay
 {
@@ -16,7 +17,7 @@ namespace Gameplay
 		virtual void Start() override;
 
 		virtual void Update() override;
-		virtual void OnCollisionEnter() override;
+		virtual void OnCollisionEnter(RefPtr<Physics::Collision> collision) override;
 
 	public:
 		RefPtr<Entity::Transform> m_Transform;

@@ -4,6 +4,7 @@
 #include "Core/Core.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Physics/AABB.h"
 
 namespace Entity
 {
@@ -51,7 +52,7 @@ namespace Entity
 		void UpdateComponents();
 
 		// Update collision events.
-		void UpdateCollisionEvents();
+		void UpdateCollisionEvents(RefPtr<Physics::Collision> collision);
 
 		// Get entity name.
 		const std::string& GetName() const { return m_Name; }

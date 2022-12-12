@@ -64,8 +64,8 @@ namespace Core
 			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
 			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
 
-			cube1->GetComponent<Entity::Transform>()->Translate({ 0, -10, 0 });
-			cube1->GetComponent<Entity::Transform>()->SetScale({ 10, 1, 10 });
+			cube1->GetComponent<Entity::Transform>()->Translate({ 0, -1, 0 });
+			cube1->GetComponent<Entity::Transform>()->SetScale({ 1, 1, 1 });
 		}
 
 
