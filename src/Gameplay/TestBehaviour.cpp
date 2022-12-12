@@ -28,7 +28,8 @@ namespace Gameplay
 
 	void TestBehaviour::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
-		LOG_ERROR("Collided")
-		LOG_ERROR(VEC3STR(collision->Normal))
+		LOG_INFO("Collided")
+		LOG_INFO(VEC3STR(collision->Normal))
+		LOG_INFO(collision->ObjectName)
 	}
 }

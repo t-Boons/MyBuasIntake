@@ -23,7 +23,15 @@ namespace Entity
 
 	RefPtr<Physics::Collision> BoxCollider::Intersects(const RefPtr<BoxCollider>& collider)
 	{
-		return m_BoundingBox.Intersects(collider->m_BoundingBox);
+		RefPtr<Physics::Collision> collisionEvent = m_BoundingBox.Intersects(collider->m_BoundingBox);
+
+		// Set object name if collision found.
+		if (collisionEvent)
+		{
+			collisionEvent->ObjectName = Parent->GetName();
+		}
+
+		return collisionEvent;
 	}
 
 	void BoxCollider::UpdateLastValidPosition()

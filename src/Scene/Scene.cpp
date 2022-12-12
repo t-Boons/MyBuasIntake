@@ -34,9 +34,11 @@ namespace Core
 		// Update collision events for scriptcomponents.
 		for (int i = 0; i < m_CollisionEvents.size(); i++)
 		{
-			for (size_t j = 0; j < m_Entities.size(); j++)
+			auto entity = FindEntityByName(m_CollisionEvents[i]->ObjectName);
+			
+			if(entity)
 			{
-				m_Entities[j]->UpdateCollisionEvents(m_CollisionEvents[i]);
+				entity->UpdateCollisionEvents(m_CollisionEvents[i]);
 			}
 		}
 

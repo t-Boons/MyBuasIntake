@@ -30,6 +30,7 @@ namespace Physics
 	{
 	public:
 		glm::vec3 Normal;
+		std::string ObjectName;
 	};
 
 	class AABB
