@@ -15,60 +15,33 @@ namespace Core
 {
 	void TestScene::LoadScene()
 	{
-		// Load Tank.
-		RefPtr<Entity::GameObject> tank = Entity::GameObject::Create("Tank");
+		// Create camera object.
+		RefPtr<Entity::GameObject> camera = Entity::GameObject::Create("MainCamera");
 
-		tank->AddComponent(Entity::MeshRenderer::Create());
-		tank->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Tanks/TankPlayer.obj"));
+		RefPtr<Entity::Camera> cam = camera->AddComponent(Entity::Camera::Create());
 
-		RefPtr<Renderer::Texture> tex = Renderer::Texture::Create("assets/Tanks/textures/enemy/tank_marin.png");
-		RefPtr<Renderer::Shader> shader = Renderer::Shader::Create("assets/shaders/Basic3DShader.glsl");
-		RefPtr<Renderer::Material> material = Renderer::Material::Create(tex, shader);
+		cam->SetOrtographicProjection(19, 0.01f, 100.0f);
 
-		tank->GetComponent<Entity::MeshRenderer>()->SetMaterial(material);
+		cam->SetViewPoint({ -8.537f, 19.27f, -7.12f });
+		cam->SetViewRotation({ -55, -90, 0 });
 
-		tank->AddComponent(Gameplay::TankMovement::Create());
+		AddToScene(camera);
 
-
-
-		RefPtr<Entity::GameObject> flyCam = Entity::GameObject::Create("Spectator Camera");
-		flyCam->AddComponent(Gameplay::FlyingCamera::Create());
-
-		auto cam = flyCam->AddComponent(Entity::Camera::Create());
-
-		SetActiveCamera(flyCam->GetComponent<Entity::Camera>());
-
-		AddToScene(flyCam);
-		//AddToScene(tank);
+		SetActiveCamera(cam);
 
 
+		// Create enviroment.
+		RefPtr<Entity::GameObject> enviroment = Entity::GameObject::Create("BasePlate");
 
+		enviroment->AddComponent(Entity::MeshRenderer::Create());
+		enviroment->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("assets/Models/Enviroment.obj"));
+		enviroment->GetComponent<Entity::MeshRenderer>()->SetMaterial(Renderer::Material::Create(
+																		Renderer::Texture::Create("assets/Models/TextureAtlas.png"),
+																		Renderer::Shader::Create("assets/Shaders/Basic3DShader.glsl")
+																	));
 
-		
-		RefPtr<Entity::GameObject> cube0 = Entity::GameObject::Create("Cube0");
-		{
-			cube0->AddComponent(Entity::BoxCollider::Create());
-			cube0->AddComponent(Gameplay::TestBehaviour::Create());
+		AddToScene(enviroment);
 
-			auto meshr = cube0->AddComponent(Entity::MeshRenderer::Create());
-			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
-			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
-
-			cube0->AddComponent(Entity::PhysicsBody::Create());
-		}
-
-		RefPtr<Entity::GameObject> cube1 = Entity::GameObject::Create("Cube1");
-		{
-			cube1->AddComponent(Entity::BoxCollider::Create());
-			auto meshr = cube1->AddComponent(Entity::MeshRenderer::Create());
-			meshr->SetMesh(Renderer::Mesh::Create("assets/Cube.obj"));
-			meshr->SetMaterial(Renderer::Material::Create(tex, shader));
-
-			cube1->GetComponent<Entity::Transform>()->Translate({ 0, -1, 0 });
-			cube1->GetComponent<Entity::Transform>()->SetScale({ 5, 1, 1 });
-		}
-
-		AddToScene(cube0);
-		AddToScene(cube1);
+			
 	}
 }

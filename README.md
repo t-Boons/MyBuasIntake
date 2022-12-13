@@ -21,3 +21,9 @@ Used assets:
 
 Wii tanks Tank model
 https://www.models-resource.com/wii/wiiplay/model/41959/
+
+Wii tanks bullet model
+https://www.models-resource.com/wii/wiiplay/model/35324/
+
+Wii tanks textures
+https://www.textures-resource.com/wii/wiiplay/texture/12548/

@@ -13,7 +13,7 @@
 
     float GetLightIntensity()
     {
-        vec3 dirLight = clamp(normalize(-vec3(-0.5f, -1.0f, -0.2f)), 0, 1);
+        vec3 dirLight = clamp(normalize(-vec3(0.5f, -1.0f, 0.2f)), 0, 1);
 
         mat3 normalMatrix = mat3(uViewProjection * uModel);
         normalMatrix = inverse(normalMatrix);
@@ -41,5 +41,5 @@
 
     void main()
     {
-        FragColor = texture(uTexture, oTexCoord) * clamp(intensity + 0.75f, 0, 1);
+        FragColor = vec4(texture(uTexture, oTexCoord).rgb * clamp(intensity + 0.60f, 0, 1), texture(uTexture, oTexCoord).a);
     }

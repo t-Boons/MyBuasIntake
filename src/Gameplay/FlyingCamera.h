@@ -28,5 +28,6 @@ namespace Gameplay
 	private:
 		RefPtr<Entity::Camera> m_Camera;
 		glm::vec2 m_MouseDelta = { 0, 0 };
+		RefPtr<Entity::Camera> m_ActiveCamera;
 	};
 }

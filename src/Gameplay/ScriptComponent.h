@@ -6,7 +6,7 @@
 
 namespace Gameplay
 {
-	class ScriptComponent : public Entity::Component
+	class ScriptComponent	 : public Entity::Component
 	{
 	public:
 
