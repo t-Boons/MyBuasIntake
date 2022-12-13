@@ -4,8 +4,7 @@
 
 #include "ScriptComponent.h"
 #include "Core/Core.h"
-#include "Entity/Transform.h"
-#include "Physics/AABB.h"
+#include "Entity/Components.h"
 
 namespace Gameplay
 {

@@ -4,7 +4,7 @@
 
 #include "ScriptComponent.h"
 #include "Core/Core.h"
-#include "Entity/Transform.h"
+#include "Entity/Components.h"
 
 namespace Gameplay
 {

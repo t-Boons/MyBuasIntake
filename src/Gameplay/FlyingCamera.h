@@ -3,8 +3,7 @@
 #pragma once
 
 #include "Gameplay/ScriptComponent.h"
-#include "Entity/Camera.h"
-#include "Entity/Transform.h"
+#include "Entity/Components.h"
 #include "glm/glm.hpp"
 
 namespace Gameplay
