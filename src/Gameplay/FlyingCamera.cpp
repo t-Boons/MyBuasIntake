@@ -3,6 +3,7 @@
 #include "mypch.h"
 #include "FlyingCamera.h"
 #include "Core/Time.h"
+#include "Core/Game.h"
 
 namespace Gameplay
 {
@@ -46,6 +47,7 @@ namespace Gameplay
 	void FlyingCamera::Start()
 	{
 		m_Camera = GetComponent<Entity::Camera>();
+		m_ActiveCamera = Core::Game::Get()->GetSceneManager()->GetActiveScene()->GetActiveCamera();
 	}
 
 

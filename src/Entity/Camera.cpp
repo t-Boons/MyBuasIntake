@@ -71,7 +71,7 @@ namespace Entity
 		switch (m_Projection)
 		{
 			case Projection::Perspective: m_ProjectionMatrix = glm::perspective(m_Fov, m_Aspect, m_Near, m_Far); break;
-			case Projection::Ortographic: m_ProjectionMatrix = glm::ortho(0.0f, m_Size * m_Aspect, 0.0f, m_Size / m_Aspect, m_Near, m_Far); break;
+			case Projection::Ortographic: m_ProjectionMatrix = glm::ortho(-m_Size, m_Size * m_Aspect, -m_Size, m_Size / m_Aspect, m_Near, m_Far); break;
 		}
 
 	}
