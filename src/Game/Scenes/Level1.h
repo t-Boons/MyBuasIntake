@@ -1,11 +1,12 @@
 // 2022 Tygo Boons
 
 #pragma once
-#include "Scene.h"
 
-namespace Core
+#include "Scene/Scene.h"
+
+namespace Gameplay
 {
-	class TestScene : public Scene
+	class Level1 : public Core::Scene
 	{
 		// Inherited via Scene.
 		virtual void LoadScene() override;

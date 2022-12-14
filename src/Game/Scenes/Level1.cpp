@@ -1,19 +1,23 @@
 // 2022 Tygo Boons
 
 #include "mypch.h"
-#include "TestScene.h"
+#include "Level1.h"
 #include "Entity/Components.h"
-#include "Gameplay/TankMovement.h"
-#include "Gameplay/FlyingCamera.h"
-#include "Gameplay/TestBehaviour.h"
-#include "Gameplay/TankGun.h"
+#include "Game/Gameplay/TankMovement.h"
+#include "Game/Gameplay/FlyingCamera.h"
+#include "Game/Gameplay/TestBehaviour.h"
+#include "Game/Gameplay/TankGun.h"
 
-namespace Core
+namespace Gameplay
 {
-	void TestScene::LoadScene()
+	void Level1::LoadScene()
 	{
+		//-------------------//
+		// Create cameras.
+		//-------------------//
+
 		// Create debug spectator cam.
-		RefPtr<Entity::GameObject> flycam = Entity::GameObject::Create("MainCamera");
+		RefPtr<Entity::GameObject> flycam = Entity::GameObject::Create("SpectatorCamera");
 
 		flycam->AddComponent(Entity::Camera::Create());
 		flycam->AddComponent(Gameplay::FlyingCamera::Create());

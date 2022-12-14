@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 #include "Core/Game.h"
-#include "Gameplay/ScriptComponent.h" 
+#include "Entity/ScriptComponent.h" 
 
 namespace Entity
 {
@@ -43,8 +43,9 @@ namespace Entity
 		// Run collision event for every scriptcomponent
 		for (auto& c : m_Components)
 		{
-			Gameplay::ScriptComponent* scriptComponent = dynamic_cast<Gameplay::ScriptComponent*>(c.get());
+			Entity::ScriptComponent* scriptComponent = dynamic_cast<Entity::ScriptComponent*>(c.get());
 
+			// Run collision if cast is succesful.
 			if (scriptComponent)
 			{
 				scriptComponent->OnCollisionEnter(collision);

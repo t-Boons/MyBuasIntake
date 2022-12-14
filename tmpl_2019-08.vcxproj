@@ -253,19 +253,19 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
-    <ClCompile Include="src\Gameplay\TankGun.cpp" />
-    <ClCompile Include="src\Gameplay\TestBehaviour.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TestBehaviour.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
     <ClCompile Include="src\Scene\SceneManager.cpp" />
-    <ClCompile Include="src\Scene\TestScene.cpp" />
+    <ClCompile Include="src\Game\Scenes\Level1.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Entity\GameObject.cpp" />
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
     <ClCompile Include="src\Entity\Transform.cpp" />
-    <ClCompile Include="src\Gameplay\TankMovement.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankMovement.cpp" />
     <ClCompile Include="src\mypch.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mypch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mypch.h</PrecompiledHeaderFile>
@@ -287,7 +287,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="src\Core\Game.cpp" />
     <ClCompile Include="src\Utils\File.cpp" />
-    <ClCompile Include="src\Gameplay\FlyingCamera.cpp" />
+    <ClCompile Include="src\Game\Gameplay\FlyingCamera.cpp" />
     <ClCompile Include="src\Utils\Log.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
   </ItemGroup>
@@ -296,20 +296,20 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Entity\BoxCollider.h" />
     <ClInclude Include="src\Entity\Components.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
-    <ClInclude Include="src\Gameplay\TankGun.h" />
-    <ClInclude Include="src\Gameplay\TestBehaviour.h" />
+    <ClInclude Include="src\Game\Gameplay\TankGun.h" />
+    <ClInclude Include="src\Game\Gameplay\TestBehaviour.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\SceneManager.h" />
-    <ClInclude Include="src\Scene\TestScene.h" />
+    <ClInclude Include="src\Game\Scenes\Level1.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Entity\Camera.h" />
     <ClInclude Include="src\Entity\Component.h" />
     <ClInclude Include="src\Entity\MeshRenderer.h" />
     <ClInclude Include="src\Entity\Transform.h" />
-    <ClInclude Include="src\Gameplay\ScriptComponent.h" />
-    <ClInclude Include="src\Gameplay\TankMovement.h" />
+    <ClInclude Include="src\Entity\ScriptComponent.h" />
+    <ClInclude Include="src\Game\Gameplay\TankMovement.h" />
     <ClInclude Include="src\mypch.h" />
     <ClInclude Include="src\Renderer\Buffer.h" />
     <ClInclude Include="src\Renderer\Material.h" />
@@ -324,7 +324,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Core\Game.h" />
     <ClInclude Include="src\Entity\GameObject.h" />
     <ClInclude Include="src\Utils\File.h" />
-    <ClInclude Include="src\Gameplay\FlyingCamera.h" />
+    <ClInclude Include="src\Game\Gameplay\FlyingCamera.h" />
     <ClInclude Include="src\Utils\Log.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
   </ItemGroup>

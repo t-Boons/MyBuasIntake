@@ -5,7 +5,7 @@
 
 namespace Gameplay
 {
-	void Gameplay::TankGun::Start()
+	void TankGun::Start()
 	{
 		// Get transform component from tank body.
 		m_ParentTransform = Entity::GameObject::Find("TankPlayer")->GetComponent<Entity::Transform>();
@@ -14,7 +14,7 @@ namespace Gameplay
 		m_Transform = GetComponent<Entity::Transform>();
 	}
 
-	void Gameplay::TankGun::Update()
+	void TankGun::Update()
 	{
 		// Set position equal to tank body position.
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());

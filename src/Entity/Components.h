@@ -7,3 +7,4 @@
 #include "Camera.h"
 #include "MeshRenderer.h"
 #include "PhysicsBody.h"
+#include "ScriptComponent.h"

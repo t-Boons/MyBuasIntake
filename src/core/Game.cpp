@@ -4,9 +4,8 @@
 
 #include "mypch.h"
 #include "Game.h"
-#include "Scene/TestScene.h"
 #include "Time.h"
-#include "Physics/AABB.h"
+#include "Game/Scenes/Level1.h"
 
 namespace Core
 {
@@ -27,7 +26,7 @@ namespace Core
 	{
 		Renderer::Renderer::Init();
 
-		GetSceneManager()->SetActiveScene(new Core::TestScene);
+		GetSceneManager()->SetActiveScene(new Gameplay::Level1);
 
 		m_SceneManager->GetActiveScene()->Start();
 	}

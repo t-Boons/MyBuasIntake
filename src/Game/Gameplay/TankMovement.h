@@ -2,13 +2,12 @@
 
 #pragma once
 
-#include "ScriptComponent.h"
 #include "Core/Core.h"
 #include "Entity/Components.h"
 
 namespace Gameplay
 {
-	class TankMovement : public ScriptComponent
+	class TankMovement : public Entity::ScriptComponent
 	{
 		IMPLEMENT_COMPONENT_IDENTIFIER(TankMovement)
 

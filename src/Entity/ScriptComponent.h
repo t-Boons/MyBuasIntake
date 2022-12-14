@@ -4,9 +4,9 @@
 
 #include "Entity/Component.h"
 
-namespace Gameplay
+namespace Entity
 {
-	class ScriptComponent	 : public Entity::Component
+	class ScriptComponent : public Entity::Component
 	{
 	public:
 

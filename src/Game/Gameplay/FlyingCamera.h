@@ -2,13 +2,12 @@
 
 #pragma once
 
-#include "Gameplay/ScriptComponent.h"
 #include "Entity/Components.h"
 #include "glm/glm.hpp"
 
 namespace Gameplay
 {
-	class FlyingCamera : public Gameplay::ScriptComponent
+	class FlyingCamera : public Entity::ScriptComponent
 	{
 		IMPLEMENT_COMPONENT_IDENTIFIER(FlyingCamera)
 
