@@ -12,6 +12,8 @@ namespace Renderer
 
 		// Load texture from file.
 		m_Texture.loadFromFile(filepath);
+
+		ASSERT(m_Texture.loadFromFile(filepath), "Unable to load texture from file: " + filepath)
 	}
 
 	void Texture::Bind()

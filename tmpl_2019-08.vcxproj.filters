@@ -30,6 +30,7 @@
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Gameplay\TestBehaviour.cpp" />
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
+    <ClCompile Include="src\Gameplay\TankGun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -66,6 +67,7 @@
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Entity\Components.h" />
+    <ClInclude Include="src\Gameplay\TankGun.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
