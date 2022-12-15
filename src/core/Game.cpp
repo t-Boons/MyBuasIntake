@@ -16,7 +16,7 @@ namespace Core
 	{
 		sf::ContextSettings settings;
 		settings.depthBits = 32;
-		return new sf::RenderWindow(sf::VideoMode(1280, 720), "Wii - Tanks", 7U, settings);
+		return new sf::RenderWindow(sf::VideoMode(1920, 1080), "Wii - Tanks", 7U, settings);
 	}
 
 	// -----------------------------------------------------------
