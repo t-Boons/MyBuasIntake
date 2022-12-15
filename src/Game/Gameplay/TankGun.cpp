@@ -2,6 +2,7 @@
 
 #include "mypch.h"
 #include "TankGun.h"
+#include "Core/Game.h"
 
 namespace Gameplay
 {
@@ -20,7 +21,19 @@ namespace Gameplay
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());
 
 
-		// Rotate turret.
-		m_Transform->Rotate({ 0, 50 * Core::Time::GetDeltaTime(), 0 });
+		// Calculate angle
+		sf::Vector2u screenSize = Core::Game::Get()->GetWindow()->getSize();
+		sf::Vector2i mousePosition = sf::Mouse::getPosition(*Core::Game::Get()->GetWindow());
+
+		glm::vec2 normalizedPosition = { static_cast<float>(mousePosition.x) / static_cast<float>(screenSize.x),
+										 static_cast<float>(mousePosition.y) / static_cast<float>(screenSize.y) };
+		normalizedPosition -= 0.5f;
+
+		float angle = glm::acos(glm::dot(glm::vec2(0, 1.0f), glm::normalize(normalizedPosition)));
+		angle = normalizedPosition.x > 0 ? angle : -angle;
+
+
+		// Rotate turret to right direction.
+		m_Transform->SetRotation(glm::quat({ 0, angle - glm::radians(90.0f), 0}));
 	}
 }
