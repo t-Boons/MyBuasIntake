@@ -17,8 +17,25 @@
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
+
+	// Create window instance.
+	Core::WindowProperties properties;
+
+	// Create context settings object.
+	sf::ContextSettings settings;
+	settings.depthBits = 32;
+
+	// Create resolution.
+	glm::ivec2 resolution = { 1280, 720 };
+
+	properties.ContextSettings = settings;
+	properties.Resolution = resolution;
+
+	RefPtr<Core::Window> window = Core::Window::Create(properties);
+
+
 	// Create game instance.
-	Core::Game game(Core::Game::GetWindowProperties(), new Core::SceneManager());
+	Core::Game game(window);
 
 	// Call game start method.
 	game.Start();
@@ -27,17 +44,17 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 	sf::Clock deltaClock;
 
 	// Main window loop
-	while (game.GetWindow()->isOpen())
+	while (game.GetWindow()->IsOpen())
 	{
 
 		// Poll SFML events.
 		sf::Event event;
-		while (game.GetWindow()->pollEvent(event))
+		while (game.GetWindow()->PollEvent(event))
 		{
 			// Poll window close event.
 			if (event.type == sf::Event::Closed)
 			{
-				game.GetWindow()->close();
+				game.GetWindow()->Close();
 			}
 		}
 

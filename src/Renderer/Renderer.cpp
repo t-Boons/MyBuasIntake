@@ -13,7 +13,7 @@ namespace Renderer
 		gladLoadGLLoader((GLADloadproc)(sf::Context::getFunction));
 
 		// Pop SFML Opengl calls so they do not interfere.
-		Core::Game::Get()->GetWindow()->popGLStates();
+		Core::Game::Get()->GetWindow()->PopGLStates();
 
 		// Set opengl settings.
 		glEnable(GL_DEPTH_TEST);
@@ -27,7 +27,7 @@ namespace Renderer
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
 		// Pop SFML Opengl calls so they do not interfere.
-		Core::Game::Get()->GetWindow()->popGLStates();
+		Core::Game::Get()->GetWindow()->PopGLStates();
 
 		// Update view projection matrix.
 		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
@@ -36,7 +36,7 @@ namespace Renderer
 	void Renderer::EndScene()
 	{
 		// Apply the saved SFML Opengl calls.
-		Core::Game::Get()->GetWindow()->pushGLStates();
+		Core::Game::Get()->GetWindow()->PushGLStates();
 	}
 
 	void Renderer::SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material)

@@ -36,6 +36,6 @@ namespace Gameplay
 		glm::vec2 center = (tankPositionToScreenPosition * 0.5f) + 0.5f;
 
 		// Update guninput value.
-		m_GunInput = glm::normalize(Core::Game::Get()->GetNormalizedMousePosition() - center);
+		m_GunInput = glm::normalize(Core::Game::Get()->GetWindow()->GetNormalizedMousePosition() - center);
 	}
 }

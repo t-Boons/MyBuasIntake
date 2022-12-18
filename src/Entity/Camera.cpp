@@ -13,7 +13,7 @@ namespace Entity
 		SetPerspectiveProjection(70, 0.01f, 1000.0f);
 		
 		// Calculate aspect ratio by using window size.
-		sf::Vector2f screenSize = (sf::Vector2f)Core::Game::Get()->GetWindow()->getSize();
+		glm::vec2 screenSize = Core::Game::Get()->GetWindow()->GetResolution();
 		float aspect = screenSize.x / screenSize.y;
 
 		m_Aspect = aspect;

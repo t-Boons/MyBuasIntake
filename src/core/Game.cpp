@@ -11,20 +11,14 @@ namespace Core
 {
 	Game* Game::s_Instance = nullptr;
 
-	// Initialize static cvariables.
-	sf::RenderWindow* Game::GetWindowProperties()
-	{
-		sf::ContextSettings settings;
-		settings.depthBits = 32;
-		return new sf::RenderWindow(sf::VideoMode(1280, 720), "Wii - Tanks", 7U, settings);
-	}
-
 	// -----------------------------------------------------------
 	// Initialize the application
 	// -----------------------------------------------------------
 	void Game::Start()
 	{
 		Renderer::Renderer::Init();
+
+		m_SceneManager = SceneManager::Create();
 
 		GetSceneManager()->SetActiveScene(new Gameplay::Level1);
 
@@ -53,19 +47,6 @@ namespace Core
 
 		Renderer::Renderer::EndScene();
 
-		m_Window->display();
-	}
-
-	glm::vec2 Game::GetNormalizedMousePosition() const
-	{
-		// Get screen size and mouse position.
-		sf::Vector2u screenSize = Core::Game::Get()->GetWindow()->getSize();
-		sf::Vector2i mousePosition = sf::Mouse::getPosition(*Core::Game::Get()->GetWindow());
-
-		// Get normalized screen position and change coordinate origin to the bottom left of the screen.
-		glm::vec2 normalizedPosition = glm::vec2(static_cast<float>(mousePosition.x) / static_cast<float>(screenSize.x),
-			-static_cast<float>(mousePosition.y) / static_cast<float>(screenSize.y) + 1.0f);
-
-		return normalizedPosition;
+		m_Window->Display();
 	}
 };

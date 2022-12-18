@@ -2,11 +2,14 @@
 
 #pragma once
 #include "Scene.h"
+#include "Core/Core.h"
 
 namespace Core
 {
 	class SceneManager
 	{
+		MAKE_SHARED(SceneManager)
+
 	public:
 		// Get current active scene.
 		Scene* GetActiveScene() { return s_ActiveScene; }

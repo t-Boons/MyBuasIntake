@@ -31,6 +31,7 @@
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
+    <ClCompile Include="src\Core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -68,6 +69,7 @@
     <ClInclude Include="src\Entity\Components.h" />
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
     <ClInclude Include="src\Game\Gameplay\TankInput.h" />
+    <ClInclude Include="src\Core\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
