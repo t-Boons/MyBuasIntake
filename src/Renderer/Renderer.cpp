@@ -15,13 +15,20 @@ namespace Renderer
 		// Pop SFML Opengl calls so they do not interfere.
 		Core::Game::Get()->GetWindow()->PopGLStates();
 
-		// Set opengl settings.
+
+		// Set opengl states for rendering.
+
+		// Enable depth testing so object don't render in front of each other.
 		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
+
+		// Enable backface culling.
 		glEnable(GL_CULL_FACE);
+		glCullFace(GL_BACK);
+		
+		// Enable transparency.
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glCullFace(GL_BACK);
-		glDepthFunc(GL_LESS);
 	}
 
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
