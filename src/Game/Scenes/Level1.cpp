@@ -36,6 +36,7 @@ namespace Gameplay
 
 		AddToScene(camera);
 
+
 		SetActiveCamera(camera->GetComponent<Entity::Camera>());
 
 
@@ -43,7 +44,7 @@ namespace Gameplay
 		// Create enviroment.
 		//-------------------//
 
-		RefPtr<Entity::GameObject> enviroment = Entity::GameObject::Create("BasePlate");
+		RefPtr<Entity::GameObject> enviroment = Entity::GameObject::Create("Enviroment");
 
 		enviroment->AddComponent(Entity::MeshRenderer::Create());
 		enviroment->GetComponent<Entity::MeshRenderer>()->SetMesh(Renderer::Mesh::Create("Assets/Models/Enviroment.obj"));
@@ -54,7 +55,6 @@ namespace Gameplay
 
 		// Lower enviroment a little to prevent z-fighting.
 		enviroment->GetComponent<Entity::Transform>()->SetPosition({ 0, -0.1f, 0 });
-
 
 		AddToScene(enviroment);
 
