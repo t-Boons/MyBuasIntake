@@ -30,7 +30,7 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-
+		LOG_WARN("Shutting down Engine")
 	}
 
 	// -----------------------------------------------------------
@@ -38,23 +38,27 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Tick()
 	{
+		// Start rendering of the scene.
 		Renderer::Renderer::BeginScene(m_SceneManager->GetActiveScene()->GetActiveCamera());
 
+		// Clear the old screen buffer.
 		Renderer::Renderer::Clear({0.15f, 0.2f, 0.24f});
-
+		
+		// Update timing values.
 		Core::Time::Tick();
+
+		// Update physics, behaviour and render the actual objects.
 		m_SceneManager->GetActiveScene()->Update();
 
+		// Finish the rendering.
 		Renderer::Renderer::EndScene();
 
+		// Display the rendered frame.
 		m_Window->Display();
 	}
+
 	RefPtr<Window> Game::GetWindowProperties()
 	{
-
-		// Create window instance.
-		Core::WindowProperties properties;
-
 		// Create context settings object.
 		sf::ContextSettings settings;
 		settings.depthBits = 32;
@@ -62,6 +66,8 @@ namespace Core
 		// Create resolution.
 		glm::ivec2 resolution = { 1280, 720 };
 
+		// Create windowproperties instance and set it.
+		Core::WindowProperties properties;
 		properties.ContextSettings = settings;
 		properties.Resolution = resolution;
 

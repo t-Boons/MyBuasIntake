@@ -6,14 +6,9 @@
 #include "mypch.h"
 
 #include <Windows.h>
-
 #include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-
 #include "Core.h"
 #include "Game.h"
-#include "Scene/Scene.h"
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {

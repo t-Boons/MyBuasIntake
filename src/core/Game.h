@@ -7,15 +7,10 @@
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "Core.h"
 #include "Scene/SceneManager.h"
 #include "Renderer/Renderer.h"
-#include "Renderer/Material.h"
-#include "Renderer/Mesh.h"
 #include "Window.h"
-#include "Entity/Transform.h"
-#include "Entity/Camera.h"
 
 namespace Core
 {
