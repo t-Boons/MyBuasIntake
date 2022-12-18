@@ -13,6 +13,7 @@ namespace Core
 	{
 		sf::ContextSettings ContextSettings;
 		glm::ivec2 Resolution;
+		std::string Name;
 	};
 
 	class Window

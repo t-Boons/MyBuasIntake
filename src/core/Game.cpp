@@ -68,6 +68,7 @@ namespace Core
 		Core::WindowProperties properties;
 		properties.ContextSettings = settings;
 		properties.Resolution = resolution;
+		properties.Name = "Wii Tanks - BUAS Intake Tygo Boons";
 
 		return Core::Window::Create(properties);
 	}
