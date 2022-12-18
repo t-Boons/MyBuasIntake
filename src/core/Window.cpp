@@ -5,14 +5,11 @@
 
 namespace Core
 {
+	// Creates the window instance.
 	Window::Window(WindowProperties properties)
-	{
-		// Create new window instance with properties.
-		m_Window = new sf::RenderWindow(sf::VideoMode(properties.Resolution.x, properties.Resolution.y), "Wii - Tanks", 7U, properties.ContextSettings);
-
-		// Set resolution.
-		m_Resolution = properties.Resolution;
-	}
+		: m_Resolution(properties.Resolution),
+		m_Window(new sf::RenderWindow(sf::VideoMode(properties.Resolution.x, properties.Resolution.y), "Wii - Tanks", 7U, properties.ContextSettings))
+	{}
 
 	glm::vec2 Window::GetNormalizedMousePosition() const
 	{

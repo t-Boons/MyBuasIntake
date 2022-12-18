@@ -42,9 +42,6 @@ namespace Core
 		// Get window instance.
 		inline RefPtr<Window> GetWindow() const { return m_Window; }
 
-		// Get normalized mouse position.
-		glm::vec2 GetNormalizedMousePosition() const;
-
 		// Get scene manager instance.
 		inline RefPtr<Core::SceneManager> GetSceneManager() const { return m_SceneManager; }
 
@@ -52,7 +49,7 @@ namespace Core
 		static Game* Get() { return s_Instance; }
 
 		// Get window initialization properties.
-		static sf::RenderWindow* GetWindowProperties();
+		static RefPtr<Window> GetWindowProperties();
 
 	private:
 		static Game* s_Instance;

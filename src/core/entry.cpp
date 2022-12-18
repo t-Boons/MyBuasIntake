@@ -18,24 +18,8 @@
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
 {
 
-	// Create window instance.
-	Core::WindowProperties properties;
-
-	// Create context settings object.
-	sf::ContextSettings settings;
-	settings.depthBits = 32;
-
-	// Create resolution.
-	glm::ivec2 resolution = { 1280, 720 };
-
-	properties.ContextSettings = settings;
-	properties.Resolution = resolution;
-
-	RefPtr<Core::Window> window = Core::Window::Create(properties);
-
-
 	// Create game instance.
-	Core::Game game(window);
+	Core::Game game(Core::Game::GetWindowProperties());
 
 	// Call game start method.
 	game.Start();

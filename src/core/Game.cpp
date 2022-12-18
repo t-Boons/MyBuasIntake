@@ -49,4 +49,22 @@ namespace Core
 
 		m_Window->Display();
 	}
+	RefPtr<Window> Game::GetWindowProperties()
+	{
+
+		// Create window instance.
+		Core::WindowProperties properties;
+
+		// Create context settings object.
+		sf::ContextSettings settings;
+		settings.depthBits = 32;
+
+		// Create resolution.
+		glm::ivec2 resolution = { 1280, 720 };
+
+		properties.ContextSettings = settings;
+		properties.Resolution = resolution;
+
+		return Core::Window::Create(properties);
+	}
 };
