@@ -41,7 +41,7 @@ namespace Core
 		const RefPtr<Entity::Camera> GetActiveCamera() const { return m_ActiveCamera; }
 
 		// Finds the entity with name.
-		const RefPtr<Entity::GameObject>& FindEntityByName(const std::string& name);
+		RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);
 
 		// Add a collision event that will be ran next frame.
 		void AddCollisionEnterEvent(RefPtr<Physics::Collision> collision) { m_CollisionEvents.push_back(collision); }

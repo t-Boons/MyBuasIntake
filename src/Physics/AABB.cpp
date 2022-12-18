@@ -63,13 +63,13 @@ namespace Physics
 			// Update Y axis.
 			if (aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x)
 			{
-				normal.y = aabb.Points[0].y < Points[0].y ? 1 : -1;
+				normal.y = aabb.Points[0].y < Points[0].y ? 1.0f : -1.0f;
 			}
 
 			// Update X Axis.
 			if (aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y)
 			{
-				normal.x = aabb.Points[0].x < Points[0].x ? 1 : -1;
+				normal.x = aabb.Points[0].x < Points[0].x ? 1.0f : -1.0f;
 			}
 
 			// Update Z Axis.
@@ -77,7 +77,7 @@ namespace Physics
 			{
 				normal.y = 0;
 				normal.x = 0;
-				normal.z = aabb.Points[0].z < Points[0].z ? 1 : -1;
+				normal.z = aabb.Points[0].z < Points[0].z ? 1.0f : -1.0f;
 			}
 
 			// Set reference normal.

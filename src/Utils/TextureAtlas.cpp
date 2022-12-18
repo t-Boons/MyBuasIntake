@@ -45,8 +45,8 @@ namespace Utils
 	std::array<sf::Vector2f, 4> TextureAtlas::GetTextureCoordinates(const sf::Vector2u& coordinate)
 	{
 		// Convert coordinates to amount in pixels.
-		float x = static_cast<uint32_t>(coordinate.x * m_TileSize);
-		float y = static_cast<uint32_t>(coordinate.y * m_TileSize);
+		float x = static_cast<float>(static_cast<uint32_t>(coordinate.x * m_TileSize));
+		float y = static_cast<float>(static_cast<uint32_t>(coordinate.y * m_TileSize));
 
 		ASSERT(x <= m_Size.x, "Index out of range")
 		ASSERT(y <= m_Size.y, "Index out of range")

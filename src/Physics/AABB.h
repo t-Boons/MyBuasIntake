@@ -29,6 +29,10 @@ namespace Physics
 	struct Collision
 	{
 	public:
+		Collision()
+			: Normal({ 0, 0, 0 })
+		{}
+
 		glm::vec3 Normal;
 		std::string ObjectName;
 	};

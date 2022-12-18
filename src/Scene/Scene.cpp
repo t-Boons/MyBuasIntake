@@ -32,7 +32,7 @@ namespace Core
 		m_PhysicsEnviroment.Update();
 
 		// Update collision events for scriptcomponents.
-		for (int i = 0; i < m_CollisionEvents.size(); i++)
+		for (size_t i = 0; i < m_CollisionEvents.size(); i++)
 		{
 			auto entity = FindEntityByName(m_CollisionEvents[i]->ObjectName);
 			
@@ -93,7 +93,7 @@ namespace Core
 		}
 	}
 
-	const RefPtr<Entity::GameObject>& Scene::FindEntityByName(const std::string& name)
+	RefPtr<Entity::GameObject> Scene::FindEntityByName(const std::string& name)
 	{
 		// See if any of the entity names match.
 		for (auto& entity : m_Entities)

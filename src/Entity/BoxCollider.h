@@ -35,8 +35,8 @@ namespace Entity
 
 
 	private:
-		glm::vec3 m_LastValidPosition;
-		glm::vec3 m_DirectionNormal;
+		glm::vec3 m_LastValidPosition = glm::vec3(0.0f);
+		glm::vec3 m_DirectionNormal = glm::vec3(0.0f);
 		glm::vec3 m_Size = { 1, 1, 1 };
 		RefPtr<Transform> m_Transform;
 		Physics::AABB m_BoundingBox;
