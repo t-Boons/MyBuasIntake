@@ -254,7 +254,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </ClCompile>
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
-    <ClCompile Include="src\Game\Gameplay\TestBehaviour.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
@@ -297,7 +297,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Entity\Components.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
-    <ClInclude Include="src\Game\Gameplay\TestBehaviour.h" />
+    <ClInclude Include="src\Game\Gameplay\TankInput.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Scene\Scene.h" />

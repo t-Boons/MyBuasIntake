@@ -9,7 +9,7 @@ namespace Entity
 {
 	void BoxCollider::Start()
 	{
-		m_Transform = Parent->GetComponent<Transform>();
+		m_Transform = GetComponent<Transform>();
 	}
 
 	void BoxCollider::Update()

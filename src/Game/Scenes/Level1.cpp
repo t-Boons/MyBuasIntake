@@ -5,8 +5,8 @@
 #include "Entity/Components.h"
 #include "Game/Gameplay/TankMovement.h"
 #include "Game/Gameplay/FlyingCamera.h"
-#include "Game/Gameplay/TestBehaviour.h"
 #include "Game/Gameplay/TankGun.h"
+#include "Game/Gameplay/TankInput.h"
 
 namespace Gameplay
 {
@@ -85,8 +85,10 @@ namespace Gameplay
 		));
 
 		tankBody->AddComponent(Gameplay::TankMovement::Create());
+		tankBody->AddComponent(Gameplay::TankInput::Create());
 
 		AddToScene(tankBody);
+
 
 
 		// Create tank gun.

@@ -4,6 +4,7 @@
 
 #include "Core/Core.h"
 #include "Entity/Components.h"
+#include "Game/Gameplay/TankInput.h"
 
 namespace Gameplay
 {
@@ -17,6 +18,7 @@ namespace Gameplay
 		virtual void Update() override;
 
 	private:
+		RefPtr<TankInput> m_TankInput;
 		RefPtr<Entity::Transform> m_Transform;
 	};
 }

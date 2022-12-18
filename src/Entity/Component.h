@@ -29,6 +29,20 @@ namespace Entity
 		// Update is called once per frame.
 		virtual void Update() {};
 
+		// Get component of this gameobject.
+		template<class T>
+		const RefPtr<T> GetComponent()
+		{
+			return Parent->GetComponent<T>();
+		}
+
+		// Add Component to this gameobject.
+		template<class T>
+		const RefPtr<T> AddComponent()
+		{
+			return Parent->AddComponent<T>();
+		}
+
 		// Virtual destructor for memory cleanup.
 		virtual ~Component() = default;
 

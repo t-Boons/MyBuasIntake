@@ -3,16 +3,20 @@
 #include "mypch.h"
 #include "TankGun.h"
 #include "Core/Game.h"
+#include "Entity/GameObject.h"
 
 namespace Gameplay
 {
 	void TankGun::Start()
 	{
+		m_Transform = GetComponent<Entity::Transform>();
+
+
 		// Get transform component from tank body.
 		m_ParentTransform = Entity::GameObject::Find("TankPlayer")->GetComponent<Entity::Transform>();
 
-		// Get this transform.
-		m_Transform = GetComponent<Entity::Transform>();
+		// Get tank input component from parent object (because the tank body object contains the tankinput component)
+		m_Input = m_ParentTransform->GetComponent<TankInput>();
 	}
 
 	void TankGun::Update()
@@ -20,8 +24,7 @@ namespace Gameplay
 		// Set position equal to tank body position.
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());
 
-
-		SetGunRotation(glm::normalize(Core::Game::Get()->GetNormalizedMousePosition() - GetNormalizedTankPosition()));
+		SetGunRotation(m_Input->GetGunDirectionInput());
 	}
 
 	void TankGun::SetGunRotation(const glm::vec2& direction)
@@ -32,14 +35,5 @@ namespace Gameplay
 
 		// Rotate turret to right direction.
 		m_Transform->SetRotation(glm::quat({ 0, angle + glm::radians(90.0f), 0 }));
-	}
-
-	glm::vec2 TankGun::GetNormalizedTankPosition() const
-	{
-		// Get normalized tank position from 0,0 from bottom left to 1,1 top right.
-		glm::vec2 tankPositionToScreenPosition = glm::vec2(m_ParentTransform->GetPosition().z / PLAYFIELD_SIZE_Z, m_ParentTransform->GetPosition().x / PLAYFIELD_SIZE_X);
-		glm::vec2 center = (tankPositionToScreenPosition * 0.5f) + 0.5f;
-
-		return center;
 	}
 }

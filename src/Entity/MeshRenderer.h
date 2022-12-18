@@ -25,8 +25,6 @@ namespace Entity
 		// Get mesh object.
 		const RefPtr<Renderer::Mesh> GetMesh() const { return m_Mesh; }
 
-		// Get
-
 	private:
 		RefPtr<Renderer::Mesh> m_Mesh;
 		RefPtr<Renderer::Material> m_Material;
