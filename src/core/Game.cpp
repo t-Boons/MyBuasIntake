@@ -46,7 +46,7 @@ namespace Core
 	{
 		Renderer::Renderer::BeginScene(m_SceneManager->GetActiveScene()->GetActiveCamera());
 
-		Renderer::Renderer::Clear();
+		Renderer::Renderer::Clear({0.15f, 0.2f, 0.24f});
 
 		Core::Time::Tick();
 		m_SceneManager->GetActiveScene()->Update();
