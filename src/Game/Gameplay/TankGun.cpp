@@ -20,17 +20,15 @@ namespace Gameplay
 		// Set position equal to tank body position.
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());
 
-		UpdateGunRotation();
+
+		SetGunRotation(glm::normalize(Core::Game::Get()->GetNormalizedMousePosition() - GetNormalizedTankPosition()));
 	}
 
-	void TankGun::UpdateGunRotation()
+	void TankGun::SetGunRotation(const glm::vec2& direction)
 	{
-		// Get the normalized look direction the tank gun should look at.
-		glm::vec2 lookDirection = glm::normalize(Core::Game::Get()->GetNormalizedMousePosition() - GetNormalizedTankPosition());
-
 		// Calculate the angle based on the look direction.
-		float angle = glm::acos(glm::dot(glm::vec2(0.0f, 1.0f), lookDirection));
-		angle = lookDirection.x > 0 ? -angle : angle;
+		float angle = glm::acos(glm::dot(glm::vec2(0.0f, 1.0f), direction));
+		angle = direction.x > 0 ? -angle : angle;
 
 		// Rotate turret to right direction.
 		m_Transform->SetRotation(glm::quat({ 0, angle + glm::radians(90.0f), 0 }));

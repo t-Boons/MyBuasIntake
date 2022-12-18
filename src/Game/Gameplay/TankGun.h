@@ -24,8 +24,7 @@ namespace Gameplay
 
 		virtual void Update() override;
 
-	private:
-		void UpdateGunRotation();
+		void SetGunRotation(const glm::vec2& direction);
 
 		// Returns the tank position from word space units to screen space units.
 		glm::vec2 GetNormalizedTankPosition() const;
