@@ -20,20 +20,28 @@ namespace Gameplay
 		// Set position equal to tank body position.
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());
 
+		UpdateGunRotation();
+	}
 
-		// Calculate angle
-		sf::Vector2u screenSize = Core::Game::Get()->GetWindow()->getSize();
-		sf::Vector2i mousePosition = sf::Mouse::getPosition(*Core::Game::Get()->GetWindow());
+	void TankGun::UpdateGunRotation()
+	{
+		// Get the normalized look direction the tank gun should look at.
+		glm::vec2 lookDirection = glm::normalize(Core::Game::Get()->GetNormalizedMousePosition() - GetNormalizedTankPosition());
 
-		glm::vec2 normalizedPosition = { static_cast<float>(mousePosition.x) / static_cast<float>(screenSize.x),
-										 static_cast<float>(mousePosition.y) / static_cast<float>(screenSize.y) };
-		normalizedPosition -= 0.5f;
-
-		float angle = glm::acos(glm::dot(glm::vec2(0, 1.0f), glm::normalize(normalizedPosition)));
-		angle = normalizedPosition.x > 0 ? angle : -angle;
-
+		// Calculate the angle based on the look direction.
+		float angle = glm::acos(glm::dot(glm::vec2(0.0f, 1.0f), lookDirection));
+		angle = lookDirection.x > 0 ? -angle : angle;
 
 		// Rotate turret to right direction.
-		m_Transform->SetRotation(glm::quat({ 0, angle - glm::radians(90.0f), 0}));
+		m_Transform->SetRotation(glm::quat({ 0, angle + glm::radians(90.0f), 0 }));
+	}
+
+	glm::vec2 TankGun::GetNormalizedTankPosition() const
+	{
+		// Get normalized tank position from 0,0 from bottom left to 1,1 top right.
+		glm::vec2 tankPositionToScreenPosition = glm::vec2(m_ParentTransform->GetPosition().z / PLAYFIELD_SIZE_Z, m_ParentTransform->GetPosition().x / PLAYFIELD_SIZE_X);
+		glm::vec2 center = (tankPositionToScreenPosition * 0.5f) + 0.5f;
+
+		return center;
 	}
 }

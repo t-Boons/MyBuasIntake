@@ -55,4 +55,17 @@ namespace Core
 
 		m_Window->display();
 	}
+
+	glm::vec2 Game::GetNormalizedMousePosition() const
+	{
+		// Get screen size and mouse position.
+		sf::Vector2u screenSize = Core::Game::Get()->GetWindow()->getSize();
+		sf::Vector2i mousePosition = sf::Mouse::getPosition(*Core::Game::Get()->GetWindow());
+
+		// Get normalized screen position and change coordinate origin to the bottom left of the screen.
+		glm::vec2 normalizedPosition = glm::vec2(static_cast<float>(mousePosition.x) / static_cast<float>(screenSize.x),
+			-static_cast<float>(mousePosition.y) / static_cast<float>(screenSize.y) + 1.0f);
+
+		return normalizedPosition;
+	}
 };

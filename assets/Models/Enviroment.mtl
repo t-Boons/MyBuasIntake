@@ -10,7 +10,11 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+<<<<<<< Updated upstream
 map_Kd C:\\Users\\tygob\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
+=======
+map_Kd C:\\Users\\tygo\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
+>>>>>>> Stashed changes
 
 newmtl Material.002
 Ns 225.000000
@@ -21,5 +25,10 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+<<<<<<< Updated upstream
 map_Kd C:\\Users\\tygob\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
 map_d C:\\Users\\tygob\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
+=======
+map_Kd C:\\Users\\tygo\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
+map_d C:\\Users\\tygo\\Desktop\\MyBuasIntake\\projectfiles\\Wii - Wii Play - Tanks.png
+>>>>>>> Stashed changes

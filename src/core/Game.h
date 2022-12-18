@@ -41,6 +41,9 @@ namespace Core
 		// Get window instance.
 		inline sf::RenderWindow* GetWindow() const { return m_Window; }
 
+		// Get normalized mouse position.
+		glm::vec2 GetNormalizedMousePosition() const;
+
 		// Get scene manager instance.
 		inline Core::SceneManager* GetSceneManager() const { return m_SceneManager; }
 
