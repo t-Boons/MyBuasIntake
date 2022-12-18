@@ -12,8 +12,7 @@ namespace Entity
 		: m_Name(name)
 	{
 		// Add default Transform Component.
-		RefPtr<Transform> a(new Transform);
-		AddComponent(a);
+		AddComponent(Transform::Create());
 	}
 
 	void GameObject::StartComponents()
@@ -29,7 +28,9 @@ namespace Entity
 	{
 		// Return if object has to be deleted.
 		if (QueuedForDeletion())
+		{
 			return;
+		}
 
 		// Loop through all components
 		for (size_t i = 0; i < m_Components.size(); i++)

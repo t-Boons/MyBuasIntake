@@ -13,8 +13,13 @@ namespace Core
 			s_ActiveScene->UnloadScene();
 		}
 
+		// Set active scene to current scene.
 		s_ActiveScene = scene;
 
+		// Load the scene.
 		s_ActiveScene->LoadScene();
+
+		// Call start on all the behaviour.
+		s_ActiveScene->Start();
 	}
 }

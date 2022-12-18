@@ -21,8 +21,6 @@ namespace Core
 		m_SceneManager = SceneManager::Create();
 
 		GetSceneManager()->SetActiveScene(new Gameplay::Level1);
-
-		m_SceneManager->GetActiveScene()->Start();
 	}
 
 	// -----------------------------------------------------------

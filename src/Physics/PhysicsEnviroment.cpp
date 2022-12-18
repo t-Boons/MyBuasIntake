@@ -84,6 +84,7 @@ namespace Physics
 		// See if there is a collision with any of the colliders.
 		for (auto& col : m_ColliderComponents)
 		{
+
 			// If colliding and object is not this collider.
 			if (col != collider)
 			{

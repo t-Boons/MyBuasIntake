@@ -20,6 +20,9 @@ namespace Core
 		// Get Elapsed time.
 		static float GetElapsedTime() { return s_Instance->m_ElapsedTime; }
 
+		// Get frames per second.
+		static uint32_t GetFPS() { return static_cast<uint32_t>(1.0f / s_Instance->m_DeltaTime); }
+
 	private:
 
 		static Time* s_Instance;

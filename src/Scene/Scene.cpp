@@ -7,8 +7,12 @@ namespace Core
 {
 	void Scene::UnloadScene()
 	{
-		// Destroy this instance.
-		delete(this);
+		for (size_t i = 0; i < m_Entities.size(); i++)
+		{
+			m_Entities[i].reset();
+		}
+
+		m_PhysicsEnviroment.reset();
 	}
 
 	void Scene::Start()
@@ -22,14 +26,18 @@ namespace Core
 
 	void Scene::Update()
 	{
+		
 		// Update all entity Components.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
 			m_Entities[i]->UpdateComponents();
 		}
-
+		
 		// Update all physics.
-		m_PhysicsEnviroment.Update();
+		if (m_PhysicsEnviroment)
+		{
+			m_PhysicsEnviroment->Update();
+		}
 
 		// Update collision events for scriptcomponents.
 		for (size_t i = 0; i < m_CollisionEvents.size(); i++)
@@ -54,12 +62,12 @@ namespace Core
 
 		if (pbody)
 		{
-			m_PhysicsEnviroment.RegisterComponent(pbody);
+			m_PhysicsEnviroment->RegisterComponent(pbody);
 		}
 
 		if (collider)
 		{
-			m_PhysicsEnviroment.RegisterComponent(collider);
+			m_PhysicsEnviroment->RegisterComponent(collider);
 		}
 
 		// Add entity to component list.
@@ -74,12 +82,12 @@ namespace Core
 
 		if (pbody)
 		{
-			m_PhysicsEnviroment.RemoveComponent(pbody);
+			m_PhysicsEnviroment->RemoveComponent(pbody);
 		}
 
 		if (collider)
 		{
-			m_PhysicsEnviroment.RemoveComponent(collider);
+			m_PhysicsEnviroment->RemoveComponent(collider);
 		}
 
 		// Find object match.

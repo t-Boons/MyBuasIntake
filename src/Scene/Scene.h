@@ -13,6 +13,10 @@ namespace Core
 	{
 	public:
 
+		Scene()
+			: m_PhysicsEnviroment(Physics::PhysicsEnviroment::Create())
+		{}
+
 		// Load this scene and instantiate all game objects.
 		virtual void LoadScene() = 0;
 
@@ -49,7 +53,7 @@ namespace Core
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
 		std::vector<RefPtr<Physics::Collision>> m_CollisionEvents;
-		Physics::PhysicsEnviroment m_PhysicsEnviroment;
+		RefPtr<Physics::PhysicsEnviroment> m_PhysicsEnviroment;
 		RefPtr<Entity::Camera> m_ActiveCamera;
 
 	};

@@ -3,12 +3,15 @@
 #pragma once
 #include "Entity/BoxCollider.h"
 #include "Entity/PhysicsBody.h"
+#include "Core/Core.h"
 
 namespace Physics
 {
 
 	class PhysicsEnviroment
 	{
+		MAKE_SHARED(PhysicsEnviroment)
+
 	public:
 		// Add collider to physics enviroment.
 		void RegisterComponent(const RefPtr<Entity::BoxCollider> collider);
