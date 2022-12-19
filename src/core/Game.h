@@ -1,7 +1,6 @@
 // 2022 Tygo Boons
-// This version is heavily modified
-//
-// Game instance class from:
+
+// Game instance class partly from:
 // Template, BUAS version https://www.buas.nl/games
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
