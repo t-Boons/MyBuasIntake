@@ -52,11 +52,6 @@ namespace Core
 		RefPtr<SceneManager> m_SceneManager;
 		RefPtr<Window> m_Window;
 		RefPtr<Entity::Camera> m_Camera;
-
-
-		glm::vec3 pos = { 0, 0, 0 };
-		glm::vec3 rotation = { 0, 0, 0 };
-		glm::vec2 mDelta = { 0, 0 };
 	};
 
-}; // namespace Tmpl8
+};
