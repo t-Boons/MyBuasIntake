@@ -6,8 +6,7 @@
 #include "Entity/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
-#define RICOCHET_AMOUNT 2
-#define IGNORE_COLLISION_TIME 0.1f
+#define RICOCHET_AMOUNT 20
 
 namespace Gameplay
 {
