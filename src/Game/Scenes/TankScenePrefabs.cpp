@@ -206,7 +206,7 @@ namespace Gameplay
 
 			// Add collision components.
 			auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
-			tankCollider->SetSize({ 2, 1, 2 });
+			tankCollider->SetSize({ 2, 5, 2 });
 
 			tankBody->AddComponent(Entity::PhysicsBody::Create());
 
@@ -246,7 +246,7 @@ namespace Gameplay
 		));
 
 		auto boxCollider = bullet->AddComponent(Entity::BoxCollider::Create());
-		boxCollider->SetSize({ 0.1f, 0.1f, 0.1f });
+		boxCollider->SetSize({ 0.1f, 1, 0.1f });
 
 		bullet->AddComponent(Entity::PhysicsBody::Create());
 

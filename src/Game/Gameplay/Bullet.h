@@ -6,6 +6,9 @@
 #include "Entity/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
+#define RICOCHET_AMOUNT 2
+#define IGNORE_COLLISION_TIME 0.1f
+
 namespace Gameplay
 {
 	class Bullet : public Entity::ScriptComponent
@@ -22,5 +25,6 @@ namespace Gameplay
 	private:
 		RefPtr<Entity::Transform> m_Transform;
 		uint32_t m_Hits;
+		float m_IgnoreCollisionTime;
 	};
 }

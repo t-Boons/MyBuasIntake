@@ -24,5 +24,24 @@ namespace Gameplay
 		AddToScene(TankScenePrefabs::CreatePlayerTank("PlayerTank", {-10, 5}));
 
 		AddToScene(TankScenePrefabs::CreateEnemyTank("EnemyTank", { 3, 9 }));
+
+		
+			// Create tank body
+			RefPtr<Entity::GameObject> cube = Entity::GameObject::Create("Cube");
+			cube->GetComponent<Entity::Transform>()->SetScale({ 10, 3, 3 });
+			auto bodyRenderer = cube->AddComponent(Entity::MeshRenderer::Create());
+			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Cube.obj"));
+			bodyRenderer->SetMaterial(Renderer::Material::Create(
+				Renderer::Texture::Create("Assets/Textures/Tanks/Player/tank_blue.png"),
+				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
+			));
+
+
+			// Add collision components.
+			auto col = cube->AddComponent(Entity::BoxCollider::Create());
+			col->SetSize(cube->GetComponent < Entity::Transform>()->GetScale());
+		
+
+		AddToScene(cube);
 	}
 }

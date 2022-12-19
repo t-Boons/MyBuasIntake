@@ -47,12 +47,12 @@ namespace Physics
 		// Check if collider is not inverted
 		ASSERT(!IsInverted(), "Collider can not be negative")
 
-		// Calculates if 2 aabbs are intersecting.
-		bool intersects = (
-			aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x &&
-			aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y &&
-			aabb.Points[0].z <= Points[1].z && aabb.Points[1].z >= Points[0].z
-			);
+			// Calculates if 2 aabbs are intersecting.
+			bool intersects = (
+				aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x &&
+				aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y &&
+				aabb.Points[0].z <= Points[1].z && aabb.Points[1].z >= Points[0].z
+				);
 
 		// Return nullptr if object does not intersect.
 		if (!intersects)
@@ -60,12 +60,17 @@ namespace Physics
 			return nullptr;
 		}
 
-		// Inspired from:
-		// https://gamedev.stackexchange.com/questions/48816/how-to-calculate-collision-normal-between-two-axisalignedboxs 
-		// Old method did not work properly.
-		
-		// Get intersection size.
-		glm::vec3 size = Center() - aabb.Center();
+		glm::vec3 size = { 0, 0, 0 };
+
+		// Calculate which reference point you measure from for all axis.
+		short xIndex = Center().x > aabb.Center().x ? 0 : 1;
+		size.x = Points[xIndex].x - aabb.Points[xIndex].x;
+
+		short yIndex = Center().y > aabb.Center().y ? 0 : 1;
+		size.y = Points[yIndex].y - aabb.Points[yIndex].y;
+
+		short zIndex = Center().z > aabb.Center().z ? 0 : 1;
+		size.z = Points[zIndex].z - aabb.Points[zIndex].z;
 
 		// Get intersection depth.
 		float ax = glm::abs(size.x);
