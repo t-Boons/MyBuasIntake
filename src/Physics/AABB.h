@@ -1,4 +1,5 @@
 // 2022 Tygo Boons
+
 // Intersection normal calculation Inspired from:
 // https://gamedev.stackexchange.com/questions/48816/how-to-calculate-collision-normal-between-two-axisalignedboxs 
 // Old method did not work properly.

@@ -1,8 +1,5 @@
 // 2022 Tygo Boons
 
-// Using SFML graphics library
-// found at https://www.sfml-dev.org/
-
 #include "mypch.h"
 
 #include <Windows.h>

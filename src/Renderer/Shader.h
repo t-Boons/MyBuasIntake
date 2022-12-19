@@ -2,7 +2,6 @@
 //
 // Implementation from other project by me:
 // https://github.com/TygoB-B5/BEngine/blob/Engine/Engine/Src/Renderer/Shader.h
-//
 
 #pragma once
 
@@ -32,6 +31,7 @@ namespace Renderer
 		void UnBind();
 
 		// Upload different variable types to shader.
+
 		void UploadUniformMat4(const std::string& uniformName, const glm::mat4& value);
 		void UploadUniformMat3(const std::string& uniformName, const glm::mat3& value);
 		void UploadUniformMat2(const std::string& uniformName, const glm::mat2& value);
@@ -52,6 +52,5 @@ namespace Renderer
 		std::unordered_map<GLenum, std::string> m_Sources;
 		GLuint m_RendererID;
 	};
-
 
 }

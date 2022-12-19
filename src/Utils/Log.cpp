@@ -1,5 +1,5 @@
 // 2022 Tygo Boons
-// Taken from other project I created:
+// Taken from other project I have created:
 // https://github.com/TygoB-B5/BEngine/blob/Engine/Engine/Src/Utils/Log.cpp
 
 #include "mypch.h"
