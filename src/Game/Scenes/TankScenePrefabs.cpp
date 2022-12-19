@@ -16,7 +16,7 @@ namespace Gameplay
 			RefPtr<Entity::Transform> transform = barrier->GetComponent<Entity::Transform>();
 			auto boxCollider = barrier->AddComponent(Entity::BoxCollider::Create());
 
-			transform->SetScale({ 30, 1, 1 });
+			transform->SetScale({ 80, 5, 1 });
 			transform->SetPosition({ 0, 1, -22 });
 
 			boxCollider->SetSize(transform->GetScale());
@@ -30,7 +30,7 @@ namespace Gameplay
 			RefPtr<Entity::Transform> transform = barrier->GetComponent<Entity::Transform>();
 			auto boxCollider = barrier->AddComponent(Entity::BoxCollider::Create());
 
-			transform->SetScale({ 30, 1, 1 });
+			transform->SetScale({ 80, 5, 1 });
 			transform->SetPosition({ 0, 1, 21.5f });
 
 			boxCollider->SetSize(transform->GetScale());
@@ -44,7 +44,7 @@ namespace Gameplay
 			RefPtr<Entity::Transform> transform = barrier->GetComponent<Entity::Transform>();
 			auto boxCollider = barrier->AddComponent(Entity::BoxCollider::Create());
 
-			transform->SetScale({ 1, 1, 45 });
+			transform->SetScale({ 1, 5, 80 });
 			transform->SetPosition({ -14.5f, 1, 0 });
 
 			boxCollider->SetSize(transform->GetScale());
@@ -58,7 +58,7 @@ namespace Gameplay
 			RefPtr<Entity::Transform> transform = barrier->GetComponent<Entity::Transform>();
 			auto boxCollider = barrier->AddComponent(Entity::BoxCollider::Create());
 
-			transform->SetScale({ 1, 1, 45 });
+			transform->SetScale({ 1, 5, 80 });
 			transform->SetPosition({ 15.25f, 1, 0 });
 
 			boxCollider->SetSize(transform->GetScale());
@@ -101,14 +101,17 @@ namespace Gameplay
 		return camera;
 	}
 
-	std::vector<RefPtr<Entity::GameObject>> TankScenePrefabs::CreatePlayerTank()
+	std::vector<RefPtr<Entity::GameObject>> TankScenePrefabs::CreatePlayerTank(const std::string& name, const glm::vec2& position)
 	{
 		// Create vector that has to be filled.
 		std::vector<RefPtr<Entity::GameObject>> objects(2);
 
 		{
 			// Create tank body
-			RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create("TankPlayer");
+			RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create(name);
+
+			// Set tank position.
+			tankBody->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
 
 			auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
 			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBody.obj"));
@@ -141,7 +144,10 @@ namespace Gameplay
 
 		{
 			// Create tank gun.
-			RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("TankPlayerGun");
+			RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create(name + "Gun");
+
+			// Set tank gun position.
+			tankGun->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
 
 			auto gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
 			gunRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankGun.obj"));
@@ -168,5 +174,86 @@ namespace Gameplay
 		flycam->AddComponent(Gameplay::FlyingCamera::Create());
 		
 		return flycam;
+	}
+
+	std::vector<RefPtr<Entity::GameObject>> TankScenePrefabs::CreateEnemyTank(const std::string& name, const glm::vec2& position)
+	{
+
+		// Create vector that has to be filled.
+		std::vector<RefPtr<Entity::GameObject>> objects(2);
+
+		{
+			// Create tank body
+			RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create(name);
+
+			// Set tank position.
+			tankBody->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
+
+			auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
+			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBody.obj"));
+			bodyRenderer->SetMaterial(Renderer::Material::Create(
+				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_marin.png"),
+				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
+			));
+
+			// Create tank shadow
+			auto shadowRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
+			shadowRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankShadow.obj"));
+			shadowRenderer->SetMaterial(Renderer::Material::Create(
+				Renderer::Texture::Create("Assets/Textures/Tanks/tank_shadow.png"),
+				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
+			));
+
+			// Add collision components.
+			auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
+			tankCollider->SetSize({ 2, 1, 2 });
+
+			tankBody->AddComponent(Entity::PhysicsBody::Create());
+
+			objects[0] = tankBody;
+		}
+
+		{
+			// Create tank gun.
+			RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create(name + "Gun");
+
+			// Set tank gun position.
+			tankGun->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
+
+			auto gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
+			gunRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankGun.obj"));
+			gunRenderer->SetMaterial(Renderer::Material::Create(
+				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_marin.png"),
+				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
+			));
+
+			objects[1] = tankGun;
+		}
+
+		return objects;
+	}
+
+	RefPtr<Entity::GameObject> TankScenePrefabs::CreateBullet()
+	{
+		// Create bullet object with uniques name.
+		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Create("Bullet" + STR(Core::Time::GetElapsedTime()));
+
+		auto bodyRenderer = bullet->AddComponent(Entity::MeshRenderer::Create());
+		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Bullet.obj"));
+		bodyRenderer->SetMaterial(Renderer::Material::Create(
+			Renderer::Texture::Create("Assets/Textures/Bullet.png"),
+			Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
+		));
+
+		auto boxCollider = bullet->AddComponent(Entity::BoxCollider::Create());
+		boxCollider->SetSize({ 0.1f, 0.1f, 0.1f });
+
+		bullet->AddComponent(Entity::PhysicsBody::Create());
+
+		bullet->GetComponent<Entity::Transform>()->SetScale({ 0.1f, 0.1f, 0.1f });
+
+		bullet->AddComponent(Bullet::Create());
+
+		return bullet;
 	}
 }

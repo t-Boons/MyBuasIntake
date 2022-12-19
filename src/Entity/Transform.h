@@ -43,7 +43,7 @@ namespace Entity
 		}
 
 	public:
-		// Set Object position..
+		// Set Object position.
 		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateTransformMatrix(); }
 
 		// Set Object rotation in degrees.

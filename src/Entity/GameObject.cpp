@@ -65,6 +65,8 @@ namespace Entity
 	{
 		if (m_QueueForDeletion)
 		{
+			LOG_WARN("GameObject: " + GetName() + " " + "Has been destroyed.")
+
 			// Remove this object from the scene.
 			Core::Game::Get()->GetSceneManager()->GetActiveScene()->RemoveFromScene(this);
 
@@ -78,5 +80,24 @@ namespace Entity
 	const RefPtr<GameObject>& GameObject::Find(const std::string& name)
 	{
 		return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindEntityByName(name);
+	}
+
+	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object, const glm::vec3& position, const glm::quat& rotation)
+	{
+		// Set position and rotation.
+		RefPtr<Entity::Transform> transform = object->GetComponent<Entity::Transform>();
+		transform->SetPosition(position);
+		transform->SetRotation(rotation);
+
+		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddToScene(object);
+
+		object->StartComponents();
+
+		return object;
+	}
+
+	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object)
+	{
+		return Instantiate(object, glm::vec3(0.0f), glm::quat(glm::vec3(0.0f)));
 	}
 }

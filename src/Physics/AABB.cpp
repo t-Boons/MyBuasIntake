@@ -54,41 +54,42 @@ namespace Physics
 			aabb.Points[0].z <= Points[1].z && aabb.Points[1].z >= Points[0].z
 			);
 
-		// Update if not intersecting.
+		// Return nullptr if object does not intersect.
 		if (!intersects)
 		{
-			// Calculate and update normal values.
-			glm::vec3 normal = { 0, 0, 0 };
-
-			// Update Y axis.
-			if (aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x)
-			{
-				normal.y = aabb.Points[0].y < Points[0].y ? 1.0f : -1.0f;
-			}
-
-			// Update X Axis.
-			if (aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y)
-			{
-				normal.x = aabb.Points[0].x < Points[0].x ? 1.0f : -1.0f;
-			}
-
-			// Update Z Axis.
-			if (normal.x != 0 && normal.y != 0)
-			{
-				normal.y = 0;
-				normal.x = 0;
-				normal.z = aabb.Points[0].z < Points[0].z ? 1.0f : -1.0f;
-			}
-
-			// Set reference normal.
-			Normal = normal;
-
 			return nullptr;
 		}
 
+		// Inspired from:
+		// https://gamedev.stackexchange.com/questions/48816/how-to-calculate-collision-normal-between-two-axisalignedboxs 
+		// Old method did not work properly.
+		
+		// Get intersection size.
+		glm::vec3 size = Center() - aabb.Center();
+
+		// Get intersection depth.
+		float ax = glm::abs(size.x);
+		float ay = glm::abs(size.y);
+		float az = glm::abs(size.z);
+
+		// Calculate which side is the right normal.
+		float sx = Center().x < aabb.Center().x ? -1.0f : 1.0f;
+		float sy = Center().y < aabb.Center().y ? -1.0f : 1.0f;
+		float sz = Center().z < aabb.Center().z ? -1.0f : 1.0f;
+
+		glm::vec3 normal = glm::vec3(0.0f);
+
+		// Calculate which normal has the closest intersection depth.
+		if (ax <= ay && ax <= az)
+			normal = glm::vec3(sx, 0.0f, 0.0f);
+		else if (ay <= az)
+			normal = glm::vec3(0.0f, sy, 0.0f);
+		else
+			normal = glm::vec3(0.0f, 0.0f, sz);
+
 		// Create and assign collision object.
 		RefPtr<Collision> col = std::make_shared<Collision>();
-		col->Normal = Normal;
+		col->Normal = normal;
 		return col;
 	}
 

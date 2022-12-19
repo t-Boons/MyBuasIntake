@@ -66,6 +66,12 @@ namespace Entity
 		// Find object with name.
 		static const RefPtr<GameObject>& Find(const std::string& name);
 
+		// Spawn game object with rotation and position.
+		static RefPtr<Entity::GameObject> Instantiate(const RefPtr<Entity::GameObject>& object, const glm::vec3& position, const glm::quat& rotation);
+
+		// Spawn game object.
+		static RefPtr<Entity::GameObject> Instantiate(const RefPtr<Entity::GameObject>& object);
+
 	private:
 		std::vector<RefPtr<Component>> m_Components;
 		std::string m_Name;

@@ -33,9 +33,11 @@ namespace Entity
 		// Reset to the last valid position.
 		void ResetToLastValidPosition();
 
+		// See if the last valid position is not infinity
+		bool IsInitialized() const { return m_LastValidPosition != glm::vec3(INFINITE); }
 
 	private:
-		glm::vec3 m_LastValidPosition = glm::vec3(0.0f);
+		glm::vec3 m_LastValidPosition = glm::vec3(INFINITE);
 		glm::vec3 m_DirectionNormal = glm::vec3(0.0f);
 		glm::vec3 m_Size = { 1, 1, 1 };
 		RefPtr<Transform> m_Transform;

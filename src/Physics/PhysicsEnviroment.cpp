@@ -60,6 +60,13 @@ namespace Physics
 				continue;
 			}
 
+			// See if physics body is initialized.
+			if (!currentPBodyCollider->IsInitialized())
+			{
+				currentPBodyCollider->UpdateLastValidPosition();
+				continue;
+			}
+
 			// Get collision event.
 			RefPtr<Collision> colEvent = AnyIntersections(currentPBodyCollider);
 
