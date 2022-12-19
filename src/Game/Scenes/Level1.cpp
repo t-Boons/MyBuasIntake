@@ -28,7 +28,7 @@ namespace Gameplay
 		
 			// Create tank body
 			RefPtr<Entity::GameObject> cube = Entity::GameObject::Create("Cube");
-			cube->GetComponent<Entity::Transform>()->SetScale({ 10, 3, 3 });
+			cube->GetComponent<Entity::Transform>()->SetScale({ 10, 3, 2 });
 			auto bodyRenderer = cube->AddComponent(Entity::MeshRenderer::Create());
 			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Cube.obj"));
 			bodyRenderer->SetMaterial(Renderer::Material::Create(

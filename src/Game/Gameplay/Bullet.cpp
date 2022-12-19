@@ -23,8 +23,6 @@ namespace Gameplay
 
 	void Bullet::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
-		LOG_TRACE(VEC3STR(collision->Normal))
-
 		// Reflect bullet off of the surface using the collision normal.
 		m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
 

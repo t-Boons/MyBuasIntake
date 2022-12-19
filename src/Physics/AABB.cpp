@@ -63,13 +63,13 @@ namespace Physics
 		glm::vec3 size = { 0, 0, 0 };
 
 		// Calculate which reference point you measure from for all axis.
-		short xIndex = Center().x > aabb.Center().x ? 0 : 1;
+		short xIndex = Center().x > aabb.Center().x ? 1 : 0;
 		size.x = Points[xIndex].x - aabb.Points[xIndex].x;
 
-		short yIndex = Center().y > aabb.Center().y ? 0 : 1;
+		short yIndex = Center().y > aabb.Center().y ? 1 : 0;
 		size.y = Points[yIndex].y - aabb.Points[yIndex].y;
 
-		short zIndex = Center().z > aabb.Center().z ? 0 : 1;
+		short zIndex = Center().z > aabb.Center().z ? 1 : 0;
 		size.z = Points[zIndex].z - aabb.Points[zIndex].z;
 
 		// Get intersection depth.
