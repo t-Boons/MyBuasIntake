@@ -54,7 +54,7 @@ namespace Core
 		m_CollisionEvents.clear();
 	}
 
-	void Scene::AddToScene(RefPtr<Entity::GameObject> object)
+	void Scene::AddToScene(const RefPtr<Entity::GameObject>& object)
 	{
 		// Add pbodies and colliders if the object has any.
 		auto pbody = object->GetComponent<Entity::PhysicsBody>();
@@ -72,6 +72,15 @@ namespace Core
 
 		// Add entity to component list.
 		m_Entities.push_back(object);
+	}
+
+	void Scene::AddToScene(const std::vector<RefPtr<Entity::GameObject>>& objects)
+	{
+		// Add all objects to scene.
+		for (auto& obj : objects)
+		{
+			AddToScene(obj);
+		}
 	}
 
 	void Scene::RemoveFromScene(Entity::GameObject* object)

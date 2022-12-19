@@ -30,7 +30,10 @@ namespace Core
 		void Update();
 
 		// Spawn game object
-		void AddToScene(RefPtr<Entity::GameObject> object);
+		void AddToScene(const RefPtr<Entity::GameObject>& object);
+
+		// Spawns multiple game objects.
+		void AddToScene(const std::vector<RefPtr<Entity::GameObject>>& objects);
 
 		// Removes game object from scene
 		void RemoveFromScene(Entity::GameObject* object);

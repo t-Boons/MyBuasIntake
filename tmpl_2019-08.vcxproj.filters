@@ -32,6 +32,7 @@
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
+    <ClCompile Include="src\Game\Scenes\TankScenePrefabs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -70,6 +71,7 @@
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
     <ClInclude Include="src\Game\Gameplay\TankInput.h" />
     <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Game\Scenes\TankScenePrefabs.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
