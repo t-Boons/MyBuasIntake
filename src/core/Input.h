@@ -44,7 +44,7 @@ namespace Core
 		static bool IsMouseButtonReleased(Button button);
 
 		// Get mouse position.
-		static glm::ivec2 GetMousePosition();
+		static glm::vec2 GetMousePosition();
 
 		// Get mouse position on screen from 0,0 on the bottom left to 1,1 on the top right.
 		static glm::vec2 GetNormalizedMousePosition();

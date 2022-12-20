@@ -73,17 +73,17 @@ namespace Core
 		// Create context settings object.
 		sf::ContextSettings settings;
 		settings.depthBits = 32;
-		settings.antialiasingLevel = 2;
+		settings.antialiasingLevel = 16;
 
 		// Create resolution.
-		glm::ivec2 resolution = { 1920 , 1080 };
+		glm::ivec2 resolution = glm::ivec2(1920, 1080);
 
 		// Create windowproperties instance and set it.
 		Core::WindowProperties properties;
 		properties.ContextSettings = settings;
 		properties.Resolution = resolution;
 		properties.Name = "Wii Tanks - BUAS Intake Tygo Boons";
-		properties.Style = sf::Style::Fullscreen;
+		properties.Fullscreen = true;
 
 		return Core::Window::Create(properties);
 	}

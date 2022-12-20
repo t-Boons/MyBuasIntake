@@ -11,10 +11,10 @@ namespace Core
 {
 	struct WindowProperties
 	{
-		sf::ContextSettings ContextSettings;
-		uint32_t Style;
-		glm::ivec2 Resolution;
-		std::string Name;
+		sf::ContextSettings ContextSettings = sf::ContextSettings();
+		bool Fullscreen = false;
+		glm::ivec2 Resolution = { 1280, 720 };
+		std::string Name = "My Window";
 	};
 
 	class Window
@@ -35,7 +35,10 @@ namespace Core
 		void Close() const { m_Window->close(); }
 
 		// Get the resolution of the window.
-		const glm::ivec2& GetResolution() const { return m_Resolution; }
+		const glm::vec2& GetResolution() const { return m_Resolution; }
+
+		// Get fullscreen resolution
+		glm::vec2 GetFullscreenResolution() const;
 
 		// Pop OpenGL states.
 		void PopGLStates() const { m_Window->popGLStates(); }
@@ -49,10 +52,12 @@ namespace Core
 		// Display the current renderbuffer.
 		void Display() const { m_Window->display(); }
 
-
+		// Get window properties.
+		const WindowProperties& GetProperties() const { return m_Properties; }
 
 	private:
 		sf::RenderWindow* m_Window;
-		glm::ivec2 m_Resolution;
+		glm::vec2 m_Resolution;
+		WindowProperties m_Properties;
 	};
 }

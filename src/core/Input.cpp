@@ -100,17 +100,25 @@ namespace Core
 		return s_MouseButtonsReleased[button];
 	}
 
-	glm::ivec2 Input::GetMousePosition()
+	glm::vec2 Input::GetMousePosition()
 	{
-		sf::Vector2i mousePos = sf::Mouse::getPosition(*Core::Game::Get()->GetWindow()->GetSFMLWindow());
-		return { mousePos.x, mousePos.y };
+		// Get window reference.
+		RefPtr<Window> window = Core::Game::Get()->GetWindow();
+
+		// Get mouse position from window.
+		sf::Vector2i mousePos = sf::Mouse::getPosition(*window->GetSFMLWindow());
+
+		// Calculate mouse position based on fullscreen or normal resolution
+		glm::vec2 finalMousPos = glm::vec2(mousePos.x, mousePos.y) * window->GetResolution() / window->GetFullscreenResolution();
+
+		return finalMousPos;
 	}
 
 	glm::vec2 Input::GetNormalizedMousePosition()
 	{
 		// Get screen size and mouse position.
 		glm::vec2 screenSize = Core::Game::Get()->GetWindow()->GetResolution();
-		glm::vec2 mousePosition = GetMousePosition();;
+		glm::vec2 mousePosition = GetMousePosition();
 
 		// Get normalized screen position and change coordinate origin to the bottom left of the screen.
 		glm::vec2 normalizedPosition = glm::vec2(static_cast<float>(mousePosition.x) / static_cast<float>(screenSize.x),
