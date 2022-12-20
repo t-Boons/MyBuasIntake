@@ -5,7 +5,8 @@
 #include "Game/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
-#define RICOCHET_AMOUNT 2
+#define RICOCHET_AMOUNT 20
+#define BULLET_SPEED 100.0f
 
 namespace Gameplay
 {

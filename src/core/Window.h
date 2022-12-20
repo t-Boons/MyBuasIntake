@@ -12,6 +12,7 @@ namespace Core
 	struct WindowProperties
 	{
 		sf::ContextSettings ContextSettings;
+		uint32_t Style;
 		glm::ivec2 Resolution;
 		std::string Name;
 	};

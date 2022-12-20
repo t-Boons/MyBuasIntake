@@ -15,7 +15,7 @@ namespace Gameplay
 	void Bullet::Update()
 	{
 		// Move forward.
-		m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * 5.0f);
+		m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * BULLET_SPEED);
 	}
 
 	void Bullet::OnCollisionEnter(RefPtr<Physics::Collision> collision)
