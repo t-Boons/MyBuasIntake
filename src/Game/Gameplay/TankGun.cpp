@@ -23,15 +23,13 @@ namespace Gameplay
 		// Set position equal to tank body position.
 		m_Transform->SetPosition(m_ParentTransform->GetPosition());
 
+		// Update the gun's rotation.
 		SetGunRotation(m_Input->GetGunDirectionInput());
 
-
+		// See if mouse button is pressed and shoot if it is.
 		if (Core::Input::IsMouseButtonPressed(Core::Input::Button::Left))
 		{
-				// Spawn bullet.
-				RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(TankScenePrefabs::CreateBullet(),
-					m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({0.0f, 1.0f, 0.0f}),
-					m_Transform->GetRotation());
+			Shoot();
 		}
 	}
 
@@ -43,5 +41,13 @@ namespace Gameplay
 
 		// Rotate turret to right direction.
 		m_Transform->SetRotation(glm::quat({ 0, angle + glm::radians(90.0f), 0 }));
+	}
+
+	void TankGun::Shoot()
+	{
+		// Spawn bullet.
+		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(TankScenePrefabs::CreateBullet(),
+			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({ 0.0f, 1.0f, 0.0f }),
+			m_Transform->GetRotation());
 	}
 }

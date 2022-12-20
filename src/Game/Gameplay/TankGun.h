@@ -19,6 +19,9 @@ namespace Gameplay
 		// Set the rotation of the tank gun.
 		void SetGunRotation(const glm::vec2& direction);
 
+		// Shoots a bullet in the gun's direction.
+		void Shoot();
+
 	private:
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
