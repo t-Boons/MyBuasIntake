@@ -192,7 +192,7 @@ namespace Gameplay
 			auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
 			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBody.obj"));
 			bodyRenderer->SetMaterial(Renderer::Material::Create(
-				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_marin.png"),
+				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_brown.png"),
 				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
 			));
 
@@ -223,7 +223,7 @@ namespace Gameplay
 			auto gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
 			gunRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankGun.obj"));
 			gunRenderer->SetMaterial(Renderer::Material::Create(
-				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_marin.png"),
+				Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_brown.png"),
 				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
 			));
 
@@ -235,8 +235,8 @@ namespace Gameplay
 
 	RefPtr<Entity::GameObject> TankScenePrefabs::CreateBullet()
 	{
-		// Create bullet object with uniques name.
-		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Create("Bullet" + STR(Core::Time::GetElapsedTime()));
+		// Create bullet object with unique name.
+		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Create("Bullet" + STR(static_cast<int>(Core::Time::GetElapsedTime() * 1000)));
 
 		auto bodyRenderer = bullet->AddComponent(Entity::MeshRenderer::Create());
 		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Bullet.obj"));
@@ -246,7 +246,7 @@ namespace Gameplay
 		));
 
 		auto boxCollider = bullet->AddComponent(Entity::BoxCollider::Create());
-		boxCollider->SetSize({ 0.1f, 1, 0.1f });
+		boxCollider->SetSize({ 0.3f, 1, 0.3f });
 
 		bullet->AddComponent(Entity::PhysicsBody::Create());
 

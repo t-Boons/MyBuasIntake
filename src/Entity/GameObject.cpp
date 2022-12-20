@@ -77,7 +77,7 @@ namespace Entity
 		return m_QueueForDeletion;
 	}
 
-	const RefPtr<GameObject>& GameObject::Find(const std::string& name)
+	RefPtr<GameObject> GameObject::Find(const std::string& name)
 	{
 		return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindEntityByName(name);
 	}

@@ -101,6 +101,9 @@ namespace Physics
 				// Return if collision was detected.
 				if (colliderEvent)
 				{
+					// Assign other collider.
+					colliderEvent->HitObjectName = col->Parent->GetName();
+
 					return colliderEvent;
 				}
 			}

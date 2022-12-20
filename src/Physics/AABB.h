@@ -38,8 +38,8 @@ namespace Physics
 		{}
 
 		glm::vec3 Normal;
-		std::string ObjectName;
-		std::string OtherObjectName;
+		std::string ThisObjectName;
+		std::string HitObjectName;
 	};
 
 	class AABB

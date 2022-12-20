@@ -28,7 +28,7 @@ namespace Entity
 		// Set object name if collision found.
 		if (collisionEvent)
 		{
-			collisionEvent->ObjectName = Parent->GetName();
+			collisionEvent->ThisObjectName = Parent->GetName();
 		}
 
 		return collisionEvent;
