@@ -2,9 +2,6 @@
 
 #include "mypch.h"
 #include "TankMovement.h"
-#include "Core/Game.h"
-#include "Core/Time.h"
-#include "Core/Core.h"
 
 namespace Gameplay
 {

@@ -2,11 +2,7 @@
 
 #pragma once
 
-#include "Core/Core.h"
-#include "Entity/Components.h"
-#include "Core/Time.h"
-#include "glm/glm.hpp"
-#include "Core/Game.h"
+#include "Game/Components.h"
 
 // Note the z axis is sideways and x axis is up and down from the current view.
 

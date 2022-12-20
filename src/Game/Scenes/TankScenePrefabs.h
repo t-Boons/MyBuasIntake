@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Entity/Components.h"
+#include "Game/Components.h"
 #include "Game/Gameplay/TankMovement.h"
 #include "Game/Gameplay/FlyingCamera.h"
 #include "Game/Gameplay/TankGun.h"

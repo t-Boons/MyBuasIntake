@@ -33,6 +33,9 @@ namespace Core
 		// Runs every frame.
 		void Tick();
 
+		// Runs for every input event.
+		void OnEvent(sf::Event& event);
+
 		// Get window instance.
 		inline RefPtr<Window> GetWindow() const { return m_Window; }
 

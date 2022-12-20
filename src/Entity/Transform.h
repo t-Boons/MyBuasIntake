@@ -1,6 +1,7 @@
 // 2022 Tygo Boons
 
 #pragma once
+
 #include "Component.h"
 #include "glm/glm.hpp"
 #include "Core/Core.h"

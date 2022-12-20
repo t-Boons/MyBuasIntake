@@ -2,11 +2,10 @@
 
 #pragma once
 
-#include "Core/Core.h"
-#include "Entity/Components.h"
+#include "Game/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
-#define RICOCHET_AMOUNT 20
+#define RICOCHET_AMOUNT 2
 
 namespace Gameplay
 {

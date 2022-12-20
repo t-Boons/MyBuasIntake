@@ -1,9 +1,8 @@
 // 2022 Tygo Boons
 
 #include "mypch.h"
+
 #include "TankGun.h"
-#include "Core/Game.h"
-#include "Entity/GameObject.h"
 #include "Game/Scenes/TankScenePrefabs.h"
 
 namespace Gameplay
@@ -27,21 +26,12 @@ namespace Gameplay
 		SetGunRotation(m_Input->GetGunDirectionInput());
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (Core::Input::IsMouseButtonPressed(Core::Input::Button::Left))
 		{
-			if (!m_HasTriggered)
-			{
 				// Spawn bullet.
 				RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(TankScenePrefabs::CreateBullet(),
-					m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f,
+					m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({0.0f, 1.0f, 0.0f}),
 					m_Transform->GetRotation());
-
-				m_HasTriggered = true;
-			}
-		}
-		else
-		{
-			m_HasTriggered = false;
 		}
 	}
 

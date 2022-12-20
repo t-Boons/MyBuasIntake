@@ -34,6 +34,7 @@
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Game\Scenes\TankScenePrefabs.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
+    <ClCompile Include="src\Core\Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -68,12 +69,13 @@
     <ClInclude Include="src\Entity\BoxCollider.h" />
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
-    <ClInclude Include="src\Entity\Components.h" />
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
     <ClInclude Include="src\Game\Gameplay\TankInput.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Game\Scenes\TankScenePrefabs.h" />
     <ClInclude Include="src\Game\Gameplay\Bullet.h" />
+    <ClInclude Include="src\Core\Input.h" />
+    <ClInclude Include="src\Game\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

@@ -2,8 +2,7 @@
 
 #pragma once
 
-#include "Core/Core.h"
-#include "Entity/Components.h"
+#include "Game/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
 namespace Gameplay

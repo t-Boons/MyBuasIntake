@@ -122,6 +122,8 @@ namespace Core
 			}
 		}
 
+		LOG_WARN("Object: " + name + " can not be found.")
+
 		return nullptr;
 	}
 }

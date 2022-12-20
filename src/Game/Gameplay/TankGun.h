@@ -2,9 +2,7 @@
 
 #pragma once
 
-#include "Core/Core.h"
-#include "Entity/Components.h"
-#include "Core/Time.h"
+#include "Game/Components.h"
 #include "Game/Gameplay/TankInput.h"
 
 namespace Gameplay
@@ -18,12 +16,12 @@ namespace Gameplay
 
 		virtual void Update() override;
 
+		// Set the rotation of the tank gun.
 		void SetGunRotation(const glm::vec2& direction);
 
 	private:
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<TankInput> m_Input;
-		bool m_HasTriggered;
 	};
 }

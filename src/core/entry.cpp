@@ -27,6 +27,8 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 		sf::Event event;
 		while (game.GetWindow()->PollEvent(event))
 		{
+			game.OnEvent(event);
+
 			// Poll window close event.
 			if (event.type == sf::Event::Closed)
 			{

@@ -5,8 +5,10 @@
 // IGAD / BUAS(NHTV) / UU - Jacco Bikker - 2006 - 2020
 
 #include "mypch.h"
+
 #include "Game.h"
 #include "Time.h"
+#include "Input.h"
 #include "Game/Scenes/Level1.h"
 
 namespace Core
@@ -22,7 +24,7 @@ namespace Core
 
 		m_SceneManager = SceneManager::Create();
 
-		GetSceneManager()->SetActiveScene(new Gameplay::Level1);
+		GetSceneManager()->SetActiveScene(new Gameplay::Level1());
 	}
 
 	// -----------------------------------------------------------
@@ -30,7 +32,7 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Shutdown()
 	{
-		LOG_WARN("Shutting down Engine")
+		LOG_WARN("Shutting down Game")
 	}
 
 	// -----------------------------------------------------------
@@ -55,6 +57,15 @@ namespace Core
 
 		// Display the rendered frame.
 		m_Window->Display();
+
+		// Clear all input handler inputs.
+		Input::Flush();
+	}
+
+	void Game::OnEvent(sf::Event& event)
+	{
+		// Send all events to the input handler.
+		Input::SendEvent(event);
 	}
 
 	RefPtr<Window> Game::GetWindowProperties()

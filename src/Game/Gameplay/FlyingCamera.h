@@ -2,8 +2,7 @@
 
 #pragma once
 
-#include "Entity/Components.h"
-#include "glm/glm.hpp"
+#include "Game/Components.h"
 
 namespace Gameplay
 {

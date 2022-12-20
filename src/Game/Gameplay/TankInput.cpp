@@ -7,7 +7,6 @@ namespace Gameplay
 {
 	void TankInput::Start()
 	{
-		// Get transform component.
 		m_Transform = GetComponent<Entity::Transform>();
 	}
 
@@ -30,12 +29,11 @@ namespace Gameplay
 		}
 
 
-
 		// Get normalized tank position from 0,0 from bottom left to 1,1 top right.
 		glm::vec2 tankPositionToScreenPosition = glm::vec2(m_Transform->GetPosition().z / PLAYFIELD_SIZE_Z, m_Transform->GetPosition().x / PLAYFIELD_SIZE_X);
 		glm::vec2 center = (tankPositionToScreenPosition * 0.5f) + 0.5f;
 
 		// Update guninput value.
-		m_GunInput = glm::normalize(Core::Game::Get()->GetWindow()->GetNormalizedMousePosition() - center);
+		m_GunInput = glm::normalize(Core::Input::GetNormalizedMousePosition() - center);
 	}
 }

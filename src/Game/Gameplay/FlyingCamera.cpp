@@ -2,8 +2,6 @@
 
 #include "mypch.h"
 #include "FlyingCamera.h"
-#include "Core/Time.h"
-#include "Core/Game.h"
 
 namespace Gameplay
 {

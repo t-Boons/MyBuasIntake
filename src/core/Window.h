@@ -48,8 +48,7 @@ namespace Core
 		// Display the current renderbuffer.
 		void Display() const { m_Window->display(); }
 
-		// Get mouse position on screen from 0,0 on the bottom left to 1,1 on the top right.
-		glm::vec2 GetNormalizedMousePosition() const;
+
 
 	private:
 		sf::RenderWindow* m_Window;

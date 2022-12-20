@@ -1,8 +1,8 @@
 // 2022 Tygo Boons
 
 #pragma once
+
 #include "Core/Core.h"
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Physics/AABB.h"
 

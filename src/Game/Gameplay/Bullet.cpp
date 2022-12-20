@@ -2,9 +2,6 @@
 
 #include "mypch.h"
 #include "Bullet.h"
-#include "Core/Game.h"
-#include "Core/Time.h"
-#include "Core/Core.h"
 
 namespace Gameplay
 {
@@ -25,7 +22,7 @@ namespace Gameplay
 	{
 		// Reflect bullet off of the surface using the collision normal.
 		m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
-
+		LOG(collision->ObjectName)
 		// Destroy bullet after X hits.
 		if (++m_Hits >= RICOCHET_AMOUNT)
 		{
