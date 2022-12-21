@@ -16,11 +16,11 @@ namespace Gameplay
 		m_MovementInput = glm::vec2(0.0f, 0.0f);
 
 		// Read all input.
-		m_MovementInput.x = sf::Keyboard::isKeyPressed(sf::Keyboard::Up)	? 1.0f  : m_MovementInput.x;
-		m_MovementInput.x = sf::Keyboard::isKeyPressed(sf::Keyboard::Down)  ? -1.0f : m_MovementInput.x;
+		m_MovementInput.x = sf::Keyboard::isKeyPressed(sf::Keyboard::W)	? 1.0f  : m_MovementInput.x;
+		m_MovementInput.x = sf::Keyboard::isKeyPressed(sf::Keyboard::S)  ? -1.0f : m_MovementInput.x;
 
-		m_MovementInput.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Left)  ? -1.0f : m_MovementInput.y;
-		m_MovementInput.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ? 1.0f  : m_MovementInput.y;
+		m_MovementInput.y = sf::Keyboard::isKeyPressed(sf::Keyboard::A)  ? -1.0f : m_MovementInput.y;
+		m_MovementInput.y = sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? 1.0f  : m_MovementInput.y;
 
 		// Normalize input if both values arent 0.
 		if (m_MovementInput.x != 0 && m_MovementInput.y != 0)
@@ -35,5 +35,9 @@ namespace Gameplay
 
 		// Update guninput value.
 		m_GunInput = glm::normalize(Core::Input::GetNormalizedMousePosition() - center);
+
+
+		// Update shooting input.
+		m_Shoot = Core::Input::IsMouseButtonPressed(Core::Input::Button::Left);
 	}
 }

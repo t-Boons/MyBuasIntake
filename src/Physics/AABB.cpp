@@ -60,7 +60,7 @@ namespace Physics
 			return nullptr;
 		}
 
-		glm::vec3 size = { 0, 0, 0 };
+		glm::vec3 size;
 
 		// Calculate which reference point you measure from for all axis.
 		short xIndex = Center().x > aabb.Center().x ? 1 : 0;

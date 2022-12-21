@@ -10,6 +10,9 @@ namespace Gameplay
 {
 	void Level1::LoadScene()
 	{
+		// Initializes tank scene prefab class
+		TankScenePrefabs::Initialize();
+
 		bool useSpectatorCamera = false;
 
 		// Add camera to scene.
@@ -21,27 +24,50 @@ namespace Gameplay
 		AddToScene(TankScenePrefabs::CreateEnviroment());
 
 		// Add player tank to scene.
-		AddToScene(TankScenePrefabs::CreatePlayerTank("PlayerTank", {-10, 5}));
+		AddToScene(TankScenePrefabs::CreatePlayerTank("PlayerTank", { 0, -15}));
 
-		AddToScene(TankScenePrefabs::CreateEnemyTank("EnemyTank", { 3, 9 }));
-
-		
-			// Create tank body
-			RefPtr<Entity::GameObject> cube = Entity::GameObject::Create("Cube");
-			cube->GetComponent<Entity::Transform>()->SetScale({ 10, 3, 2 });
-			auto bodyRenderer = cube->AddComponent(Entity::MeshRenderer::Create());
-			bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Cube.obj"));
-			bodyRenderer->SetMaterial(Renderer::Material::Create(
-				Renderer::Texture::Create("Assets/Textures/Tanks/Player/tank_blue.png"),
-				Renderer::Shader::Create("Assets/Shaders/Basic3DShader.glsl")
-			));
-
-
-			// Add collision components.
-			auto col = cube->AddComponent(Entity::BoxCollider::Create());
-			col->SetSize(cube->GetComponent < Entity::Transform>()->GetScale());
+		AddToScene(TankScenePrefabs::CreateEnemyTank("EnemyTank", { 0, 10 }));
 		
 
-		AddToScene(cube);
+		// Load obstacle on the left.
+		// ----------------------------------
+		// |								|
+		// |	 [ ]						|
+		// |	 [ ]						|
+		// |								|
+		// |	 [ ]						|
+		// |	 [ ]						|
+		// |								|
+		// ----------------------------------
+
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -6, -10 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -4, -10 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ 4, -10 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ 6, -10 }));
+
+		AddToScene(TankScenePrefabs::CreateCollider({ -5, -10 }, { 4, 2}));
+		AddToScene(TankScenePrefabs::CreateCollider({ 5, -10	 }, { 4, 2 }));
+
+
+		// Load obstacle in the middle.
+		// ----------------------------------
+		// |								|
+		// |	 		 [ ]				|
+		// |	 		 [ ]				|
+		// |			 [ ]				|
+		// |	 		 [ ]				|
+		// |	 		 [ ]				|
+		// |								|
+		// ----------------------------------
+
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -6, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -4, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -2, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ -0, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ 2, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ 4, -0 }));
+		AddToScene(TankScenePrefabs::CreateBlockMesh({ 6, -0 }));
+
+		AddToScene(TankScenePrefabs::CreateCollider({ 0, 0 }, { 14, 2 }));
 	}
 }

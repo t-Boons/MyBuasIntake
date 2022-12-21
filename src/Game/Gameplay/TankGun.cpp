@@ -16,6 +16,8 @@ namespace Gameplay
 
 		// Get tank input component from parent object (because the tank body object contains the tankinput component)
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
+
+		m_BulletReadyToFireCount = CONSECUTIVE_BULLET_COUNT;
 	}
 
 	void TankGun::Update()
@@ -27,9 +29,12 @@ namespace Gameplay
 		SetGunRotation(m_Input->GetGunDirectionInput());
 
 		// See if mouse button is pressed and shoot if it is.
-		if (Core::Input::IsMouseButtonPressed(Core::Input::Button::Left))
+		if (m_Input->IsShooting() && m_BulletReadyToFireCount > 0)
 		{
+			m_BulletReadyToFireCount--;
 			Shoot();
+
+			Reload();
 		}
 	}
 
@@ -49,5 +54,24 @@ namespace Gameplay
 		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(TankScenePrefabs::CreateBullet(),
 			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({ 0.0f, 1.0f, 0.0f }),
 			m_Transform->GetRotation());
+	}
+
+	void TankGun::Reload()
+	{
+		if (!m_Reloaded)
+		{
+			m_Reloaded = true;
+
+			// Start a thread that resets the bullet count after x amount of seconds.
+			m_RefilBulletThread = std::thread([=]()
+				{
+					Sleep(BULLET_REFIL_DELAY);
+					m_BulletReadyToFireCount = CONSECUTIVE_BULLET_COUNT;
+					m_Reloaded = false;
+				});
+
+			// Detach the thread so it runs whilst not having to be joined.
+			m_RefilBulletThread.detach();
+		}
 	}
 }

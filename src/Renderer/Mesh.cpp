@@ -24,7 +24,7 @@ namespace Renderer
 
 		if (file == NULL)
 		{
-			ASSERT(false, "Could not open file!")
+			ASSERT(false, "Could not open file: " + filePath)
 			return false;
 		}
 

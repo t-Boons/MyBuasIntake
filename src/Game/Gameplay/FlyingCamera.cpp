@@ -11,14 +11,14 @@ namespace Gameplay
 
 		float deltaTime = Core::Time::GetDeltaTime();
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::W) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::S) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::T) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::G) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::D) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::A) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::F) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::H) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::E) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Q) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Y) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
+		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::R) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
 
 		return pos;
 	}

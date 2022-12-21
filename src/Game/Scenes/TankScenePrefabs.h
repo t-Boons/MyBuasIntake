@@ -15,6 +15,9 @@ namespace Gameplay
 	{
 	public:
 
+		// Initializes the default variables.
+		static void Initialize();
+
 		// Get Enviroment gameobject(s) instance.
 		static std::vector<RefPtr<Entity::GameObject>> CreateEnviroment();
 
@@ -32,5 +35,21 @@ namespace Gameplay
 
 		// Get Bullet gameobject instance.
 		static RefPtr<Entity::GameObject> CreateBullet();
+
+		// Get Block gameobject instance.
+		static RefPtr<Entity::GameObject> CreateBlockMesh(const glm::vec2& position);
+
+		// Get collider instance
+		static RefPtr<Entity::GameObject> CreateCollider(const glm::vec2& position, const glm::vec2& scale);
+
+
+		// Variables used for unique naming of bullets and blocks.
+		static uint32_t s_BulletCount;
+		static uint32_t s_BlockCount;
+		static uint32_t s_ColliderCount;
+
+		static RefPtr<Renderer::Shader> s_Basic3DShader;
+		static RefPtr<Renderer::Texture> s_TextureAtlasTexture;
+		static RefPtr<Renderer::Material> s_TextureAtlasMaterial;
 	};
 }

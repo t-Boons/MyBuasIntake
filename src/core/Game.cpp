@@ -33,6 +33,9 @@ namespace Core
 	void Game::Shutdown()
 	{
 		LOG_WARN("Shutting down Game")
+
+		// Clear all scene memory.
+		m_SceneManager->GetActiveScene()->UnloadScene();
 	}
 
 	// -----------------------------------------------------------
