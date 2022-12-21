@@ -38,14 +38,9 @@ namespace Physics
 
 	struct Collision
 	{
-	public:
-		Collision()
-			: Normal({ 0, 0, 0 })
-		{}
-
-		glm::vec3 Normal;
-		Entity::GameObject* ThioObject;
-		Entity::GameObject* HitObject;
+		glm::vec3 Normal = { 0, 0, 0 };
+		Entity::GameObject* ThisObject = nullptr;
+		Entity::GameObject* HitObject = nullptr;
 	};
 
 	class AABB
@@ -78,7 +73,7 @@ namespace Physics
 		// Overload getter operator to get AABB points.
 		const glm::vec3& operator [](int i) const
 		{
-			ASSERT(i < 2, "Only 2 points on Bounding box")
+			ASSERT((i < 2), "Only 2 points on Bounding box")
 			return Points[i];
 		}
 

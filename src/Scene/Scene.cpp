@@ -42,7 +42,7 @@ namespace Core
 		// Update collision events for scriptcomponents.
 		for (size_t i = 0; i < m_CollisionEvents.size(); i++)
 		{
-			auto entity = m_CollisionEvents[i]->ThioObject;
+			auto entity = m_CollisionEvents[i]->ThisObject;
 			
 			if(entity)
 			{
