@@ -4,6 +4,7 @@
 
 #include "Game/Components.h"
 #include "Game/Gameplay/TankInput.h"
+#include "Game/Scenes/ScenePrefabs.h"
 
 #define CONSECUTIVE_BULLET_COUNT 3;
 #define BULLET_REFIL_DELAY 2000
@@ -36,6 +37,8 @@ namespace Gameplay
 		void SetTankParent(const RefPtr<Entity::Transform>& parent) { m_ParentTransform = parent; }
 
 	private:
+		RefPtr<Entity::GameObject> m_BulletPrefab;
+
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<TankInput> m_Input;

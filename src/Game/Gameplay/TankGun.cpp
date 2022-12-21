@@ -3,7 +3,6 @@
 #include "mypch.h"
 
 #include "TankGun.h"
-#include "Game/Scenes/ScenePrefabs.h"
 
 namespace Gameplay
 {
@@ -13,6 +12,10 @@ namespace Gameplay
 
 		// Get tank input component from parent object (because the tank body object contains the tankinput component)
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
+
+		
+		// Get bullet prefab to copy from.
+		m_BulletPrefab = ScenePrefabs::CreateBullet();
 
 		m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
 	}
@@ -60,8 +63,8 @@ namespace Gameplay
 		m_BulletsInChamber--;
 
 		// Spawn bullet.
-		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(ScenePrefabs::CreateBullet(),
-			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({ 0.0f, 1.0f, 0.0f }),
+		Entity::GameObject::Instantiate(m_BulletPrefab,
+			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3(0.0f, 1.0f, 0.0f),
 			m_Transform->GetRotation());
 	}
 

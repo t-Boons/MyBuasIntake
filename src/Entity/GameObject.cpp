@@ -34,8 +34,10 @@ namespace Entity
 		s_GameObjectCount++;
 
 		// Copy data.
-		m_Components = object.m_Components;
-		m_Name = object.m_Name;
+		m_Components.resize(object.m_Components.size());
+
+		// TODO Make component have new data.
+		m_Name = std::string(object.m_Name);
 
 		LOG_WARN("Copied:  GameObject " + object.GetName() + " ID: " + STR(m_ID))
 	}
