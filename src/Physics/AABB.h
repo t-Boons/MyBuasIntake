@@ -65,6 +65,7 @@ namespace Physics
 		// Recalculate bounding box points.
 		void RecalculatePoints();
 
+		// Get the center of this AABB.
 		glm::vec3 Center() const { return Points[0] + Points[1] - Points[0]; }
 
 	public:
