@@ -11,7 +11,7 @@
 
 namespace Gameplay
 {
-	class TankScenePrefabs
+	class ScenePrefabs
 	{
 	public:
 
@@ -25,13 +25,13 @@ namespace Gameplay
 		static RefPtr<Entity::GameObject> CreateSceneCamera();
 
 		// Get Player Tank gameobject(s) instance.
-		static std::vector<RefPtr<Entity::GameObject>> CreatePlayerTank(const std::string& name, const glm::vec2& position);
+		static std::vector<RefPtr<Entity::GameObject>> CreatePlayerTank(const glm::vec2& position);
 
 		// Get Spectator camera gameobject instance.
 		static RefPtr<Entity::GameObject> CreateDebugCamera();
 
 		// Get Enemy tank gameobject(s) instance.
-		static std::vector<RefPtr<Entity::GameObject>> CreateEnemyTank(const std::string& name, const glm::vec2& position);
+		static std::vector<RefPtr<Entity::GameObject>> CreateEnemyTank(const glm::vec2& position);
 
 		// Get Bullet gameobject instance.
 		static RefPtr<Entity::GameObject> CreateBullet();
@@ -41,12 +41,6 @@ namespace Gameplay
 
 		// Get collider instance
 		static RefPtr<Entity::GameObject> CreateCollider(const glm::vec2& position, const glm::vec2& scale);
-
-
-		// Variables used for unique naming of bullets and blocks.
-		static uint32_t s_BulletCount;
-		static uint32_t s_BlockCount;
-		static uint32_t s_ColliderCount;
 
 		static RefPtr<Renderer::Shader> s_Basic3DShader;
 		static RefPtr<Renderer::Texture> s_TextureAtlasTexture;

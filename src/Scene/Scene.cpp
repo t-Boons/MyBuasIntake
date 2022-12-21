@@ -42,7 +42,7 @@ namespace Core
 		// Update collision events for scriptcomponents.
 		for (size_t i = 0; i < m_CollisionEvents.size(); i++)
 		{
-			auto entity = FindEntityByName(m_CollisionEvents[i]->ThisObjectName);
+			auto entity = m_CollisionEvents[i]->ThioObject;
 			
 			if(entity)
 			{
@@ -123,6 +123,23 @@ namespace Core
 		}
 
 		LOG_WARN("Object: " + name + " can not be found.")
+
+		return nullptr;
+	}
+
+	RefPtr<Entity::GameObject> Scene::FindEntityByID(uint64_t ID)
+	{
+		// See if any of the entity names match.
+		for (auto& entity : m_Entities)
+		{
+			// Return if names match.
+			if (entity->GetID() == ID)
+			{
+				return entity;
+			}
+		}
+
+		LOG_WARN("Object with instance ID: " + STR(ID) + " can not be found.")
 
 		return nullptr;
 	}

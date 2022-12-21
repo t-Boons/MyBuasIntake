@@ -26,15 +26,22 @@ namespace Gameplay
 		// Shoots a bullet in the gun's direction.
 		void Shoot();
 
-		// Reloads the gun if it is not already reloading.
+		// See if the gun has ammo. reload if it doesnt..
+		bool HasAmmo();
+
+		// Reload the gun.
 		void Reload();
+
+		// Set the parent object the gun will be parented to.
+		void SetTankParent(const RefPtr<Entity::Transform>& parent) { m_ParentTransform = parent; }
 
 	private:
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<TankInput> m_Input;
+
 		std::thread m_RefilBulletThread;
 		std::atomic<bool> m_Reloaded;
-		std::atomic<uint32_t> m_BulletReadyToFireCount;
+		std::atomic<uint32_t> m_BulletsInChamber;
 	};
 }

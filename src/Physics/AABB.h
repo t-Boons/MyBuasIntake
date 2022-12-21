@@ -9,6 +9,12 @@
 #include "glm/glm.hpp"
 #include "Core/Core.h"
 
+// Forward declaration for the GameObject class to prevent linking errors.
+namespace Entity
+{
+	class GameObject;
+}
+
 namespace Physics
 {
 
@@ -38,8 +44,8 @@ namespace Physics
 		{}
 
 		glm::vec3 Normal;
-		std::string ThisObjectName;
-		std::string HitObjectName;
+		Entity::GameObject* ThioObject;
+		Entity::GameObject* HitObject;
 	};
 
 	class AABB

@@ -24,7 +24,7 @@
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
     <ClCompile Include="src\Game\Gameplay\FlyingCamera.cpp" />
-    <ClCompile Include="src\Utils\Log.cpp" />
+    <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\mypch.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
@@ -32,7 +32,7 @@
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
-    <ClCompile Include="src\Game\Scenes\TankScenePrefabs.cpp" />
+    <ClCompile Include="src\Game\Scenes\ScenePrefabs.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
   </ItemGroup>
@@ -63,7 +63,7 @@
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Core\Time.h" />
     <ClInclude Include="src\Game\Gameplay\FlyingCamera.h" />
-    <ClInclude Include="src\Utils\Log.h" />
+    <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\mypch.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
@@ -72,7 +72,7 @@
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
     <ClInclude Include="src\Game\Gameplay\TankInput.h" />
     <ClInclude Include="src\Core\Window.h" />
-    <ClInclude Include="src\Game\Scenes\TankScenePrefabs.h" />
+    <ClInclude Include="src\Game\Scenes\ScenePrefabs.h" />
     <ClInclude Include="src\Game\Gameplay\Bullet.h" />
     <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Game\Components.h" />

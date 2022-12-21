@@ -21,7 +21,7 @@
 // Setup Console logging and Asserting.
 #ifdef _DEBUG
 
-#include "Utils/Log.h"
+#include "Log.h"
 
 #define LOG(message) LOG_TRACE(message);
 #define LOG_TRACE(message) Utils::Log::LogMessage(Utils::Log::LogColor::White, std::string("[TRACE] ") + message);

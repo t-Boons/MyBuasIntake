@@ -8,11 +8,42 @@
 
 namespace Entity
 {
+	uint64_t GameObject::s_GameObjectCount = 0;
+
 	GameObject::GameObject(const std::string& name)
 		: m_Name(name)
 	{
 		// Add default Transform Component.
 		AddComponent(Transform::Create());
+
+		// Set gameobject ID.
+		m_ID = s_GameObjectCount;
+
+		// Increment gameobject counter.
+		s_GameObjectCount++;
+
+		LOG_INFO("Created: GameObject " + GetName() + " " + "ID: " + STR(m_ID))
+	}
+
+	GameObject::GameObject(const GameObject& object)
+	{
+		// Set gameobject ID.
+		m_ID = s_GameObjectCount;
+
+		// Increment gameobject counter.
+		s_GameObjectCount++;
+
+		// Copy data.
+		m_Components = object.m_Components;
+		m_Name = object.m_Name;
+
+		LOG_WARN("Copied:  GameObject " + object.GetName() + " ID: " + STR(m_ID))
+	}
+
+	GameObject::~GameObject()
+	{
+		// Decrement gameobject counter.
+		s_GameObjectCount--;
 	}
 
 	void GameObject::StartComponents()
@@ -65,7 +96,7 @@ namespace Entity
 	{
 		if (m_QueueForDeletion)
 		{
-			LOG_WARN("GameObject: " + GetName() + " " + "Has been destroyed.")
+			LOG_WARN("Deleted: GameObject " + GetName() + " ID:" + STR(m_ID))
 
 			// Remove this object from the scene.
 			Core::Game::Get()->GetSceneManager()->GetActiveScene()->RemoveFromScene(this);
@@ -84,16 +115,21 @@ namespace Entity
 
 	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object, const glm::vec3& position, const glm::quat& rotation)
 	{
+		// Copy gameobject.
+		RefPtr<Entity::GameObject> newObject = std::make_shared<Entity::GameObject>(*object);
+
 		// Set position and rotation.
-		RefPtr<Entity::Transform> transform = object->GetComponent<Entity::Transform>();
+		RefPtr<Entity::Transform> transform = newObject->GetComponent<Entity::Transform>();
 		transform->SetPosition(position);
 		transform->SetRotation(rotation);
 
+		// Add the object to the scene.
 		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddToScene(object);
 
-		object->StartComponents();
+		// Call start on component.
+		newObject->StartComponents();
 
-		return object;
+		return newObject;
 	}
 
 	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object)

@@ -50,6 +50,9 @@ namespace Core
 		// Finds the entity with name.
 		RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);
 
+		// Finds the entity with Instance ID.
+		RefPtr<Entity::GameObject> FindEntityByID(uint64_t ID);
+
 		// Add a collision event that will be ran next frame.
 		void AddCollisionEnterEvent(RefPtr<Physics::Collision> collision) { m_CollisionEvents.push_back(collision); }
 

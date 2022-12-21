@@ -15,6 +15,11 @@ namespace Entity
 	public:
 		GameObject(const std::string& name);
 
+		// Copy constructor.
+		GameObject(const GameObject& object);
+
+		~GameObject();
+
 		MAKE_SHARED_ONEPARAM(GameObject, const std::string&, name)
 
 		template<class T>
@@ -57,6 +62,8 @@ namespace Entity
 		// Get entity name.
 		const std::string& GetName() const { return m_Name; }
 
+		// Get the entitys instance ID
+		uint64_t GetID() const { return m_ID; }
 		// Destroy this entity.
 		void Destroy();
 
@@ -76,5 +83,8 @@ namespace Entity
 		std::vector<RefPtr<Component>> m_Components;
 		std::string m_Name;
 		bool m_QueueForDeletion = false;
+		uint64_t m_ID;
+
+		static uint64_t s_GameObjectCount;
 	};
 }

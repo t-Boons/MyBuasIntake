@@ -3,7 +3,7 @@
 #include "mypch.h"
 
 #include "TankGun.h"
-#include "Game/Scenes/TankScenePrefabs.h"
+#include "Game/Scenes/ScenePrefabs.h"
 
 namespace Gameplay
 {
@@ -11,30 +11,36 @@ namespace Gameplay
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 
-		// Get transform component from tank body.
-		m_ParentTransform = Entity::GameObject::Find("PlayerTank")->GetComponent<Entity::Transform>();
-
 		// Get tank input component from parent object (because the tank body object contains the tankinput component)
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
 
-		m_BulletReadyToFireCount = CONSECUTIVE_BULLET_COUNT;
+		m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
 	}
 
 	void TankGun::Update()
 	{
 		// Set position equal to tank body position.
-		m_Transform->SetPosition(m_ParentTransform->GetPosition());
+		if (m_ParentTransform)
+		{
+			m_Transform->SetPosition(m_ParentTransform->GetPosition());
+		}
 
 		// Update the gun's rotation.
-		SetGunRotation(m_Input->GetGunDirectionInput());
+		if (m_Input)
+		{
+			SetGunRotation(m_Input->GetGunDirectionInput());
+		}
 
 		// See if mouse button is pressed and shoot if it is.
-		if (m_Input->IsShooting() && m_BulletReadyToFireCount > 0)
+		if (m_Input && m_Input->IsShooting())
 		{
-			m_BulletReadyToFireCount--;
-			Shoot();
+			if (HasAmmo())
+			{
+				Shoot();
 
-			Reload();
+				// Reload the gun if it isn't already reloading.
+				Reload();
+			}
 		}
 	}
 
@@ -50,10 +56,18 @@ namespace Gameplay
 
 	void TankGun::Shoot()
 	{
+		// Reduce bullet count. 
+		m_BulletsInChamber--;
+
 		// Spawn bullet.
-		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(TankScenePrefabs::CreateBullet(),
+		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Instantiate(ScenePrefabs::CreateBullet(),
 			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3({ 0.0f, 1.0f, 0.0f }),
 			m_Transform->GetRotation());
+	}
+
+	bool TankGun::HasAmmo()
+	{
+		return m_BulletsInChamber > 0;
 	}
 
 	void TankGun::Reload()
@@ -66,7 +80,7 @@ namespace Gameplay
 			m_RefilBulletThread = std::thread([=]()
 				{
 					Sleep(BULLET_REFIL_DELAY);
-					m_BulletReadyToFireCount = CONSECUTIVE_BULLET_COUNT;
+					m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
 					m_Reloaded = false;
 				});
 

@@ -102,7 +102,7 @@ namespace Physics
 				if (colliderEvent)
 				{
 					// Assign other collider.
-					colliderEvent->HitObjectName = col->Parent->GetName();
+					colliderEvent->HitObject = col->Parent;
 
 					return colliderEvent;
 				}

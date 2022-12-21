@@ -27,3 +27,9 @@ https://www.models-resource.com/wii/wiiplay/model/35324/
 
 Wii tanks textures
 https://www.textures-resource.com/wii/wiiplay/texture/12548/
+
+Wii tanks soundtracks
+https://downloads.khinsider.com/game-soundtracks/album/wii-play
+
+Wii tanks sound effects:
+https://www.sounds-resource.com/wii/wiiplay/sound/28569/?source=genre

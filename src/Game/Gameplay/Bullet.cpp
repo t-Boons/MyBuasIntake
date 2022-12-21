@@ -22,10 +22,9 @@ namespace Gameplay
 	{
 		// Reflect bullet off of the surface using the collision normal.
 		m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
-		LOG(collision->HitObjectName)
 
 		// Destroy bullet if it hits another bullet.
-		if (collision->HitObjectName.find("Bullet") != std::string::npos)
+		if (collision->HitObject->GetComponent<Gameplay::Bullet>())
 		{
 			Parent->Destroy();
 		}
