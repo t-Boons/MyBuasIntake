@@ -35,8 +35,20 @@ namespace Core
 		// Spawns multiple game objects.
 		void AddToScene(const std::vector<RefPtr<Entity::GameObject>>& objects);
 
+		// Instantiate all object in instantiation queue.
+		void ClearInstantiationQueue();
+
+		// Adds object to instantiation queue
+		void AddEntityToInstantiationQueue(const RefPtr<Entity::GameObject> object) { m_InstantiationQueue.push_back(object); }
+
+		// Instantiate all object in instantiation queue.
+		void ClearDeletionQueue();
+
+		// Adds object to instantiation queue
+		void AddEntityToDeletionQueue(const RefPtr<Entity::GameObject> object) { m_DeletionQueue.push_back(object); }
+
 		// Removes game object from scene
-		void RemoveFromScene(Entity::GameObject* object);
+		void RemoveFromScene(const RefPtr<Entity::GameObject>& object);
 
 		// Return reference to GameObject vector.
 		const std::vector<RefPtr<Entity::GameObject>>& GetEntities() const { return m_Entities; }
@@ -58,6 +70,8 @@ namespace Core
 
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
+		std::vector<RefPtr<Entity::GameObject>> m_InstantiationQueue;
+		std::vector<RefPtr<Entity::GameObject>> m_DeletionQueue;
 		std::vector<RefPtr<Physics::Collision>> m_CollisionEvents;
 		RefPtr<Physics::PhysicsEnviroment> m_PhysicsEnviroment;
 		RefPtr<Entity::Camera> m_ActiveCamera;

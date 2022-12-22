@@ -10,6 +10,7 @@ namespace Entity
 	void BoxCollider::Start()
 	{
 		m_Transform = GetComponent<Transform>();
+		m_LastValidPosition = { 0, 0, 0 };
 	}
 
 	void BoxCollider::Update()

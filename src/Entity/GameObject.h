@@ -10,14 +10,16 @@ namespace Entity
 {
 	class Component;
 
-	class GameObject
+	class GameObject : public std::enable_shared_from_this<GameObject>
 	{
 	public:
+		// Constructor.
 		GameObject(const std::string& name);
 
 		// Copy constructor.
 		GameObject(const GameObject& object);
 
+		// Destructor.
 		~GameObject();
 
 		MAKE_SHARED_ONEPARAM(GameObject, const std::string&, name)
@@ -49,7 +51,6 @@ namespace Entity
 			return component;
 		}
 
-
 		// Call start on all components.
 		void StartComponents();
 
@@ -64,11 +65,9 @@ namespace Entity
 
 		// Get the entitys instance ID
 		uint64_t GetID() const { return m_ID; }
+
 		// Destroy this entity.
 		void Destroy();
-
-		// Check if object is queued for deletion.
-		bool QueuedForDeletion();
 
 		// Find object with name.
 		static RefPtr<GameObject> Find(const std::string& name);

@@ -33,10 +33,21 @@ namespace Entity
 		// Increment gameobject counter.
 		s_GameObjectCount++;
 
-		// Copy data.
+		// Resize component array to object.component size;
 		m_Components.resize(object.m_Components.size());
 
-		// TODO Make component have new data.
+		// Copy all component data.
+		for (size_t i = 0; i < m_Components.size(); i++)
+		{
+			// Copy the existing component.
+			Entity::Component* componentCopy = object.m_Components[i]->Copy();
+			componentCopy->Parent = this;
+
+			// Assign ptr to new component array.
+			RefPtr<Entity::Component> componentSharedPtr(componentCopy);
+			m_Components[i] = componentSharedPtr;
+		}
+
 		m_Name = std::string(object.m_Name);
 
 		LOG_WARN("Copied:  GameObject " + object.GetName() + " ID: " + STR(m_ID))
@@ -46,6 +57,8 @@ namespace Entity
 	{
 		// Decrement gameobject counter.
 		s_GameObjectCount--;
+
+		LOG_WARN("Deleted: GameObject " + GetName() + " ID: " + STR(m_ID))
 	}
 
 	void GameObject::StartComponents()
@@ -59,12 +72,6 @@ namespace Entity
 
 	void GameObject::UpdateComponents()
 	{
-		// Return if object has to be deleted.
-		if (QueuedForDeletion())
-		{
-			return;
-		}
-
 		// Loop through all components
 		for (size_t i = 0; i < m_Components.size(); i++)
 		{
@@ -87,29 +94,6 @@ namespace Entity
 		}
 	}
 
-	void GameObject::Destroy()
-	{
-		ASSERT(this != nullptr, "The object you're trying to destroy is nullptr.")
-
-		m_QueueForDeletion = true;
-	}
-
-	bool GameObject::QueuedForDeletion()
-	{
-		if (m_QueueForDeletion)
-		{
-			LOG_WARN("Deleted: GameObject " + GetName() + " ID:" + STR(m_ID))
-
-			// Remove this object from the scene.
-			Core::Game::Get()->GetSceneManager()->GetActiveScene()->RemoveFromScene(this);
-
-			// Delete components.
-			m_Components.clear();
-		}
-
-		return m_QueueForDeletion;
-	}
-
 	RefPtr<GameObject> GameObject::Find(const std::string& name)
 	{
 		return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindEntityByName(name);
@@ -126,10 +110,7 @@ namespace Entity
 		transform->SetRotation(rotation);
 
 		// Add the object to the scene.
-		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddToScene(object);
-
-		// Call start on component.
-		newObject->StartComponents();
+		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddEntityToInstantiationQueue(newObject);
 
 		return newObject;
 	}
@@ -137,5 +118,10 @@ namespace Entity
 	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object)
 	{
 		return Instantiate(object, glm::vec3(0.0f), glm::quat(glm::vec3(0.0f)));
+	}
+
+	void GameObject::Destroy()
+	{
+		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddEntityToDeletionQueue(shared_from_this());
 	}
 }

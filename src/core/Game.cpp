@@ -79,14 +79,14 @@ namespace Core
 		settings.antialiasingLevel = 16;
 
 		// Create resolution.
-		glm::ivec2 resolution = glm::ivec2(1920, 1080);
+		glm::ivec2 resolution = glm::ivec2(1280, 720);
 
 		// Create windowproperties instance and set it.
 		Core::WindowProperties properties;
 		properties.ContextSettings = settings;
 		properties.Resolution = resolution;
 		properties.Name = "Wii Tanks - BUAS Intake Tygo Boons";
-		properties.Fullscreen = true;
+		properties.Fullscreen = false;
 
 		return Core::Window::Create(properties);
 	}

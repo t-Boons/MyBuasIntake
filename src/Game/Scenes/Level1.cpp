@@ -59,7 +59,7 @@ namespace Gameplay
 		// |	 		 [ ]				|
 		// |								|
 		// ----------------------------------
-
+		
 		AddToScene(ScenePrefabs::CreateBlockMesh({ -6, -0 }));
 		AddToScene(ScenePrefabs::CreateBlockMesh({ -4, -0 }));
 		AddToScene(ScenePrefabs::CreateBlockMesh({ -2, -0 }));

@@ -17,6 +17,12 @@ namespace Gameplay
 		IMPLEMENT_COMPONENT_IDENTIFIER(TankGun)
 
 	public:
+		TankGun()
+		{}
+		TankGun(const TankGun& gun)
+		{}
+
+	public:
 		virtual void Start() override;
 
 		virtual void Update() override;

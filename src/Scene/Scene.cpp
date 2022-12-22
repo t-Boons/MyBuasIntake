@@ -26,6 +26,11 @@ namespace Core
 
 	void Scene::Update()
 	{
+		// Here we loop through all to-be deleted object and remove them from the scene.
+		ClearDeletionQueue();
+
+		// Here all queued to-be instantiated objects get added to the scnee..
+		ClearInstantiationQueue();
 		
 		// Update all entity Components.
 		for (size_t i = 0; i < m_Entities.size(); i++)
@@ -83,7 +88,38 @@ namespace Core
 		}
 	}
 
-	void Scene::RemoveFromScene(Entity::GameObject* object)
+	void Scene::ClearDeletionQueue()
+	{
+		// Loop through all to-be deleted object and remove them from the scene.
+		for (size_t i = 0; i < m_DeletionQueue.size(); i++)
+		{
+			RemoveFromScene(m_DeletionQueue[i]);
+
+			// Call start on component.
+			m_DeletionQueue[i]->StartComponents();
+		}
+
+		// Clear the queue.
+		m_DeletionQueue.clear();
+	}
+
+
+	void Scene::ClearInstantiationQueue()
+	{
+		// Loop through all to-be instantiated object and add them to the scene.
+		for (size_t i = 0; i < m_InstantiationQueue.size(); i++)
+		{
+			AddToScene(m_InstantiationQueue[i]);
+
+			// Call start on component.
+			m_InstantiationQueue[i]->StartComponents();
+		}
+
+		// Clear the queue.
+		m_InstantiationQueue.clear();
+	}
+
+	void Scene::RemoveFromScene(const RefPtr<Entity::GameObject>& object)
 	{
 		// Remove pbodies and colliders if the object has any.
 		auto pbody = object->GetComponent<Entity::PhysicsBody>();
@@ -102,7 +138,7 @@ namespace Core
 		// Find object match.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
-			if (m_Entities[i].get() == object)
+			if (m_Entities[i] == object)
 			{
 				// Remove object from array.
 				m_Entities.erase(m_Entities.begin() + i);

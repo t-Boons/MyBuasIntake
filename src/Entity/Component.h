@@ -11,7 +11,8 @@
 #define IMPLEMENT_COMPONENT_IDENTIFIER(name) 	public:\
 													virtual std::string GetTypeName() const override { return #name; } \
 													static std::string GetStaticName() { return #name; }\
-													static RefPtr<name> Create() { return std::make_shared<name>(); }
+													static RefPtr<name> Create() { return std::make_shared<name>(); }\
+													virtual name* Copy() override {return new name(*this);}
 
 
 namespace Entity
@@ -19,6 +20,9 @@ namespace Entity
 	class Component
 	{
 	public:
+
+		// Return a copy of this component.
+		virtual Component* Copy() = 0;
 
 		// Return componnt type name.
 		virtual std::string GetTypeName() const = 0;
