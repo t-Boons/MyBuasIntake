@@ -41,11 +41,12 @@ namespace Entity
 		{
 			// Copy the existing component.
 			Entity::Component* componentCopy = object.m_Components[i]->Copy();
+
+			// Set component parent to new gmaeobject.
 			componentCopy->Parent = this;
 
 			// Assign ptr to new component array.
-			RefPtr<Entity::Component> componentSharedPtr(componentCopy);
-			m_Components[i] = componentSharedPtr;
+			m_Components[i] = static_cast<RefPtr<Entity::Component>>(componentCopy);
 		}
 
 		m_Name = std::string(object.m_Name);

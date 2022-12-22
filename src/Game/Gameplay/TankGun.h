@@ -6,7 +6,7 @@
 #include "Game/Gameplay/TankInput.h"
 #include "Game/Scenes/ScenePrefabs.h"
 
-#define CONSECUTIVE_BULLET_COUNT 3;
+#define CONSECUTIVE_BULLET_COUNT 30000;
 #define BULLET_REFIL_DELAY 2000
 
 namespace Gameplay
@@ -17,6 +17,11 @@ namespace Gameplay
 		IMPLEMENT_COMPONENT_IDENTIFIER(TankGun)
 
 	public:
+
+		// Defined defualt copy constructor and constructor because the class uses std::thread.
+		// Just don't copy this class it should be fine.
+		// TODO make threads copyable.
+
 		TankGun()
 		{}
 		TankGun(const TankGun& gun)
