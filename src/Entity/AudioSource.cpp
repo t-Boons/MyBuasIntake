@@ -25,10 +25,14 @@ namespace Entity
 
 	void AudioSource::LoadClipFromFile(const std::string& filepath)
 	{
-		// Loads the file.
-		bool loaded = m_Clip.loadFromFile(filepath);
+		// Set audio clip file path.
+		m_ClipFilePath = filepath;
 
-		ASSERT(loaded, "File could not be found: " + filepath)
+		// Loads the file.
+		bool loaded = m_Clip.loadFromFile(m_ClipFilePath);
+
+		ASSERT(loaded, "File could not be found: " + m_ClipFilePath)
+
 
 		// Assign the clip to the sound source.
 		m_Sound.setBuffer(m_Clip);
@@ -88,7 +92,7 @@ namespace Entity
 	void AudioSource::SetVolume(float volume)
 	{
 		// Create new volume variable that is clamped.
-		float newVolume = glm::clamp(volume, 0.0f, 100.0f);
+		float newVolume = glm::clamp(volume, 0.0f, 1.0f);
 
 		// Warn if volume is changed.
 		if (volume != newVolume)
@@ -100,7 +104,7 @@ namespace Entity
 		m_Volume = newVolume;
 
 		// Set new volume in sound.
-		m_Sound.setVolume(m_Volume);
+		m_Sound.setVolume(m_Volume * 100.0f);
 	}
 
 	void AudioSource::SetLooping(bool looping)

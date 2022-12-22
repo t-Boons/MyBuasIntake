@@ -6,7 +6,8 @@
 #include "Game/Gameplay/Input/TankInput.h"
 
 #define RICOCHET_AMOUNT 2
-#define BULLET_SPEED 7.0f
+#define BULLET_SPEED 7.5f
+#define DESTROY_DELAY 0.09f
 
 namespace Gameplay
 {
@@ -23,6 +24,9 @@ namespace Gameplay
 
 	private:
 		RefPtr<Entity::Transform> m_Transform;
+		RefPtr<Entity::AudioSource> m_Clack;
 		uint32_t m_Hits;
+		float m_DelayTime;
+		bool m_DeleteDelayStarted;
 	};
 }

@@ -13,13 +13,13 @@ namespace Entity
 	class GameObject : public std::enable_shared_from_this<GameObject>
 	{
 	public:
-		// Constructor.
+		// Construct game object.
 		GameObject(const std::string& name);
 
-		// Copy constructor.
+		// Copy gameobject constructor.
 		GameObject(const GameObject& object);
 
-		// Destructor.
+		// Destroy game object.
 		~GameObject();
 
 		MAKE_SHARED_ONEPARAM(GameObject, const std::string&, name)
@@ -75,15 +75,17 @@ namespace Entity
 		static RefPtr<GameObject> Find(const std::string& name);
 
 		// Spawn game object with rotation and position.
-		static RefPtr<Entity::GameObject> Instantiate(const RefPtr<Entity::GameObject>& object, const glm::vec3& position, const glm::quat& rotation);
+		static RefPtr<GameObject> Instantiate(const RefPtr<GameObject>& object, const glm::vec3& position, const glm::quat& rotation);
 
 		// Spawn game object.
-		static RefPtr<Entity::GameObject> Instantiate(const RefPtr<Entity::GameObject>& object);
+		static RefPtr<GameObject> Instantiate(const RefPtr<GameObject>& object);
+
+		// Create copy of this instance
+		RefPtr<GameObject> Copy();
 
 	private:
 		std::vector<RefPtr<Component>> m_Components;
 		std::string m_Name;
-		bool m_QueueForDeletion = false;
 		uint64_t m_ID;
 
 		static uint64_t s_GameObjectCount;

@@ -1,17 +1,17 @@
 // 2022 Tygo Boons
 
 #include "mypch.h"
-#include "TankMovement.h"
+#include "TankEngine.h"
 
 namespace Gameplay
 {
-	void TankMovement::Start()
+	void TankEngine::Start()
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 		m_TankInput = GetComponent<TankInput>();
 	}
 
-	void TankMovement::Update()
+	void TankEngine::Update()
 	{
 		float dt = Core::Time::GetDeltaTime();
 

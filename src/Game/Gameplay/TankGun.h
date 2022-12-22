@@ -17,17 +17,6 @@ namespace Gameplay
 		IMPLEMENT_COMPONENT_IDENTIFIER(TankGun)
 
 	public:
-
-		// Defined defualt copy constructor and constructor because the class uses std::thread.
-		// Just don't copy this class it should be fine.
-		// TODO (maybe) make threads copyable.
-
-		TankGun()
-		{}
-		TankGun(const TankGun& gun)
-		{}
-
-	public:
 		virtual void Start() override;
 
 		virtual void Update() override;
@@ -54,8 +43,8 @@ namespace Gameplay
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<TankInput> m_Input;
 
-		std::thread m_RefilBulletThread;
-		std::atomic<bool> m_Reloaded;
-		std::atomic<uint32_t> m_BulletsInChamber;
+		RefPtr<std::thread> m_RefilBulletThread;
+		uint32_t m_BulletsInChamber;
+		bool m_Reloaded;
 	};
 }

@@ -103,7 +103,7 @@ namespace Entity
 	RefPtr<Entity::GameObject> GameObject::Instantiate(const RefPtr<Entity::GameObject>& object, const glm::vec3& position, const glm::quat& rotation)
 	{
 		// Copy gameobject.
-		RefPtr<Entity::GameObject> newObject = std::make_shared<Entity::GameObject>(*object);
+		RefPtr<Entity::GameObject> newObject = object->Copy();
 
 		// Set position and rotation.
 		RefPtr<Entity::Transform> transform = newObject->GetComponent<Entity::Transform>();
@@ -124,5 +124,10 @@ namespace Entity
 	void GameObject::Destroy()
 	{
 		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddEntityToDeletionQueue(shared_from_this());
+	}
+
+	RefPtr<GameObject> GameObject::Copy()
+	{
+		return	std::make_shared<Entity::GameObject>(*this);
 	}
 }

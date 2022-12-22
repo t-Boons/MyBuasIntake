@@ -56,5 +56,6 @@ namespace Entity
 		bool m_IsLooping;
 		sf::SoundBuffer m_Clip;
 		sf::Sound m_Sound;
+		std::string m_ClipFilePath;
 	};
 }

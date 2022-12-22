@@ -274,7 +274,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Entity\GameObject.cpp" />
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
     <ClCompile Include="src\Entity\Transform.cpp" />
-    <ClCompile Include="src\Game\Gameplay\TankMovement.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankEngine.cpp" />
     <ClCompile Include="src\mypch.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mypch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mypch.h</PrecompiledHeaderFile>
@@ -325,7 +325,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Entity\MeshRenderer.h" />
     <ClInclude Include="src\Entity\Transform.h" />
     <ClInclude Include="src\Entity\ScriptComponent.h" />
-    <ClInclude Include="src\Game\Gameplay\TankMovement.h" />
+    <ClInclude Include="src\Game\Gameplay\TankEngine.h" />
     <ClInclude Include="src\mypch.h" />
     <ClInclude Include="src\Renderer\Buffer.h" />
     <ClInclude Include="src\Renderer\Material.h" />

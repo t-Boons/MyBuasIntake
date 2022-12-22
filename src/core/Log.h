@@ -58,6 +58,7 @@ namespace Utils
 		// Singleton
 		static Log* s_Instance;
 
+		std::mutex m_Mutex;
 		LogColor m_LastLogColor;
 		HANDLE m_ConsoleHandle;
 	};

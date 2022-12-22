@@ -144,7 +144,7 @@ namespace Gameplay
 
 
 		// Add behavior components.
-		tankBody->AddComponent(Gameplay::TankMovement::Create());
+		tankBody->AddComponent(Gameplay::TankEngine::Create());
 		tankBody->AddComponent(Gameplay::TankInputPlayer::Create());
 
 		objects[0] = tankBody;
@@ -259,7 +259,7 @@ namespace Gameplay
 		/// Create bullet game object.
 		RefPtr<Entity::GameObject> bullet = Entity::GameObject::Create("Bullet");
 
-		auto bodyRenderer = bullet->AddComponent(Entity::MeshRenderer::Create());
+		RefPtr<Entity::MeshRenderer> bodyRenderer = bullet->AddComponent(Entity::MeshRenderer::Create());
 		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Bullet.obj"));
 		bodyRenderer->SetMaterial(Renderer::Material::Create(
 			Renderer::Texture::Create("Assets/Textures/Bullet.png"),
@@ -267,14 +267,19 @@ namespace Gameplay
 		));
 
 		// Set the size of the bullet collider.
-		auto boxCollider = bullet->AddComponent(Entity::BoxCollider::Create());
-		boxCollider->SetSize({ 0.3f, 1, 0.3f });
+		RefPtr<Entity::BoxCollider> boxCollider = bullet->AddComponent(Entity::BoxCollider::Create());
+		boxCollider->SetSize({ 0.4f, 1, 0.4f });
 
 		// Add a physicsbody component so it gets oncollisionenter events.
 		bullet->AddComponent(Entity::PhysicsBody::Create());
 
 		// Set the bullet scale.
 		bullet->GetComponent<Entity::Transform>()->SetScale({ 0.075f, 0.075f, 0.075f });
+
+		// Add audiosource for the clack sound.
+		RefPtr<Entity::AudioSource> clackAudioSource = bullet->AddComponent(Entity::AudioSource::Create());
+		clackAudioSource->LoadClipFromFile("Assets/Audio/Effects/Clack.wav");
+		clackAudioSource->SetVolume(0.5f);
 
 		// Add bullet gameplay behaviour component.
 		bullet->AddComponent(Bullet::Create());

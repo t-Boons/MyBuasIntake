@@ -33,6 +33,8 @@ namespace Utils
 		// Get current time point before doing anything else as to make the log time as accurate as possible.
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 
+		m_Mutex.lock();
+
 		// Get required time values.
 		uint32_t milliseconds = GetMillisecondsInCurrentSecond(now);
 		LocalTime localTime = GetSystemTime(now);
@@ -55,10 +57,9 @@ namespace Utils
 			localTime.tm_min,
 			localTime.tm_sec,
 			milliseconds)
-			+ ' ' + message;
+			+ ' ' + message << '\n';
 
-		// Print newline
-		std::cout << '\n';
+		m_Mutex.unlock();
 	}
 
 	std::string Log::FormatTime(uint32_t year, uint32_t month, uint32_t day, uint32_t hour, uint32_t minutes, uint32_t seconds, uint32_t milliseconds)

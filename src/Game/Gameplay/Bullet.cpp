@@ -2,38 +2,61 @@
 
 #include "mypch.h"
 #include "Bullet.h"
-#include "TankMovement.h"
+#include "TankEngine.h"
 
 namespace Gameplay
 {
 	void Bullet::Start()
 	{
 		m_Transform = GetComponent<Entity::Transform>();
+		m_Clack = GetComponent<Entity::AudioSource>();
+
 		m_Hits = 0;
+		m_DelayTime = 0;
 	}
 
 	void Bullet::Update()
 	{
-		// Move forward.
-		m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * BULLET_SPEED);
+		if (!m_DeleteDelayStarted)
+		{
+			// Move forward.
+			m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * BULLET_SPEED);
+		}
+		else
+		{
+			// Update delay time.
+			m_DelayTime += Core::Time::GetDeltaTime();
+
+			// Destroy object after DESTROY_DELAY amount of time.
+			if (m_DelayTime > DESTROY_DELAY)
+			{
+				Parent->Destroy();
+			}
+		}
 	}
 
 	void Bullet::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
-		// Reflect bullet off of the surface using the collision normal.
-		m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
-
-		// Destroy bullet if it hits another bullet or tank.
-		if (collision->HitObject->GetComponent<Gameplay::Bullet>() ||
-			collision->HitObject->GetComponent<Gameplay::TankMovement>())
+		// Only run this if object is not being deleted.
+		if (!m_DeleteDelayStarted)
 		{
-			Parent->Destroy();
-		}
+			// Reflect bullet off of the surface using the collision normal.
+			m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
 
-		// Destroy bullet after RICOCHET_AMOUNT amount of hits hits.
-		if (++m_Hits >= RICOCHET_AMOUNT)
-		{
-			Parent->Destroy();
+			// Play clack sound.
+			m_Clack->Play();
+
+			// Log hit.
+			LOG_INFO(GAMEOBJECT_IDENTITY + "Hit: " + collision->HitObject->GetName() + " ID: " + STR(collision->HitObject->GetID()))
+
+			// Check if bullet should be destroyed.
+			bool destroyDueTohitCount = ++m_Hits >= RICOCHET_AMOUNT;
+			bool destroyDueToCollision = collision->HitObject->GetComponent<Gameplay::Bullet>() || collision->HitObject->GetComponent<Gameplay::TankEngine>();
+
+			if (destroyDueTohitCount || destroyDueToCollision)
+			{
+				m_DeleteDelayStarted = true;
+			}
 		}
 	}
 }

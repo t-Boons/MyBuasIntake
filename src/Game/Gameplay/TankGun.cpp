@@ -82,7 +82,7 @@ namespace Gameplay
 			m_Reloaded = true;
 
 			// Start a thread that resets the bullet count after x amount of seconds.
-			m_RefilBulletThread = std::thread([=]()
+			std::thread reloadThread = std::thread([=]()
 				{
 					Sleep(BULLET_REFIL_DELAY);
 					m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
@@ -90,7 +90,7 @@ namespace Gameplay
 				});
 
 			// Detach the thread so it runs whilst not having to be joined.
-			m_RefilBulletThread.detach();
+			reloadThread.detach();
 		}
 	}
 }

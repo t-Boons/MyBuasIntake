@@ -19,7 +19,7 @@
     <ClCompile Include="src\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\Renderer\VertexData.cpp" />
-    <ClCompile Include="src\Game\Gameplay\TankMovement.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankEngine.cpp" />
     <ClCompile Include="src\Entity\MeshRenderer.cpp" />
     <ClCompile Include="src\Renderer\Texture.cpp" />
     <ClCompile Include="src\Core\Time.cpp" />
@@ -59,7 +59,7 @@
     <ClInclude Include="src\Renderer\Buffer.h" />
     <ClInclude Include="src\Renderer\VertexArray.h" />
     <ClInclude Include="src\Renderer\VertexData.h" />
-    <ClInclude Include="src\Game\Gameplay\TankMovement.h" />
+    <ClInclude Include="src\Game\Gameplay\TankEngine.h" />
     <ClInclude Include="src\Entity\ScriptComponent.h" />
     <ClInclude Include="src\Renderer\Texture.h" />
     <ClInclude Include="src\Core\Time.h" />

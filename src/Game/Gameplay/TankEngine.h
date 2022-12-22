@@ -10,9 +10,9 @@
 
 namespace Gameplay
 {
-	class TankMovement : public Entity::ScriptComponent
+	class TankEngine : public Entity::ScriptComponent
 	{
-		IMPLEMENT_COMPONENT_IDENTIFIER(TankMovement)
+		IMPLEMENT_COMPONENT_IDENTIFIER(TankEngine)
 
 	public:
 		virtual void Start() override;
