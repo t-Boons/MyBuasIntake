@@ -180,7 +180,7 @@ namespace Gameplay
 		return objects;
 	}
 
-	RefPtr<Entity::GameObject> ScenePrefabs::CreateDebugCamera()
+	RefPtr<Entity::GameObject> ScenePrefabs::CreateSpectatorCamera()
 	{
 		// Create debug spectator cam.
 		RefPtr<Entity::GameObject> flycam = Entity::GameObject::Create("SpectatorCamera");

@@ -13,12 +13,12 @@
 
     float GetLightIntensity()
     {
-        vec3 dirLight = normalize(-vec3(-0.05f, -1.0f, 0.1f));
+        vec3 dirLight = normalize(-vec3(-0.05f, -1.0f, -0.1f));
 
         mat3 normalMatrix = mat3(uViewProjection * uModel);
         normalMatrix = inverse(normalMatrix);
         normalMatrix = transpose(normalMatrix);
-        return clamp(dot(dirLight, normalMatrix * aNormal), 0, 1);
+        return clamp(dot(dirLight, aNormal), 0, 1);
     }
 
     void main()

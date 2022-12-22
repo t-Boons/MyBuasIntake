@@ -16,7 +16,7 @@ namespace Gameplay
 		bool useSpectatorCamera = false;
 
 		// Add camera to scene.
-		auto camera = useSpectatorCamera ? ScenePrefabs::CreateDebugCamera() : ScenePrefabs::CreateSceneCamera();
+		auto camera = useSpectatorCamera ? ScenePrefabs::CreateSpectatorCamera() : ScenePrefabs::CreateSceneCamera();
 		AddToScene(camera);
 		SetActiveCamera(camera->GetComponent<Entity::Camera>());
 

@@ -29,7 +29,7 @@ namespace Gameplay
 		static std::vector<RefPtr<Entity::GameObject>> CreatePlayerTank(const glm::vec2& position);
 
 		// Get Spectator camera gameobject instance.
-		static RefPtr<Entity::GameObject> CreateDebugCamera();
+		static RefPtr<Entity::GameObject> CreateSpectatorCamera();
 
 		// Get Enemy tank gameobject(s) instance.
 		static std::vector<RefPtr<Entity::GameObject>> CreateEnemyTank(const glm::vec2& position);

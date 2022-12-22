@@ -16,8 +16,8 @@ namespace Gameplay
 		pos += Core::Input::IsKeyHeld(Core::Input::Key::T) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
 		pos += Core::Input::IsKeyHeld(Core::Input::Key::G) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
 
-		pos += Core::Input::IsKeyHeld(Core::Input::Key::F) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
-		pos += Core::Input::IsKeyHeld(Core::Input::Key::H) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::H) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::F) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
 
 		pos += Core::Input::IsKeyHeld(Core::Input::Key::Y) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
 		pos += Core::Input::IsKeyHeld(Core::Input::Key::R) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
