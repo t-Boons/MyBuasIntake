@@ -19,6 +19,9 @@ namespace Gameplay
 		// Get tank input component from parent object (because the tank body object contains the tankinput component)
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
 		
+		// Get audiosource for gun shots.
+		m_GunShot = GetComponent<Entity::AudioSource>();
+
 		// Get bullet prefab to copy from.
 		m_BulletPrefab = ScenePrefabs::CreateBullet();
 
@@ -61,12 +64,16 @@ namespace Gameplay
 
 	void TankGun::Shoot()
 	{
+		// Play gun audio.
+		m_GunShot->SetPitch((rand() % 1000) / 1000.0f * 0.5f + 0.60f);
+		m_GunShot->Play();
+
 		// Reduce bullet count. 
 		m_BulletsInChamber--;
 
 		// Spawn bullet.
 		Entity::GameObject::Instantiate(m_BulletPrefab,
-			m_Transform->GetPosition() + m_Transform->GetForward() * 2.0f + glm::vec3(0.0f, 1.0f, 0.0f),
+			m_Transform->GetPosition() + m_Transform->GetForward() * 2.4f + glm::vec3(0.0f, 1.0f, 0.0f),
 			m_Transform->GetRotation());
 	}
 

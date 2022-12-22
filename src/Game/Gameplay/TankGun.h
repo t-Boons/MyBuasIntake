@@ -42,6 +42,7 @@ namespace Gameplay
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<TankInput> m_Input;
+		RefPtr<Entity::AudioSource> m_GunShot;
 
 		RefPtr<std::thread> m_RefilBulletThread;
 		uint32_t m_BulletsInChamber; 

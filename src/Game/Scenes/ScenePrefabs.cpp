@@ -166,9 +166,13 @@ namespace Gameplay
 		));
 
 		// Add behaviour component and attach theh tank body to the tank gun.
-		RefPtr<Gameplay::TankGun> gun = tankGun->AddComponent(Gameplay::TankGun::Create());
-		gun->SetTankParent(tankBody->GetComponent<Entity::Transform>());
+		RefPtr<Gameplay::TankGun> gunBehaviour = tankGun->AddComponent(Gameplay::TankGun::Create());
+		gunBehaviour->SetTankParent(tankBody->GetComponent<Entity::Transform>());
 
+		// Add gun audio.
+		RefPtr<Entity::AudioSource> shootSound = tankGun->AddComponent(Entity::AudioSource::Create());
+		shootSound->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
+		shootSound->SetVolume(0.5f);
 
 		objects[1] = tankGun;
 
@@ -247,9 +251,13 @@ namespace Gameplay
 
 
 		// Add behaviour component and attach theh tank body to the tank gun.
-		RefPtr<Gameplay::TankGun> gun = tankGun->AddComponent(Gameplay::TankGun::Create());
-		gun->SetTankParent(tankBody->GetComponent<Entity::Transform>());
+		RefPtr<Gameplay::TankGun> gunBehaviour = tankGun->AddComponent(Gameplay::TankGun::Create());
+		gunBehaviour->SetTankParent(tankBody->GetComponent<Entity::Transform>());
 
+		// Add gun audio.
+		RefPtr<Entity::AudioSource> shootSound = tankGun->AddComponent(Entity::AudioSource::Create());
+		shootSound->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
+		shootSound->SetVolume(0.3f);
 
 		objects[1] = tankGun;
 
