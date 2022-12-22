@@ -12,6 +12,15 @@ namespace Entity
 		m_Volume(100.0f),
 		m_PlaybackTime(0.0f)
 	{
+		m_Sound.setLoop(false);
+		m_Sound.setPitch(m_Pitch);
+		m_Sound.setVolume(m_Volume);
+		m_Sound.setPlayingOffset(sf::Time());
+	}
+
+	void AudioSource::Update()
+	{
+		m_PlaybackTime = m_Sound.getPlayingOffset().asSeconds();
 	}
 
 	void AudioSource::LoadClipFromFile(const std::string& filepath)
@@ -92,5 +101,11 @@ namespace Entity
 
 		// Set new volume in sound.
 		m_Sound.setVolume(m_Volume);
+	}
+
+	void AudioSource::SetLooping(bool looping)
+	{
+		m_IsLooping = looping;
+		m_Sound.setLoop(looping);
 	}
 }

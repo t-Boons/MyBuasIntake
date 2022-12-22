@@ -69,5 +69,17 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreateBlockMesh({ 6, -0 }));
 
 		AddToScene(ScenePrefabs::CreateCollider({ 0, 0 }, { 14, 2 }));
+
+
+
+
+
+		RefPtr<Entity::GameObject> mainTheme = Entity::GameObject::Create("Speaker");
+		auto aud = mainTheme->AddComponent(Entity::AudioSource::Create());
+		aud->LoadClipFromFile("Assets/Audio/Music/Tanks_Variation_1.ogg");
+		aud->SetLooping(true);
+		aud->Play();
+
+		AddToScene(mainTheme);
 	}
 }

@@ -14,6 +14,8 @@ namespace Entity
 	public:
 		AudioSource();
 
+		void Update() override;
+
 		// Load audio clip from file.
 		void LoadClipFromFile(const std::string& filepath);
 
@@ -41,11 +43,17 @@ namespace Entity
 		// Get audio volume.
 		float GetVolume() const { return m_Volume; }
 
+		// Enable or disable audio looping.
+		void SetLooping(bool looping);
+
+		// See if audio is looping.
+		bool IsLooping() const { return m_IsLooping; }
+
 	private:
-		bool m_IsLooping;
+		float m_PlaybackTime;
 		float m_Pitch;
 		float m_Volume;
-		float m_PlaybackTime;
+		bool m_IsLooping;
 		sf::SoundBuffer m_Clip;
 		sf::Sound m_Sound;
 	};
