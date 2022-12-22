@@ -22,7 +22,7 @@ namespace Entity
 		// Increment gameobject counter.
 		s_GameObjectCount++;
 
-		LOG_INFO("Created: GameObject " + GetName() + " " + "ID: " + STR(m_ID))
+		LOG_NOTIF("CREATED: " + GetName() + " ID: " + STR(m_ID))
 	}
 
 	GameObject::GameObject(const GameObject& object)
@@ -51,7 +51,7 @@ namespace Entity
 
 		m_Name = std::string(object.m_Name);
 
-		LOG_WARN("Copied:  GameObject " + object.GetName() + " ID: " + STR(m_ID))
+		LOG_NOTIF("COPIED:  " + GetName() + " ID: " + STR(m_ID))
 	}
 
 	GameObject::~GameObject()
@@ -59,7 +59,7 @@ namespace Entity
 		// Decrement gameobject counter.
 		s_GameObjectCount--;
 
-		LOG_WARN("Deleted: GameObject " + GetName() + " ID: " + STR(m_ID))
+		LOG_NOTIF("DELETED: " + GetName() + " ID: " + STR(m_ID))
 	}
 
 	void GameObject::StartComponents()

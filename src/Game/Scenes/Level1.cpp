@@ -29,7 +29,7 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreateEnemyTank({ 0, 10 }));
 		
 
-		// Load obstacles on the left.
+		///   Load obstacles on the left.
 		// ----------------------------------
 		// |								|
 		// |	 [ ]						|
@@ -49,7 +49,7 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreateCollider({ 5, -10 }, { 4, 2 }));
 
 
-		// Load obstacle in the middle.
+		///    Load obstacle in the middle.
 		// ----------------------------------
 		// |								|
 		// |	 		 [ ]				|

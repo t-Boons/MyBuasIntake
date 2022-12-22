@@ -111,7 +111,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x86\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -147,7 +147,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x64\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -186,7 +186,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x86\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -230,7 +230,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib</AdditionalDependencies>
       <OutputFile>$(TargetPath)</OutputFile>
       <AdditionalLibraryDirectories>lib\SFML-2.5.1_x64\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -258,10 +258,11 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </ClCompile>
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
+    <ClCompile Include="src\Entity\AudioSource.cpp" />
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
-    <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInputPlayer.cpp" />
     <ClCompile Include="src\Game\Scenes\ScenePrefabs.cpp" />
     <ClCompile Include="src\Physics\AABB.cpp" />
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
@@ -303,12 +304,15 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="lib\glad\include\glad\glad.h" />
     <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Entity\AudioSource.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Game\Components.h" />
     <ClInclude Include="src\Game\Gameplay\Bullet.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputBrownEnemy.h" />
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
-    <ClInclude Include="src\Game\Gameplay\TankInput.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInput.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputPlayer.h" />
     <ClInclude Include="src\Game\Scenes\ScenePrefabs.h" />
     <ClInclude Include="src\Physics\AABB.h" />
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />

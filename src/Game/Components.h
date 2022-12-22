@@ -11,6 +11,7 @@
 #include "Entity/PhysicsBody.h"
 #include "Entity/ScriptComponent.h"
 #include "Entity/Transform.h"
+#include "Entity/AudioSource.h"
 #include "Entity/GameObject.h"
 
 // Core components.

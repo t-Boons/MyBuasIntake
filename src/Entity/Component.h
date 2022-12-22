@@ -6,13 +6,25 @@
 #include "Core/Core.h"
 #include "GameObject.h"
 
+// Macro to simplify print messages
+
+#define GAMEOBJECT_IDENTITY "OBJ: " + Parent->GetName() + " ID: " + STR(Parent->GetID()) + " "
+
+
+
 // Macro to make component name implementation easier.
 
-#define IMPLEMENT_COMPONENT_IDENTIFIER(name) 	public:\
-													virtual std::string GetTypeName() const override { return #name; } \
-													static std::string GetStaticName() { return #name; }\
-													static RefPtr<name> Create() { return std::make_shared<name>(); }\
-													virtual name* Copy() override {return new name(*this);}
+#define IMPLEMENT_COMPONENT_IDENTIFIER(name) 				public:\
+																virtual std::string GetTypeName() const override { return #name; } \
+																static std::string GetStaticName() { return #name; }\
+																static RefPtr<name> Create() { return std::make_shared<name>(); }\
+																virtual name* Copy() override {return new name(*this);}
+
+#define IMPLEMENT_COMPONENT_IDENTIFIER_INHERIT(name, base)  public:\
+																virtual std::string GetTypeName() const override { return #base; } \
+																static std::string GetStaticName() { return #base; }\
+																static RefPtr<name> Create() { return std::make_shared<name>(); }\
+																virtual name* Copy() override {return new name(*this);}
 
 
 namespace Entity

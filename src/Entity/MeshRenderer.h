@@ -23,7 +23,7 @@ namespace Entity
 		void SetMaterial(const RefPtr<Renderer::Material>& material) { m_Material = material; }
 
 		// Get mesh object.
-		const RefPtr<Renderer::Mesh> GetMesh() const { return m_Mesh; }
+		const RefPtr<Renderer::Mesh>& GetMesh() const { return m_Mesh; }
 
 	private:
 		RefPtr<Renderer::Mesh> m_Mesh;

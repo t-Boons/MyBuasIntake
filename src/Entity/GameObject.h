@@ -32,7 +32,9 @@ namespace Entity
 			{
 				// Return if static type and local type match.
 				if (component->GetTypeName() == T::GetStaticName())
+				{
 					return std::dynamic_pointer_cast<T>(component);
+				}
 			}
 
 			return nullptr;

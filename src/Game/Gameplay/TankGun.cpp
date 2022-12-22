@@ -10,9 +10,14 @@ namespace Gameplay
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 
+		// Log error if parent is not set.
+		if (!m_ParentTransform)
+		{
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "TankGun parent transform can not be found.")
+		}
+
 		// Get tank input component from parent object (because the tank body object contains the tankinput component)
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
-
 		
 		// Get bullet prefab to copy from.
 		m_BulletPrefab = ScenePrefabs::CreateBullet();
@@ -29,13 +34,10 @@ namespace Gameplay
 		}
 
 		// Update the gun's rotation.
-		if (m_Input)
-		{
-			SetGunRotation(m_Input->GetGunDirectionInput());
-		}
+		SetGunRotation(m_Input->GetGunDirectionInput());
 
 		// See if mouse button is pressed and shoot if it is.
-		if (m_Input && m_Input->IsShooting())
+		if (m_Input->IsShooting())
 		{
 			if (HasAmmo())
 			{

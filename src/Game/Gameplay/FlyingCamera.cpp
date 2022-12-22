@@ -2,6 +2,7 @@
 
 #include "mypch.h"
 #include "FlyingCamera.h"
+#include "Core/Input.h"
 
 namespace Gameplay
 {
@@ -11,14 +12,15 @@ namespace Gameplay
 
 		float deltaTime = Core::Time::GetDeltaTime();
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::T) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::G) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
+		// Update position values.
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::T) ? glm::vec3(0.0f) : m_Camera->GetViewForward() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::G) ? glm::vec3(0.0f) : -m_Camera->GetViewForward() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::F) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::H) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::F) ? glm::vec3(0.0f) : m_Camera->GetViewRight() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::H) ? glm::vec3(0.0f) : -m_Camera->GetViewRight() * (deltaTime * 10);
 
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::Y) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
-		pos += sf::Keyboard::isKeyPressed(sf::Keyboard::R) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::Y) ? glm::vec3(0.0f) : m_Camera->GetViewUp() * (deltaTime * 10);
+		pos += Core::Input::IsKeyHeld(Core::Input::Key::R) ? glm::vec3(0.0f) : -m_Camera->GetViewUp() * (deltaTime * 10);
 
 		return pos;
 	}
@@ -46,15 +48,28 @@ namespace Gameplay
 	{
 		m_Camera = GetComponent<Entity::Camera>();
 		m_ActiveCamera = Core::Game::Get()->GetSceneManager()->GetActiveScene()->GetActiveCamera();
-	}
 
+		// See if the flycam camera is the active camera
+		m_IsActiveCamera = m_Camera == m_ActiveCamera;
+
+		// Log error if camera can not be found.
+		if (!m_Camera)
+		{
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "FlyingCamera camera component can not be found.")
+		}
+
+		// Log if spectator camera is being used.
+		if (m_IsActiveCamera)
+		{
+			LOG_INFO("Using spectator camera.")
+		}
+	}
 
 	void FlyingCamera::Update()
 	{
 		// Error check to see if the camera is assigned.
-		if (!m_Camera)
+		if (!m_IsActiveCamera)
 		{
-			LOG_ERROR("FlyingCamera camera is not assigned!")
 			return;
 		}
 

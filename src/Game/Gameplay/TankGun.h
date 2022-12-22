@@ -3,11 +3,11 @@
 #pragma once
 
 #include "Game/Components.h"
-#include "Game/Gameplay/TankInput.h"
+#include "Game/Gameplay/Input/TankInput.h"
 #include "Game/Scenes/ScenePrefabs.h"
 
-#define CONSECUTIVE_BULLET_COUNT 30000;
-#define BULLET_REFIL_DELAY 2000
+#define CONSECUTIVE_BULLET_COUNT 5;
+#define BULLET_REFIL_DELAY 2750 // In milliseconds.
 
 namespace Gameplay
 {
@@ -20,7 +20,7 @@ namespace Gameplay
 
 		// Defined defualt copy constructor and constructor because the class uses std::thread.
 		// Just don't copy this class it should be fine.
-		// TODO make threads copyable.
+		// TODO (maybe) make threads copyable.
 
 		TankGun()
 		{}

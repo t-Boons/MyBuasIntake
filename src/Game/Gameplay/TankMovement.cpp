@@ -5,7 +5,6 @@
 
 namespace Gameplay
 {
-
 	void TankMovement::Start()
 	{
 		m_Transform = GetComponent<Entity::Transform>();
@@ -19,7 +18,7 @@ namespace Gameplay
 		glm::vec2 input = m_TankInput->GetMovementInput();
 
 		// Update movement.
-		m_Transform->Translate(input.x * m_Transform->GetForward() * dt * 5.0f);
-		m_Transform->Rotate(input.y * glm::vec3(0, 1, 0) * dt * -50.0f);
+		m_Transform->Translate(input.x * m_Transform->GetForward() * dt * MOVEMENT_SPEED);
+		m_Transform->Rotate(input.y * glm::vec3(0, 1, 0) * dt * -ROTATION_SPEED);
 	}
 }

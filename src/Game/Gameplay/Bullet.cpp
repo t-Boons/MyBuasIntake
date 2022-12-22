@@ -6,7 +6,6 @@
 
 namespace Gameplay
 {
-
 	void Bullet::Start()
 	{
 		m_Transform = GetComponent<Entity::Transform>();

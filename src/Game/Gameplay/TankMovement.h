@@ -3,7 +3,10 @@
 #pragma once
 
 #include "Game/Components.h"
-#include "Game/Gameplay/TankInput.h"
+#include "Game/Gameplay/Input/TankInput.h"
+
+#define MOVEMENT_SPEED 6.0f
+#define ROTATION_SPEED 100.0f
 
 namespace Gameplay
 {

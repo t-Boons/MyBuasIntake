@@ -25,6 +25,25 @@ namespace Entity
 
 	void Camera::SetPerspectiveProjection(float fov, float znear, float zfar)
 	{
+		// Error checks
+		if (fov < 0)
+		{
+			fov = 0;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Fov can not be lower than zero")
+		}
+
+		if (znear < 0.001f)
+		{
+			znear = 0.001f;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Z-Near can not be lower than 0.001f")
+		}
+
+		if (zfar < 0)
+		{
+			zfar = 0.001f;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Z-Far can not be lower than 0.001f")
+		}
+
 		// Set projection type.
 		m_Projection = Projection::Perspective;
 
@@ -38,6 +57,25 @@ namespace Entity
 
 	void Camera::SetOrtographicProjection(float size, float znear, float zfar)
 	{
+		// Error checks.
+		if (size < 0)
+		{
+			size = 0;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Size can not be lower than zero")
+		}
+
+		if (znear < 0.001f)
+		{
+			znear = 0.001f;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Z-Near can not be lower than 0.001f")
+		}
+
+		if (zfar < 0)
+		{
+			zfar = 0.001f;
+			LOG_ERROR(GAMEOBJECT_IDENTITY + "Z-Far can not be lower than 0.001f")
+		}
+
 		// Set projection type.
 		m_Projection = Projection::Ortographic;
 

@@ -3,10 +3,10 @@
 #pragma once
 
 #include "Game/Components.h"
-#include "Game/Gameplay/TankInput.h"
+#include "Game/Gameplay/Input/TankInput.h"
 
 #define RICOCHET_AMOUNT 2
-#define BULLET_SPEED 5.0f
+#define BULLET_SPEED 7.0f
 
 namespace Gameplay
 {

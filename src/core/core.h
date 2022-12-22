@@ -25,6 +25,7 @@
 
 #define LOG(message) LOG_TRACE(message);
 #define LOG_TRACE(message) Utils::Log::LogMessage(Utils::Log::LogColor::White, std::string("[TRACE] ") + message);
+#define LOG_NOTIF(message) Utils::Log::LogMessage(Utils::Log::LogColor::Purple, std::string("[NOTIF] ") + message);
 #define LOG_INFO(message)  Utils::Log::LogMessage(Utils::Log::LogColor::Green, std::string("[INFO]  ")  + message);
 #define LOG_WARN(message)  Utils::Log::LogMessage(Utils::Log::LogColor::Yellow, std::string("[WARN]  ") + message);
 #define LOG_ERROR(message) Utils::Log::LogMessage(Utils::Log::LogColor::Red, std::string("[ERROR] ")   + message);
@@ -39,6 +40,7 @@
 #else
 #define LOG(message) ;;
 #define LOG_TRACE(message) ;;
+#define LOG_NOTIF(message) ;;
 #define LOG_INFO(message) ;;
 #define LOG_WARN(message) ;;
 #define LOG_ERROR(message);

@@ -30,11 +30,12 @@
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Physics\PhysicsEnviroment.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
-    <ClCompile Include="src\Game\Gameplay\TankInput.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInputPlayer.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Game\Scenes\ScenePrefabs.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
+    <ClCompile Include="src\Entity\AudioSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -70,12 +71,15 @@
     <ClInclude Include="src\Physics\PhysicsEnviroment.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
-    <ClInclude Include="src\Game\Gameplay\TankInput.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputPlayer.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Game\Scenes\ScenePrefabs.h" />
     <ClInclude Include="src\Game\Gameplay\Bullet.h" />
     <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Game\Components.h" />
+    <ClInclude Include="src\Entity\AudioSource.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInput.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputBrownEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">
