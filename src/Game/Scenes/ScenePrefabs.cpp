@@ -221,6 +221,9 @@ namespace Gameplay
 
 		tankBody->AddComponent(Entity::PhysicsBody::Create());
 
+		// Add tank movement component.
+		tankBody->AddComponent(Gameplay::TankEngine::Create());
+
 		// Add AI input.
 		tankBody->AddComponent(Gameplay::TankInputBrownEnemy::Create());
 

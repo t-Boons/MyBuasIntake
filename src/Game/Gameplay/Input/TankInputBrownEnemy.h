@@ -5,12 +5,22 @@
 #include "Game/Components.h"
 #include "TankInput.h"
 
+#define MAX_STATE_TIME 3.0f
+
 namespace Gameplay
 {
 	class TankInputBrownEnemy : public TankInput
 	{
+
 		IMPLEMENT_COMPONENT_IDENTIFIER_INHERIT(TankInputBrownEnemy, TankInput)
 
-		// TODO Add actual AI to this.
+	public:
+		void Update() override;
+
+		void RandomizeInputs();
+
+	private:
+		float m_Timer;
+		float m_RandomValue;
 	};
 }

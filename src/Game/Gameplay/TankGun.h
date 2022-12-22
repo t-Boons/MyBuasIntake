@@ -44,7 +44,7 @@ namespace Gameplay
 		RefPtr<TankInput> m_Input;
 
 		RefPtr<std::thread> m_RefilBulletThread;
-		uint32_t m_BulletsInChamber;
+		uint32_t m_BulletsInChamber; 
 		bool m_Reloaded;
 	};
 }

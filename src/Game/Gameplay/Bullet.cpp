@@ -43,9 +43,6 @@ namespace Gameplay
 			// Reflect bullet off of the surface using the collision normal.
 			m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
 
-			// Play clack sound.
-			m_Clack->Play();
-
 			// Log hit.
 			LOG_INFO(GAMEOBJECT_IDENTITY + "Hit: " + collision->HitObject->GetName() + " ID: " + STR(collision->HitObject->GetID()))
 
@@ -56,6 +53,12 @@ namespace Gameplay
 			if (destroyDueTohitCount || destroyDueToCollision)
 			{
 				m_DeleteDelayStarted = true;
+			}
+			else
+			{
+				// Play clack sound.
+				m_Clack->SetPitch((rand() % 250) / 1000.0f + 0.95f);
+				m_Clack->Play();
 			}
 		}
 	}

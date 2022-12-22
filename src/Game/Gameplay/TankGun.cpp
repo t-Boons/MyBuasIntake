@@ -52,7 +52,7 @@ namespace Gameplay
 	void TankGun::SetGunRotation(const glm::vec2& direction)
 	{
 		// Calculate the angle based on the look direction.
-		float angle = glm::acos(glm::dot(glm::vec2(0.0f, 1.0f), direction));
+		float angle = glm::acos(glm::dot(glm::vec2(0.0f, 1.0f), glm::normalize(direction)));
 		angle = direction.x > 0 ? -angle : angle;
 
 		// Rotate turret to right direction.
