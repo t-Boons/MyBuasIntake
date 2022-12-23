@@ -10,6 +10,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "Game/Scenes/Level1.h"
+#include "Utils/TimedEvent.h"
 
 namespace Core
 {
@@ -43,6 +44,9 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Tick()
 	{
+		// Update utils Timedevent timings.
+		Utils::TimedEventContainer::Update(Time::GetDeltaTime());
+
 		// Start rendering of the scene.
 		Renderer::Renderer::BeginScene(m_SceneManager->GetActiveScene()->GetActiveCamera());
 

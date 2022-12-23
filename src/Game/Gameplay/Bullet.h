@@ -4,10 +4,11 @@
 
 #include "Game/Components.h"
 #include "Game/Gameplay/Input/TankInput.h"
+#include "Utils/TimedEvent.h"
 
 #define RICOCHET_AMOUNT 2
 #define BULLET_SPEED 7.5f
-#define DESTROY_DELAY 0.09f
+#define DESTROY_DELAY 0.2f
 
 namespace Gameplay
 {
@@ -27,7 +28,6 @@ namespace Gameplay
 		RefPtr<Entity::AudioSource> m_Clack;
 		RefPtr<Entity::AudioSource> m_Thud;
 		uint32_t m_Hits;
-		float m_DelayTime;
-		bool m_DeleteDelayStarted;
+		bool m_Destroyed;
 	};
 }

@@ -142,7 +142,7 @@ namespace Gameplay
 		/// Collision components.
 		// Add collision components.
 		auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
-		tankCollider->SetSize({ 2.5f, 5, 2.5f });
+		tankCollider->SetSize({ 2.0f, 5, 2.0f });
 
 		tankBody->AddComponent(Entity::PhysicsBody::Create());
 		/// -
@@ -193,7 +193,7 @@ namespace Gameplay
 
 
 		// Set tank gun reference in tank engine.
-		tankEngine->SetGunObject(tankGun);
+		tankEngine->SetGunObject(gunBehaviour);
 
 
 		objects[0] = tankBody;
@@ -245,7 +245,7 @@ namespace Gameplay
 		/// Collision components.
 		// Add collision components.
 		auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
-		tankCollider->SetSize({ 2.5f, 5, 2.5f });
+		tankCollider->SetSize({ 2.0f, 5, 2.0f });
 
 		tankBody->AddComponent(Entity::PhysicsBody::Create());
 		/// -
@@ -296,7 +296,7 @@ namespace Gameplay
 
 
 		// Set tank gun reference in tank engine.
-		tankEngine->SetGunObject(tankGun);
+		tankEngine->SetGunObject(gunBehaviour);
 
 
 		objects[0] = tankBody;

@@ -36,6 +36,9 @@ namespace Gameplay
 			m_Transform->SetPosition(m_ParentTransform->GetPosition());
 		}
 
+		// Reset shooting state.
+		m_IsShooting = false;
+
 		// Update the gun's rotation.
 		SetGunRotation(m_Input->GetGunDirectionInput());
 
@@ -70,6 +73,7 @@ namespace Gameplay
 
 		// Reduce bullet count. 
 		m_BulletsInChamber--;
+		m_IsShooting = true;
 
 		// Spawn bullet.
 		Entity::GameObject::Instantiate(m_BulletPrefab,
@@ -88,16 +92,11 @@ namespace Gameplay
 		{
 			m_Reloaded = true;
 
-			// Start a thread that resets the bullet count after x amount of seconds.
-			std::thread reloadThread = std::thread([=]()
+			Utils::TimedEvent(BULLET_REFIL_DELAY, [=]()
 				{
-					Sleep(BULLET_REFIL_DELAY);
-					m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
-					m_Reloaded = false;
+				m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
+				m_Reloaded = false;
 				});
-
-			// Detach the thread so it runs whilst not having to be joined.
-			reloadThread.detach();
 		}
 	}
 }

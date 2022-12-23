@@ -66,9 +66,18 @@ namespace Utils
 	{
 		std::ostringstream date;
 
+
+		std::string secondsAsString = std::to_string(seconds);
+
+		// Converts values under 10 to 2 characters (e.g. 6 becomes 06)
+		if (seconds < 10)
+		{
+			secondsAsString = "0" + secondsAsString;
+		}
+
 		// Format the time in to a good looking string.
 		date << year << '-' << month << '-' << day << ' '
-			<< hour << ':' << minutes << ':' << seconds << ':' << std::setfill('0') << std::setw(4) << milliseconds;
+			<< hour << ':' << minutes << ':' << secondsAsString << ':' << std::setfill('0') << std::setw(4) << milliseconds;
 
 		return date.str();
 	}

@@ -15,55 +15,57 @@ namespace Gameplay
 		m_Thud = GetComponents<Entity::AudioSource>()[1];
 
 		m_Hits = 0;
-		m_DelayTime = 0;
+		m_Destroyed = false;
 	}
 
 	void Bullet::Update()
 	{
-		if (!m_DeleteDelayStarted)
+		// Ignore movement if object is queued to be deleted.
+		if (m_Destroyed)
 		{
-			// Move forward.
-			m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * BULLET_SPEED);
+			return;
 		}
-		else
-		{
-			// Update delay time.
-			m_DelayTime += Core::Time::GetDeltaTime();
 
-			// Destroy object after DESTROY_DELAY amount of time.
-			if (m_DelayTime > DESTROY_DELAY)
-			{
-				Parent->Destroy();
-			}
-		}
+		// Move forward.
+		m_Transform->Translate(m_Transform->GetForward() * Core::Time::GetDeltaTime() * BULLET_SPEED);
 	}
 
 	void Bullet::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
-		// Only run this if object is not being deleted.
-		if (!m_DeleteDelayStarted)
+		// Ignore any collision if this object is queued to be destroyed.
+		if (m_Destroyed)
 		{
-			// Reflect bullet off of the surface using the collision normal.
-			m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
+			return;
+		}
 
-			// Log hit.
-			LOG_INFO(GAMEOBJECT_IDENTITY + "Hit: " + collision->HitObject->GetName() + " ID: " + STR(collision->HitObject->GetID()))
+		// Reflect bullet off of the surface using the collision normal.
+		m_Transform->SetRotation(glm::quatLookAt(glm::reflect(-m_Transform->GetForward(), collision->Normal), glm::vec3(0.0f, 1.0f, 0.0f)));
 
-			// Check if bullet should be destroyed.
-			bool destroyDueTohitCount = ++m_Hits >= RICOCHET_AMOUNT;
-			bool destroyDueToCollision = collision->HitObject->GetComponent<Gameplay::Bullet>() || collision->HitObject->GetComponent<Gameplay::TankEngine>();
+		// Log hit.
+		LOG_INFO(GAMEOBJECT_IDENTITY + "Hit: " + collision->HitObject->GetName() + " ID: " + STR(collision->HitObject->GetID()))
 
-			if (destroyDueTohitCount || destroyDueToCollision)
-			{
-				m_DeleteDelayStarted = true;
-				m_Thud->Play();
-			}
-			else
-			{
-				// Play clack sound.
-				m_Clack->SetPitch((rand() % 250) / 1000.0f + 0.95f);
-				m_Clack->Play();
-			}
+		// Check if bullet should be destroyed.
+		bool destroyDueTohitCount = ++m_Hits >= RICOCHET_AMOUNT;
+		bool destroyDueToCollision = collision->HitObject->GetComponent<Gameplay::Bullet>() || collision->HitObject->GetComponent<Gameplay::TankEngine>();
+
+		if (destroyDueTohitCount || destroyDueToCollision)
+		{
+			// Play thud sound.
+			m_Thud->Play();
+
+			// Remove the mesh renderer.
+			GetComponent<Entity::MeshRenderer>()->Destroy();
+
+			// Run deletion event
+			Utils::TimedEvent(DESTROY_DELAY, [=]() {Parent->Destroy(); });
+
+			m_Destroyed = true;
+		}
+		else
+		{
+			// Play clack sound.
+			m_Clack->SetPitch((rand() % 250) / 1000.0f + 0.95f);
+			m_Clack->Play();
 		}
 	}
 }

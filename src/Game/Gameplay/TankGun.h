@@ -6,8 +6,8 @@
 #include "Game/Gameplay/Input/TankInput.h"
 #include "Game/Scenes/ScenePrefabs.h"
 
-#define CONSECUTIVE_BULLET_COUNT 5;
-#define BULLET_REFIL_DELAY 2750 // In milliseconds.
+#define CONSECUTIVE_BULLET_COUNT 5
+#define BULLET_REFIL_DELAY 2.75f
 
 namespace Gameplay
 {
@@ -36,16 +36,19 @@ namespace Gameplay
 		// Set the parent object the gun will be parented to.
 		void SetTankParent(const RefPtr<Entity::Transform>& parent) { m_ParentTransform = parent; }
 
+		// Returns if the gun has been fired this frame.
+		bool IsShooting() const { return m_IsShooting; }
+
 	private:
 		RefPtr<Entity::GameObject> m_BulletPrefab;
 
 		RefPtr<Entity::Transform> m_ParentTransform;
 		RefPtr<Entity::Transform> m_Transform;
-		RefPtr<TankInput> m_Input;
 		RefPtr<Entity::AudioSource> m_GunShot;
 
-		RefPtr<std::thread> m_RefilBulletThread;
+		RefPtr<TankInput> m_Input;
+
 		uint32_t m_BulletsInChamber; 
-		bool m_Reloaded;
+		bool m_Reloaded, m_IsShooting;
 	};
 }

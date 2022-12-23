@@ -300,6 +300,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Game\Gameplay\FlyingCamera.cpp" />
     <ClCompile Include="src\Core\Log.cpp" />
     <ClCompile Include="src\Utils\TextureAtlas.cpp" />
+    <ClCompile Include="src\Utils\TimedEvent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\glad\include\glad\glad.h" />
@@ -344,6 +345,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Game\Gameplay\FlyingCamera.h" />
     <ClInclude Include="src\Core\Log.h" />
     <ClInclude Include="src\Utils\TextureAtlas.h" />
+    <ClInclude Include="src\Utils\TimedEvent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

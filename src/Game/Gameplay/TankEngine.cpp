@@ -12,6 +12,7 @@ namespace Gameplay
 		m_ExplosionSound = GetComponent<Entity::AudioSource>();
 
 		m_ReduceSpeedTimer = 0;
+		m_IsDead = false;
 	}
 
 	void TankEngine::Update()
@@ -23,7 +24,7 @@ namespace Gameplay
 		float speed = 1;
 
 		// Check if player is shooting
-		if (m_TankInput->IsShooting())
+		if (m_TankGun->IsShooting())
 		{
 			m_ReduceSpeedTimer = 0;
 		}
@@ -42,8 +43,16 @@ namespace Gameplay
 
 	void TankEngine::OnCollisionEnter(RefPtr<Physics::Collision> collision)
 	{
+		// Ignore if the tank is dead. (required because this instance is deleted after a small delay)
+		if (m_IsDead)
+		{
+			return;
+		}
+
 		if (collision->HitObject->GetName() == "Bullet")
 		{
+			m_IsDead = true;
+
 			m_ExplosionSound->Play();
 			
 			// Remove collider.
@@ -57,7 +66,10 @@ namespace Gameplay
 			}
 
 			// Remove player gun renderer.
-			m_TankGun->Destroy();
+			m_TankGun->Parent->Destroy();
+
+
+			LOG_WARN(GAMEOBJECT_IDENTITY + "Has died.")
 		}
 	}
 }
