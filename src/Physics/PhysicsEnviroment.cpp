@@ -75,8 +75,8 @@ namespace Physics
 			{
 				currentPBodyCollider->ResetToLastValidPosition();
 
-				// Add collision event to scene.
-				Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent(colEvent);
+				// Push event to scene.
+				PushEvent(colEvent);
 			}
 
 			currentPBodyCollider->UpdateLastValidPosition();
@@ -110,5 +110,25 @@ namespace Physics
 		}
 
 		return nullptr;
+	}
+
+	void PhysicsEnviroment::PushEvent(const RefPtr<Collision>& collision)
+	{
+		// Add collision event to scene.
+		Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent(collision);
+
+
+		// If hit object has physicsbody also throw a physics Event for that one.
+		if (collision->HitObject->GetComponent<Entity::PhysicsBody>())
+		{
+			// Create reversed collision event.
+			RefPtr<Collision> hitColEvent = std::make_shared<Collision>();
+			hitColEvent->Normal = collision->Normal;
+			hitColEvent->ThisObject = collision->HitObject;
+			hitColEvent->HitObject = collision->ThisObject;
+
+			// Add collision event to scene.
+			Core::Game::Get()->GetSceneManager()->GetActiveScene()->AddCollisionEnterEvent(hitColEvent);
+		}
 	}
 }

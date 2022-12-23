@@ -115,12 +115,14 @@ namespace Gameplay
 		// Create vector that has to be filled.
 		std::vector<RefPtr<Entity::GameObject>> objects(2);
 
-		/// Create tank body
+
+		/// Create tank body object
 		RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create("PlayerTank");
 
 		// Set tank position.
 		tankBody->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
 
+		/// Rendering components.
 		auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
 		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBodyPlayer.obj"));
 		bodyRenderer->SetMaterial(Renderer::Material::Create(
@@ -135,47 +137,67 @@ namespace Gameplay
 			Renderer::Texture::Create("Assets/Textures/Tanks/tank_shadow.png"),
 			s_Basic3DShader
 		));
+		/// -
 
+		/// Collision components.
 		// Add collision components.
 		auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
 		tankCollider->SetSize({ 2.5f, 5, 2.5f });
 
 		tankBody->AddComponent(Entity::PhysicsBody::Create());
+		/// -
 
-
-		// Add behavior components.
-		tankBody->AddComponent(Gameplay::TankEngine::Create());
+		/// Behaviour
+		// Add tank movement component.
+		RefPtr<Gameplay::TankEngine> tankEngine = tankBody->AddComponent(Gameplay::TankEngine::Create());
+		// Add Player input.
 		tankBody->AddComponent(Gameplay::TankInputPlayer::Create());
+		/// -
 
-		objects[0] = tankBody;
+		/// Audio
+		// Add tank explosions
+		RefPtr<Entity::AudioSource> explosionAudio = tankBody->AddComponent(Entity::AudioSource::Create());
+		explosionAudio->LoadClipFromFile("Assets/Audio/Effects/Explosion.wav");
+		explosionAudio->SetVolume(0.5f);
+		/// - 
 
 
 
-		/// Create tank gun.
-		RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("PlayerTankGun");
+		/// Create tank gun object.
+		RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("EnemyTankGun");
 
 		// Set tank gun position.
 		tankGun->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
 
-		// Create player gun rendering.
-		RefPtr<Entity::MeshRenderer> gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
+		// Create enemy run rendering.
+		auto gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
 		gunRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankGunPlayer.obj"));
 		gunRenderer->SetMaterial(Renderer::Material::Create(
 			Renderer::Texture::Create("Assets/Textures/Tanks/Player/tank_blue.png"),
 			s_Basic3DShader
 		));
+		/// -
 
+		/// Behaviour
 		// Add behaviour component and attach theh tank body to the tank gun.
 		RefPtr<Gameplay::TankGun> gunBehaviour = tankGun->AddComponent(Gameplay::TankGun::Create());
 		gunBehaviour->SetTankParent(tankBody->GetComponent<Entity::Transform>());
+		/// -
 
+		/// Audio
 		// Add gun audio.
 		RefPtr<Entity::AudioSource> shootSound = tankGun->AddComponent(Entity::AudioSource::Create());
 		shootSound->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
-		shootSound->SetVolume(0.5f);
+		shootSound->SetVolume(0.3f);
+		///  - 
 
+
+		// Set tank gun reference in tank engine.
+		tankEngine->SetGunObject(tankGun);
+
+
+		objects[0] = tankBody;
 		objects[1] = tankGun;
-
 
 		return objects;
 	}
@@ -193,17 +215,17 @@ namespace Gameplay
 
 	std::vector<RefPtr<Entity::GameObject>> ScenePrefabs::CreateEnemyTank(const glm::vec2& position)
 	{
-
 		// Create vector that has to be filled.
 		std::vector<RefPtr<Entity::GameObject>> objects(2);
 
 
-		/// Create tank body
+		/// Create tank body object
 		RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create("EnemyTank");
 
 		// Set tank position.
 		tankBody->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
 
+		/// Rendering components.
 		auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
 		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBodyEnemy.obj"));
 		bodyRenderer->SetMaterial(Renderer::Material::Create(
@@ -218,24 +240,33 @@ namespace Gameplay
 			Renderer::Texture::Create("Assets/Textures/Tanks/tank_shadow.png"),
 			s_Basic3DShader
 		));
+		/// -
 
+		/// Collision components.
 		// Add collision components.
 		auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
 		tankCollider->SetSize({ 2.5f, 5, 2.5f });
 
 		tankBody->AddComponent(Entity::PhysicsBody::Create());
+		/// -
 
+		/// Behaviour
 		// Add tank movement component.
-		tankBody->AddComponent(Gameplay::TankEngine::Create());
-
+		RefPtr<Gameplay::TankEngine> tankEngine = tankBody->AddComponent(Gameplay::TankEngine::Create());
 		// Add AI input.
 		tankBody->AddComponent(Gameplay::TankInputBrownEnemy::Create());
+		/// -
 
-		objects[0] = tankBody;
+		/// Audio
+		// Add tank explosions
+		RefPtr<Entity::AudioSource> explosionAudio = tankBody->AddComponent(Entity::AudioSource::Create());
+		explosionAudio->LoadClipFromFile("Assets/Audio/Effects/Explosion.wav");
+		explosionAudio->SetVolume(0.5f);
+		/// - 
 
 
 
-		/// Create tank gun.
+		/// Create tank gun object.
 		RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("EnemyTankGun");
 
 		// Set tank gun position.
@@ -248,19 +279,28 @@ namespace Gameplay
 			Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_brown.png"),
 			s_Basic3DShader
 		));
+		/// -
 
-
+		/// Behaviour
 		// Add behaviour component and attach theh tank body to the tank gun.
 		RefPtr<Gameplay::TankGun> gunBehaviour = tankGun->AddComponent(Gameplay::TankGun::Create());
 		gunBehaviour->SetTankParent(tankBody->GetComponent<Entity::Transform>());
+		/// -
 
+		/// Audio
 		// Add gun audio.
 		RefPtr<Entity::AudioSource> shootSound = tankGun->AddComponent(Entity::AudioSource::Create());
 		shootSound->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
 		shootSound->SetVolume(0.3f);
+		///  - 
 
+
+		// Set tank gun reference in tank engine.
+		tankEngine->SetGunObject(tankGun);
+
+
+		objects[0] = tankBody;
 		objects[1] = tankGun;
-
 
 		return objects;
 	}
@@ -287,10 +327,17 @@ namespace Gameplay
 		// Set the bullet scale.
 		bullet->GetComponent<Entity::Transform>()->SetScale({ 0.075f, 0.075f, 0.075f });
 
+		/// Audio
 		// Add audiosource for the clack sound.
 		RefPtr<Entity::AudioSource> clackAudioSource = bullet->AddComponent(Entity::AudioSource::Create());
 		clackAudioSource->LoadClipFromFile("Assets/Audio/Effects/Clack.wav");
 		clackAudioSource->SetVolume(0.5f);
+
+		// Add audiosource for the thudsound.
+		RefPtr<Entity::AudioSource> thudAudioSource = bullet->AddComponent(Entity::AudioSource::Create());
+		thudAudioSource->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
+		thudAudioSource->SetVolume(0.5f);
+		thudAudioSource->SetPitch(0.75f);
 
 		// Add bullet gameplay behaviour component.
 		bullet->AddComponent(Bullet::Create());

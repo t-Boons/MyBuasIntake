@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Game/Components.h"
+#include "Game/Gameplay/TankGun.h"
 #include "Game/Gameplay/Input/TankInput.h"
 
 #define MOVEMENT_SPEED 6.0f
@@ -22,9 +23,16 @@ namespace Gameplay
 
 		virtual void Update() override;
 
+		virtual void OnCollisionEnter(RefPtr<Physics::Collision> collision) override;
+
+		// Sets the gun object to the gun of this tank.
+		void SetGunObject(const RefPtr<Entity::GameObject>& gun) { m_TankGun = gun; }
+
 	private:
+		RefPtr<Entity::GameObject> m_TankGun;
 		RefPtr<TankInput> m_TankInput;
 		RefPtr<Entity::Transform> m_Transform;
+		RefPtr<Entity::AudioSource> m_ExplosionSound;
 		float m_ReduceSpeedTimer;
 	};
 }

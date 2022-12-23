@@ -25,6 +25,7 @@ namespace Gameplay
 	private:
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<Entity::AudioSource> m_Clack;
+		RefPtr<Entity::AudioSource> m_Thud;
 		uint32_t m_Hits;
 		float m_DelayTime;
 		bool m_DeleteDelayStarted;

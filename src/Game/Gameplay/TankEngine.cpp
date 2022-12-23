@@ -9,6 +9,8 @@ namespace Gameplay
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 		m_TankInput = GetComponent<TankInput>();
+		m_ExplosionSound = GetComponent<Entity::AudioSource>();
+
 		m_ReduceSpeedTimer = 0;
 	}
 
@@ -36,5 +38,26 @@ namespace Gameplay
 		// Update movement.
 		m_Transform->Translate(input.x * m_Transform->GetForward() * dt * speed * MOVEMENT_SPEED);
 		m_Transform->Rotate(input.y * glm::vec3(0, 1, 0) * dt * speed * -ROTATION_SPEED);
+	}
+
+	void TankEngine::OnCollisionEnter(RefPtr<Physics::Collision> collision)
+	{
+		if (collision->HitObject->GetName() == "Bullet")
+		{
+			m_ExplosionSound->Play();
+			
+			// Remove collider.
+			Parent->GetComponent<Entity::BoxCollider>()->Destroy();
+
+			// Remove all renderers from tank body.
+			std::vector<RefPtr<Entity::MeshRenderer>> renderers = Parent->GetComponents<Entity::MeshRenderer>();
+			for (size_t i = 0; i < renderers.size(); i++)
+			{
+				renderers[i]->Destroy();
+			}
+
+			// Remove player gun renderer.
+			m_TankGun->Destroy();
+		}
 	}
 }

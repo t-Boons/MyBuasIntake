@@ -62,6 +62,34 @@ namespace Entity
 		LOG_NOTIF("DELETED: " + GetName() + " ID: " + STR(m_ID))
 	}
 
+	void GameObject::RemoveComponent(const RefPtr<Component>& toRemove)
+	{
+		// Get physicsenviroment reference.
+		RefPtr<Physics::PhysicsEnviroment> physicsEnviroment = Core::Game::Get()->GetSceneManager()->GetActiveScene()->GetPhysicsEnviroment();
+
+		for (size_t i = 0; i < m_Components.size(); i++)
+		{
+			// Remove from physics scene if it is a boxcollider component.
+			if (m_Components[i]->GetTypeName() == "BoxCollider")
+			{
+				physicsEnviroment->RemoveComponent(std::static_pointer_cast<Entity::BoxCollider>(toRemove));
+			}
+
+			// Remove from physics scene if it is a physicsbody component.
+			if (m_Components[i]->GetTypeName() == "PhysicsBody")
+			{
+				physicsEnviroment->RemoveComponent(std::static_pointer_cast<Entity::PhysicsBody>(toRemove));
+			}
+
+			// Remove component if it matches type.
+			if (m_Components[i] == toRemove)
+			{
+				// Remove component.
+				m_Components.erase(m_Components.begin() + i);
+			}
+		}
+	}
+
 	void GameObject::StartComponents()
 	{
 		// Loop through all components

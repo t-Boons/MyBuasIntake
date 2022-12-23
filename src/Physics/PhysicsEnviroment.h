@@ -29,7 +29,11 @@ namespace Physics
 		void Update();
 
 	private:
+		// Sees if there are any collisions found.
 		RefPtr<Collision> AnyIntersections(const RefPtr<Entity::BoxCollider>& collider);
+
+		// Pushes the collision events to the scene.
+		void PushEvent(const RefPtr<Collision>& collision);
 
 	private:
 

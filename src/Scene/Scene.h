@@ -57,7 +57,10 @@ namespace Core
 		void SetActiveCamera(const RefPtr<Entity::Camera>& camera) { m_ActiveCamera = camera; }
 
 		// Get active render camera.
-		const RefPtr<Entity::Camera> GetActiveCamera() const { return m_ActiveCamera; }
+		const RefPtr<Entity::Camera>& GetActiveCamera() const { return m_ActiveCamera; }
+
+		// Get physics scene component.
+		const RefPtr<Physics::PhysicsEnviroment>& GetPhysicsEnviroment() const { return m_PhysicsEnviroment; }
 
 		// Finds the entity with name.
 		RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);

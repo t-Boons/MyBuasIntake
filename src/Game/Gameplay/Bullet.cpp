@@ -9,7 +9,10 @@ namespace Gameplay
 	void Bullet::Start()
 	{
 		m_Transform = GetComponent<Entity::Transform>();
-		m_Clack = GetComponent<Entity::AudioSource>();
+
+		// Get multiple audiosource components.
+		m_Clack = GetComponents<Entity::AudioSource>()[0];
+		m_Thud = GetComponents<Entity::AudioSource>()[1];
 
 		m_Hits = 0;
 		m_DelayTime = 0;
@@ -53,6 +56,7 @@ namespace Gameplay
 			if (destroyDueTohitCount || destroyDueToCollision)
 			{
 				m_DeleteDelayStarted = true;
+				m_Thud->Play();
 			}
 			else
 			{

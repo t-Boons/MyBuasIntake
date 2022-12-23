@@ -40,6 +40,24 @@ namespace Entity
 			return nullptr;
 		}
 
+		template<class T>
+		const std::vector<RefPtr<T>> GetComponents()
+		{
+			std::vector<RefPtr<T>> components;
+
+			// Search for components of type in components.
+			for (auto& component : m_Components)
+			{
+				// Add item if type matches.
+				if (component->GetTypeName() == T::GetStaticName())
+				{
+					components.push_back(std::dynamic_pointer_cast<T>(component));
+				}
+			}
+
+			return components;
+		}
+
 		// Add component to entity.
 		template<class T>
 		inline RefPtr<T> AddComponent(RefPtr<T>& component)
@@ -52,6 +70,9 @@ namespace Entity
 
 			return component;
 		}
+
+		// Removes a component from the gameobject.
+		void RemoveComponent(const RefPtr<Component>& toRemove);
 
 		// Call start on all components.
 		void StartComponents();

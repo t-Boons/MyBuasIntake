@@ -29,7 +29,7 @@
 
 namespace Entity
 {
-	class Component
+	class Component : public std::enable_shared_from_this<Component>
 	{
 	public:
 
@@ -52,11 +52,24 @@ namespace Entity
 			return Parent->GetComponent<T>();
 		}
 
+		// Get multiple component of this gameobject.
+		template<class T>
+		const std::vector<RefPtr<T>> GetComponents()
+		{
+			return Parent->GetComponents<T>();
+		}
+
 		// Add Component to this gameobject.
 		template<class T>
 		const RefPtr<T> AddComponent()
 		{
 			return Parent->AddComponent<T>();
+		}
+
+		void Destroy()
+		{
+			// Remove this component from the gameobject.
+			Parent->RemoveComponent(shared_from_this());
 		}
 
 		// Virtual destructor for memory cleanup.
