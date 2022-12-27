@@ -12,10 +12,6 @@ namespace Renderer
 		// Initialize GLAD
 		gladLoadGLLoader((GLADloadproc)(sf::Context::getFunction));
 
-		// Pop SFML Opengl calls so they do not interfere.
-		Core::Game::Get()->GetWindow()->PopGLStates();
-
-
 		// Set opengl states for rendering.
 
 		// Enable depth testing so object don't render in front of each other.
@@ -33,17 +29,21 @@ namespace Renderer
 
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
-		// Pop SFML Opengl calls so they do not interfere.
-		Core::Game::Get()->GetWindow()->PopGLStates();
-
 		// Update view projection matrix.
 		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
-		// Apply the saved SFML Opengl calls.
-		Core::Game::Get()->GetWindow()->PushGLStates();
+		// Reset opengl buffer, texture and shader states.
+		// Required for sfml rendering.
+		// https://en.sfml-dev.org/forums/index.php?topic=24978.0 
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		glUseProgram(0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
 	void Renderer::SubmitMesh(const RefPtr<Entity::Transform>& transform, const RefPtr<Mesh> mesh, const RefPtr<Material> material)

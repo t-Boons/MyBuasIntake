@@ -44,6 +44,8 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Tick()
 	{
+		sf::RenderTexture tex;
+
 		// Update utils Timedevent timings.
 		Utils::TimedEventContainer::Update(Time::GetDeltaTime());
 
@@ -61,6 +63,17 @@ namespace Core
 
 		// Finish the rendering.
 		Renderer::Renderer::EndScene();
+
+
+
+		// TODO
+		// 
+		// TODO 2D Sfml rendering.
+		m_Window->PushGLStates();
+		// sfml drawing needs to be inside the push and pop function.
+		m_Window->PopGLStates();
+
+
 
 		// Display the rendered frame.
 		m_Window->Display();

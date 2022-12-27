@@ -33,3 +33,6 @@ https://downloads.khinsider.com/game-soundtracks/album/wii-play
 
 Wii tanks sound effects:
 https://www.sounds-resource.com/wii/wiiplay/sound/28569/?source=genre
+
+FOT-RodinNTLG Pro DB font:
+https://fontsgeek.com/fonts/fot-rodinntlg-pro-db
