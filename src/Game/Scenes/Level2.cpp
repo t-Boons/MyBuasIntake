@@ -1,13 +1,13 @@
 // 2022 Tygo Boons
 
 #include "mypch.h"
-#include "Level1.h"
+#include "Level2.h"
 #include "ScenePrefabs.h"
 #include "Game/Components.h"
 
 namespace Gameplay
 {
-	void Level1::LoadScene()
+	void Level2::LoadScene()
 	{
 		// Initializes tank scene prefab classyou
 		ScenePrefabs::Initialize();
@@ -24,7 +24,7 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreatePlayerTank({ 0, -15}));
 
 		AddToScene(ScenePrefabs::CreateEnemyTank({ 0, 10 }));
-
+		
 
 		///   Load obstacles on the left.
 		// ----------------------------------
@@ -42,8 +42,9 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreateBlockMesh({ 4, -10 }));
 		AddToScene(ScenePrefabs::CreateBlockMesh({ 6, -10 }));
 
-		AddToScene(ScenePrefabs::CreateCollider({ -5, -10 }, { 4, 2 }));
+		AddToScene(ScenePrefabs::CreateCollider({ -5, -10 }, { 4, 2}));
 		AddToScene(ScenePrefabs::CreateCollider({ 5, -10 }, { 4, 2 }));
+
 
 		///    Load obstacle in the middle.
 		// ----------------------------------
@@ -68,7 +69,6 @@ namespace Gameplay
 
 		// Create tank manager that keeps track of all enemy tanks.
 		AddToScene(ScenePrefabs::CreateTankManager(1));
-
 
 		RefPtr<Entity::GameObject> mainTheme = Entity::GameObject::Create("Speaker");
 		auto aud = mainTheme->AddComponent(Entity::AudioSource::Create());

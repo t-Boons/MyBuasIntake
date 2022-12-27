@@ -9,7 +9,7 @@
 #include "Game.h"
 #include "Time.h"
 #include "Input.h"
-#include "Game/Scenes/Level1.h"
+#include "Game/Scenes/DefaultScene.h"
 #include "Utils/TimedEvent.h"
 
 namespace Core
@@ -25,7 +25,8 @@ namespace Core
 
 		m_SceneManager = SceneManager::Create();
 
-		GetSceneManager()->SetActiveScene(new Gameplay::Level1());
+		// Load start scene.
+		GetSceneManager()->SetActiveScene(Gameplay::DefaultScene::Create());
 	}
 
 	// -----------------------------------------------------------
@@ -44,10 +45,11 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Tick()
 	{
-		sf::RenderTexture tex;
-
 		// Update utils Timedevent timings.
 		Utils::TimedEventContainer::Update(Time::GetDeltaTime());
+
+		// Update scene changes.
+		m_SceneManager->Update();
 
 		// Start rendering of the scene.
 		Renderer::Renderer::BeginScene(m_SceneManager->GetActiveScene()->GetActiveCamera());

@@ -11,13 +11,18 @@ namespace Core
 		MAKE_SHARED(SceneManager)
 
 	public:
+		// Update scene loading state.
+		void Update();
+
 		// Get current active scene.
-		Scene* GetActiveScene() { return s_ActiveScene; }
+		const RefPtr<Scene>& GetActiveScene() { return m_ActiveScene; }
 
 		// Set/Replace active scene.
-		void SetActiveScene(Scene* scene);
+		void SetActiveScene(const RefPtr<Scene>& scene);
 
 	private:
-		Scene* s_ActiveScene;
+		RefPtr<Scene> m_ActiveScene;
+		RefPtr<Scene> m_QueuedScene;
+		bool m_HasQueuedScene;
 	};
 }

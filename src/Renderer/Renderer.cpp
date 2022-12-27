@@ -30,7 +30,10 @@ namespace Renderer
 	void Renderer::Renderer::BeginScene(const RefPtr<Entity::Camera> camera)
 	{
 		// Update view projection matrix.
-		s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
+		if (camera)
+		{
+			s_Data.m_ViewProjectionMatrix = camera->GetViewProjectionMatrix();
+		}
 	}
 
 	void Renderer::EndScene()

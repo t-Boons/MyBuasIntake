@@ -9,6 +9,7 @@
 #include "Game/Gameplay/Input/TankInputPlayer.h"
 #include "Game/Gameplay/Input/TankInputBrownEnemy.h"
 #include "Game/Gameplay/Bullet.h"
+#include "Game/Gameplay/TankManager.h"
 
 namespace Gameplay
 {
@@ -42,6 +43,9 @@ namespace Gameplay
 
 		// Get collider instance
 		static RefPtr<Entity::GameObject> CreateCollider(const glm::vec2& position, const glm::vec2& scale);
+
+		// Get tank manager instance.
+		static RefPtr<Entity::GameObject> CreateTankManager(uint32_t amountOfEnemyTanksInLevel);
 
 		static RefPtr<Renderer::Shader> s_Basic3DShader;
 		static RefPtr<Renderer::Texture> s_TextureAtlasTexture;

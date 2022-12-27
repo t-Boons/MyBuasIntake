@@ -2,6 +2,7 @@
 
 #include "mypch.h"
 #include "TankEngine.h"
+#include "Utils/TimedEvent.h"
 
 namespace Gameplay
 {
@@ -68,8 +69,26 @@ namespace Gameplay
 			// Remove player gun renderer.
 			m_TankGun->Parent->Destroy();
 
-
 			LOG_WARN(GAMEOBJECT_IDENTITY + "Has died.")
+
+			Utils::TimedEvent(DELETION_DELAY, [=]()
+				{
+					// Call OnDie function on tank manager. Changes depending on if its an enemy or player tank.
+					if (Parent->GetName() == "PlayerTank")
+					{
+						Entity::GameObject::FindObjectOfType<TankManager>()->OnPlayerDie();
+					}
+					else
+					{
+						Entity::GameObject::FindObjectOfType<TankManager>()->OnEnemyDie();
+					}
+
+					// Destroy this gameobject.
+					Parent->Destroy();
+				});
+
+
+
 		}
 	}
 }

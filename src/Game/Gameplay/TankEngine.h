@@ -12,6 +12,8 @@
 #define SPEED_REDUCTION_TIME 0.35f
 #define SPEED_REDUCTION_AMOUNT 0.25f
 
+#define DELETION_DELAY 0.35f
+
 namespace Gameplay
 {
 	class TankGun;

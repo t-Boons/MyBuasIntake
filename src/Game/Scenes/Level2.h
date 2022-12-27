@@ -9,9 +9,9 @@
 
 namespace Gameplay
 {
-	class Level1 : public Core::Scene
+	class Level2 : public Core::Scene
 	{
-		MAKE_SHARED(Level1)
+		MAKE_SHARED(Level2)
 
 	public:
 		// Inherited via Scene.

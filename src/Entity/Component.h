@@ -66,6 +66,7 @@ namespace Entity
 			return Parent->AddComponent<T>();
 		}
 
+		// Destroy this component.
 		void Destroy()
 		{
 			// Remove this component from the gameobject.

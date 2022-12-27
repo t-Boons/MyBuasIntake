@@ -372,4 +372,18 @@ namespace Gameplay
 
 		return collider;
 	}
+
+	RefPtr<Entity::GameObject> ScenePrefabs::CreateTankManager(uint32_t amountOfEnemyTanksInLevel)
+	{
+		/// Create tank manager game object.
+		RefPtr<Entity::GameObject> tankManager = Entity::GameObject::Create("TankManager");
+
+		// Add tank manager behaviour component.
+		auto tankManagerBehaviour = tankManager->AddComponent(TankManager::Create());
+
+		// Set amount of enemy tanks in scene.
+		tankManagerBehaviour->SetEnemyCount(amountOfEnemyTanksInLevel);
+
+		return tankManager;
+	}
 }

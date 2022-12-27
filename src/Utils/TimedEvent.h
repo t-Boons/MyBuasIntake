@@ -22,6 +22,9 @@ namespace Utils
 		// Add event to container.
 		static void AddEvent(float timeUntillExecute, std::function<void()> eventFunc);
 
+		// Destroys all events.
+		static void Reset();
+
 	private:
 		static std::vector<std::pair<std::function<void()>, float>> s_ActiveEvents;
 		static std::vector<float> s_ActiveEventTimes;

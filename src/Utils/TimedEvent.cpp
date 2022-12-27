@@ -37,6 +37,12 @@ namespace Utils
 		s_ActiveEventTimes.push_back(0);
 	}
 
+	void TimedEventContainer::Reset()
+	{
+		s_ActiveEvents.clear();
+		s_ActiveEventTimes.clear();
+	}
+
 	TimedEvent::TimedEvent(float time, std::function<void()> eventFunc)
 	{
 		// Add event to TimedEventContainer.

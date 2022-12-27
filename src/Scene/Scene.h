@@ -71,6 +71,25 @@ namespace Core
 		// Add a collision event that will be ran next frame.
 		void AddCollisionEnterEvent(RefPtr<Physics::Collision> collision) { m_CollisionEvents.push_back(collision); }
 
+		template<typename T>
+		RefPtr<T> FindObjectOfType()
+		{
+			// Loop through all entities.
+			for (auto& entity : m_Entities)
+			{
+				// Try to get the requested component.
+				RefPtr<T> component = entity->GetComponent<T>();
+
+				// If component found return it.
+				if (component)
+				{
+					return component;
+				}
+			}
+
+			return nullptr;
+		}
+
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
 		std::vector<RefPtr<Entity::GameObject>> m_InstantiationQueue;

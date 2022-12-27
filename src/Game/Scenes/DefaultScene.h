@@ -5,13 +5,11 @@
 #include "Scene/Scene.h"
 #include "Core/core.h"
 
-#define USE_SPECTATOR_CAMERA false
-
 namespace Gameplay
 {
-	class Level1 : public Core::Scene
+	class DefaultScene : public Core::Scene
 	{
-		MAKE_SHARED(Level1)
+		MAKE_SHARED(DefaultScene)
 
 	public:
 		// Inherited via Scene.

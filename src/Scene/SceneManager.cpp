@@ -2,24 +2,41 @@
 
 #include "mypch.h"
 #include "SceneManager.h"
+#include "Utils/TimedEvent.h"
 
 namespace Core
 {
-	void SceneManager::SetActiveScene(Scene* scene)
+	void SceneManager::Update()
 	{
-		// Unload scene if assigned.
-		if (s_ActiveScene)
+		if (m_HasQueuedScene)
 		{
-			s_ActiveScene->UnloadScene();
+			m_HasQueuedScene = false;
+
+			// Unload current scene.
+			if (m_ActiveScene)
+			{
+				LOG_NOTIF("UNLOADING SCENE: " + typeid(m_ActiveScene.get()).name())
+				m_ActiveScene->UnloadScene();
+			}
+
+			// Clear all timed events to avoid nullref errors.
+			Utils::TimedEventContainer::Reset();
+
+			// Set active scene to current scene.
+			m_ActiveScene = m_QueuedScene;
+
+			// Load the scene.
+			LOG_NOTIF("LOADING SCENE: " + typeid(m_ActiveScene.get()).name())
+			m_ActiveScene->LoadScene();
+
+			// Call start on all the behaviour.
+			m_ActiveScene->Start();
 		}
+	}
 
-		// Set active scene to current scene.
-		s_ActiveScene = scene;
-
-		// Load the scene.
-		s_ActiveScene->LoadScene();
-
-		// Call start on all the behaviour.
-		s_ActiveScene->Start();
+	void SceneManager::SetActiveScene(const RefPtr<Scene>& scene)
+	{
+		m_QueuedScene = scene;
+		m_HasQueuedScene = true;
 	}
 }
