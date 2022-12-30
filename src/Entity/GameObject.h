@@ -84,9 +84,6 @@ namespace Entity
 		// Removes a component from the gameobject.
 		void RemoveComponent(const RefPtr<Component>& toRemove);
 
-		// Call start on all components.
-		void StartComponents();
-
 		// Update all components.
 		void UpdateComponents();
 
