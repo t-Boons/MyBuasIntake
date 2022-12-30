@@ -42,6 +42,7 @@
     <ClCompile Include="src\Game\Gameplay\TankGameManager.cpp" />
     <ClCompile Include="src\Game\Scenes\Level2.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankManager.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankTrackSound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="src\Game\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Game\Scenes\Level2.h" />
     <ClInclude Include="src\Game\Gameplay\TankManager.h" />
+    <ClInclude Include="src\Game\Gameplay\TankTrackSound.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

@@ -10,9 +10,15 @@ namespace Gameplay
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 
-		// Get multiple audiosource components.
-		m_Clack = GetComponents<Entity::AudioSource>()[0];
-		m_Thud = GetComponents<Entity::AudioSource>()[1];
+		// Add all required audio sources.
+		m_Clack = AddComponent(Entity::AudioSource::Create());
+		m_Clack->LoadClipFromFile("Assets/Audio/Effects/Clack.wav");
+		m_Clack->SetVolume(0.5f);
+
+		m_Thud = AddComponent(Entity::AudioSource::Create());
+		m_Thud->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
+		m_Thud->SetVolume(0.5f);
+		m_Thud->SetPitch(0.75f);
 
 		m_Hits = 0;
 		m_Destroyed = false;

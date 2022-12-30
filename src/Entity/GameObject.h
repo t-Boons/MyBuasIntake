@@ -37,6 +37,16 @@ namespace Entity
 				}
 			}
 
+			// Search for component of type in qeued components.
+			for (auto& component : m_QueuedComponents)
+			{
+				// Return if static type and local type match.
+				if (component->GetTypeName() == T::GetStaticName())
+				{
+					return std::dynamic_pointer_cast<T>(component);
+				}
+			}
+
 			return nullptr;
 		}
 
@@ -62,8 +72,8 @@ namespace Entity
 		template<class T>
 		inline RefPtr<T> AddComponent(RefPtr<T>& component)
 		{
-			// Add component to list
-			m_Components.push_back(component);
+			// Add component to add queue
+			m_QueuedComponents.push_back(component);
 
 			// Set component parent reference to this.	
 			static_cast<GameObject*>(component.get()->Parent) = this;
@@ -79,6 +89,9 @@ namespace Entity
 
 		// Update all components.
 		void UpdateComponents();
+
+		// Add all queued components that are added last frame
+		void AddQueuedComponents();
 
 		// Update collision events.
 		void UpdateCollisionEvents(RefPtr<Physics::Collision> collision);
@@ -113,6 +126,7 @@ namespace Entity
 
 	private:
 		std::vector<RefPtr<Component>> m_Components;
+		std::vector<RefPtr<Component>> m_QueuedComponents;
 		std::string m_Name;
 		uint64_t m_ID;
 

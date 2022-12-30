@@ -32,13 +32,20 @@ namespace Gameplay
 		// Sets the gun object to the gun of this tank.
 		void SetGunObject(const RefPtr<Gameplay::TankGun>& gun) { m_TankGun = gun; }
 
+		// Returns the current speed of the tank
+		float GetSpeed() const { return glm::length(m_TankInput->GetMovementInput()) * m_EffectiveSpeed * MOVEMENT_SPEED; }
+
+	private:
+		// Get normalized speed after reduction.
+		void UpdateEffectiveSpeed();
+
 	private:
 		RefPtr<Gameplay::TankGun> m_TankGun;
 
 		RefPtr<TankInput> m_TankInput;
 		RefPtr<Entity::Transform> m_Transform;
 		RefPtr<Entity::AudioSource> m_ExplosionSound;
-		float m_ReduceSpeedTimer;
+		float m_ReduceSpeedTimer, m_EffectiveSpeed;
 		bool m_IsDead;
 	};
 }

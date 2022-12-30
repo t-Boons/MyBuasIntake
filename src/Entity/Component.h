@@ -47,23 +47,23 @@ namespace Entity
 
 		// Get component of this gameobject.
 		template<class T>
-		const RefPtr<T> GetComponent()
+		RefPtr<T> GetComponent()
 		{
 			return Parent->GetComponent<T>();
 		}
 
 		// Get multiple component of this gameobject.
 		template<class T>
-		const std::vector<RefPtr<T>> GetComponents()
+		std::vector<RefPtr<T>> GetComponents()
 		{
 			return Parent->GetComponents<T>();
 		}
 
 		// Add Component to this gameobject.
 		template<class T>
-		const RefPtr<T> AddComponent()
+		RefPtr<T> AddComponent(RefPtr<T>& component)
 		{
-			return Parent->AddComponent<T>();
+			return Parent->AddComponent<T>(component);
 		}
 
 		// Destroy this component.

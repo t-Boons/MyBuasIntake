@@ -10,7 +10,11 @@ namespace Gameplay
 	{
 		m_Transform = GetComponent<Entity::Transform>();
 		m_TankInput = GetComponent<TankInput>();
-		m_ExplosionSound = GetComponent<Entity::AudioSource>();
+
+		// Add tank explosion sound
+		m_ExplosionSound = AddComponent(Entity::AudioSource::Create());
+		m_ExplosionSound->LoadClipFromFile("Assets/Audio/Effects/Explosion.wav");
+		m_ExplosionSound->SetVolume(0.5f);
 
 		m_ReduceSpeedTimer = 0;
 		m_IsDead = false;
@@ -18,28 +22,15 @@ namespace Gameplay
 
 	void TankEngine::Update()
 	{
-		float dt = Core::Time::GetDeltaTime();
+		UpdateEffectiveSpeed();
 
 		glm::vec2 input = m_TankInput->GetMovementInput();
 
-		float speed = 1;
-
-		// Check if player is shooting
-		if (m_TankGun->IsShooting())
-		{
-			m_ReduceSpeedTimer = 0;
-		}
-
-		// Add a speed reduction if the player recently shot.
-		if (m_ReduceSpeedTimer < SPEED_REDUCTION_TIME)
-		{
-			speed -= sinf(m_ReduceSpeedTimer * glm::pi<float>());
-			m_ReduceSpeedTimer += dt;
-		}
+		float dt = Core::Time::GetDeltaTime();
 
 		// Update movement.
-		m_Transform->Translate(input.x * m_Transform->GetForward() * dt * speed * MOVEMENT_SPEED);
-		m_Transform->Rotate(input.y * glm::vec3(0, 1, 0) * dt * speed * -ROTATION_SPEED);
+		m_Transform->Translate(input.x * m_Transform->GetForward() * dt * m_EffectiveSpeed * MOVEMENT_SPEED);
+		m_Transform->Rotate(input.y * glm::vec3(0, 1, 0) * dt * m_EffectiveSpeed * -ROTATION_SPEED);
 	}
 
 	void TankEngine::OnCollisionEnter(RefPtr<Physics::Collision> collision)
@@ -89,6 +80,24 @@ namespace Gameplay
 
 
 
+		}
+	}
+	
+	void TankEngine::UpdateEffectiveSpeed()
+	{
+		m_EffectiveSpeed = 1;
+
+		// Check if player is shooting
+		if (m_TankGun->IsShooting())
+		{
+			m_ReduceSpeedTimer = 0;
+		}
+
+		// Add a speed reduction if the player recently shot.
+		if (m_ReduceSpeedTimer < SPEED_REDUCTION_TIME)
+		{
+			m_EffectiveSpeed -= sinf(m_ReduceSpeedTimer * glm::pi<float>());
+			m_ReduceSpeedTimer += Core::Time::GetDeltaTime();
 		}
 	}
 }

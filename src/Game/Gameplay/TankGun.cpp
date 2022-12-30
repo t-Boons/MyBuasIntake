@@ -20,7 +20,9 @@ namespace Gameplay
 		m_Input = m_ParentTransform->GetComponent<TankInput>();
 		
 		// Get audiosource for gun shots.
-		m_GunShot = GetComponent<Entity::AudioSource>();
+		m_GunShot = AddComponent(Entity::AudioSource::Create());
+		m_GunShot->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
+		m_GunShot->SetVolume(0.3f);
 
 		// Get bullet prefab to copy from.
 		m_BulletPrefab = ScenePrefabs::CreateBullet();

@@ -152,6 +152,9 @@ namespace Gameplay
 		RefPtr<Gameplay::TankEngine> tankEngine = tankBody->AddComponent(Gameplay::TankEngine::Create());
 		// Add Player input.
 		tankBody->AddComponent(Gameplay::TankInputPlayer::Create());
+
+		// Add track audio.
+		tankBody->AddComponent(TankTrackSound::Create());
 		/// -
 
 		/// Audio
@@ -213,7 +216,7 @@ namespace Gameplay
 		return flycam;
 	}
 
-	std::vector<RefPtr<Entity::GameObject>> ScenePrefabs::CreateEnemyTank(const glm::vec2& position)
+	std::vector<RefPtr<Entity::GameObject>> ScenePrefabs::CreateBrownEnemyTank(const glm::vec2& position)
 	{
 		// Create vector that has to be filled.
 		std::vector<RefPtr<Entity::GameObject>> objects(2);
@@ -253,18 +256,10 @@ namespace Gameplay
 		/// Behaviour
 		// Add tank movement component.
 		RefPtr<Gameplay::TankEngine> tankEngine = tankBody->AddComponent(Gameplay::TankEngine::Create());
+
 		// Add AI input.
 		tankBody->AddComponent(Gameplay::TankInputBrownEnemy::Create());
 		/// -
-
-		/// Audio
-		// Add tank explosions
-		RefPtr<Entity::AudioSource> explosionAudio = tankBody->AddComponent(Entity::AudioSource::Create());
-		explosionAudio->LoadClipFromFile("Assets/Audio/Effects/Explosion.wav");
-		explosionAudio->SetVolume(0.5f);
-		/// - 
-
-
 
 		/// Create tank gun object.
 		RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("EnemyTankGun");
@@ -288,16 +283,14 @@ namespace Gameplay
 		/// -
 
 		/// Audio
-		// Add gun audio.
-		RefPtr<Entity::AudioSource> shootSound = tankGun->AddComponent(Entity::AudioSource::Create());
-		shootSound->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
-		shootSound->SetVolume(0.3f);
+		// Add track audio.
+		RefPtr<TankTrackSound> trackSound = tankBody->AddComponent(TankTrackSound::Create());
+		trackSound->SetPitch(1.2f);
 		///  - 
 
 
 		// Set tank gun reference in tank engine.
 		tankEngine->SetGunObject(gunBehaviour);
-
 
 		objects[0] = tankBody;
 		objects[1] = tankGun;
@@ -327,19 +320,6 @@ namespace Gameplay
 		// Set the bullet scale.
 		bullet->GetComponent<Entity::Transform>()->SetScale({ 0.075f, 0.075f, 0.075f });
 
-		/// Audio
-		// Add audiosource for the clack sound.
-		RefPtr<Entity::AudioSource> clackAudioSource = bullet->AddComponent(Entity::AudioSource::Create());
-		clackAudioSource->LoadClipFromFile("Assets/Audio/Effects/Clack.wav");
-		clackAudioSource->SetVolume(0.5f);
-
-		// Add audiosource for the thudsound.
-		RefPtr<Entity::AudioSource> thudAudioSource = bullet->AddComponent(Entity::AudioSource::Create());
-		thudAudioSource->LoadClipFromFile("Assets/Audio/Effects/Thud.wav");
-		thudAudioSource->SetVolume(0.5f);
-		thudAudioSource->SetPitch(0.75f);
-
-		// Add bullet gameplay behaviour component.
 		bullet->AddComponent(Bullet::Create());
 
 		return bullet;

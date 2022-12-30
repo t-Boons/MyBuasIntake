@@ -20,7 +20,7 @@ namespace Core
 		// Start all entity Components.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
-			m_Entities[i]->StartComponents();
+			m_Entities[i]->AddQueuedComponents();
 		}
 	}
 
@@ -29,7 +29,7 @@ namespace Core
 		// Here we loop through all to-be deleted object and remove them from the scene.
 		ClearDeletionQueue();
 
-		// Here all queued to-be instantiated objects get added to the scnee..
+		// Here all queued to-be instantiated objects get added to the scene.
 		ClearInstantiationQueue();
 		
 		// Update all entity Components.
@@ -94,9 +94,6 @@ namespace Core
 		for (size_t i = 0; i < m_DeletionQueue.size(); i++)
 		{
 			RemoveFromScene(m_DeletionQueue[i]);
-
-			// Call start on component.
-			m_DeletionQueue[i]->StartComponents();
 		}
 
 		// Clear the queue.
@@ -110,9 +107,6 @@ namespace Core
 		for (size_t i = 0; i < m_InstantiationQueue.size(); i++)
 		{
 			AddToScene(m_InstantiationQueue[i]);
-
-			// Call start on component.
-			m_InstantiationQueue[i]->StartComponents();
 		}
 
 		// Clear the queue.

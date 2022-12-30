@@ -33,6 +33,8 @@ namespace Entity
 		// Increment gameobject counter.
 		s_GameObjectCount++;
 
+
+
 		// Resize component array to object.component size;
 		m_Components.resize(object.m_Components.size());
 
@@ -48,6 +50,24 @@ namespace Entity
 			// Assign ptr to new component array.
 			m_Components[i] = static_cast<RefPtr<Entity::Component>>(componentCopy);
 		}
+
+
+		// Resize queued component array to object component size;
+		m_QueuedComponents.resize(object.m_QueuedComponents.size());
+
+		// Copy all component data.
+		for (size_t i = 0; i < m_QueuedComponents.size(); i++)
+		{
+			// Copy the existing component.
+			Entity::Component* componentCopy = object.m_QueuedComponents[i]->Copy();
+
+			// Set component parent to new gmaeobject.
+			componentCopy->Parent = this;
+
+			// Assign ptr to new component array.
+			m_QueuedComponents[i] = static_cast<RefPtr<Entity::Component>>(componentCopy);
+		}
+
 
 		m_Name = std::string(object.m_Name);
 
@@ -90,22 +110,32 @@ namespace Entity
 		}
 	}
 
-	void GameObject::StartComponents()
-	{
-		// Loop through all components
-		for (auto& c : m_Components)
-		{
-			c->Start();
-		}
-	}
-
 	void GameObject::UpdateComponents()
 	{
+		AddQueuedComponents();
+
 		// Loop through all components
 		for (size_t i = 0; i < m_Components.size(); i++)
 		{
 			m_Components[i]->Update();
 		}
+	}
+
+	void GameObject::AddQueuedComponents()
+	{
+		// Add all quqed components to component list.
+		for (size_t i = 0; i < m_QueuedComponents.size(); i++)
+		{
+			m_Components.push_back(m_QueuedComponents[i]);
+		}
+		
+		// Start all newly added components.
+		for (size_t i = 0; i < m_QueuedComponents.size(); i++)
+		{
+			m_QueuedComponents[i]->Start();
+		}
+
+		m_QueuedComponents.clear();
 	}
 
 	void GameObject::UpdateCollisionEvents(RefPtr<Physics::Collision> collision)

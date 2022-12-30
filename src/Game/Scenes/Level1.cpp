@@ -23,7 +23,7 @@ namespace Gameplay
 		// Add player tank to scene.
 		AddToScene(ScenePrefabs::CreatePlayerTank({ 0, -15}));
 
-		AddToScene(ScenePrefabs::CreateEnemyTank({ 0, 10 }));
+		AddToScene(ScenePrefabs::CreateBrownEnemyTank({ 0, 10 }));
 
 
 		///   Load obstacles on the left.

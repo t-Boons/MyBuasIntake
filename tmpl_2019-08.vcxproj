@@ -266,6 +266,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInputPlayer.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankManager.cpp" />
+    <ClCompile Include="src\Game\Gameplay\TankTrackSound.cpp" />
     <ClCompile Include="src\Game\Scenes\DefaultScene.cpp" />
     <ClCompile Include="src\Game\Scenes\Level2.cpp" />
     <ClCompile Include="src\Game\Scenes\ScenePrefabs.cpp" />
@@ -321,6 +322,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Game\Gameplay\TankGun.h" />
     <ClInclude Include="src\Game\Gameplay\Input\TankInput.h" />
     <ClInclude Include="src\Game\Gameplay\Input\TankInputPlayer.h" />
+    <ClInclude Include="src\Game\Gameplay\TankTrackSound.h" />
     <ClInclude Include="src\Game\Scenes\DefaultScene.h" />
     <ClInclude Include="src\Game\Scenes\Level2.h" />
     <ClInclude Include="src\Game\Scenes\ScenePrefabs.h" />
