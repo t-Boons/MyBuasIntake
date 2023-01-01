@@ -15,7 +15,7 @@ namespace Gameplay
 		IMPLEMENT_COMPONENT_IDENTIFIER_INHERIT(TankInputBrownEnemy, TankInput)
 
 	public:
-		void Update() override;
+		virtual void UpdateInput() override;
 
 		void RandomizeInputs();
 

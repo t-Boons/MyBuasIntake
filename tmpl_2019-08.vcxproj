@@ -261,6 +261,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClCompile Include="src\Entity\AudioSource.cpp" />
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInput.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInputBrownEnemy.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGameManager.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />

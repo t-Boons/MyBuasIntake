@@ -6,7 +6,7 @@
 
 namespace Gameplay
 {
-	void TankInputBrownEnemy::Update()
+	void TankInputBrownEnemy::UpdateInput()
 	{
 		// Make sure enemy tank only shoots once.
 		m_Shoot = false;

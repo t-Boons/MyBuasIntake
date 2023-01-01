@@ -10,7 +10,7 @@ namespace Gameplay
 		m_Transform = GetComponent<Entity::Transform>();
 	}
 
-	void TankInputPlayer::Update()
+	void TankInputPlayer::UpdateInput()
 	{
 		/// Movement input
 		// Reset input.

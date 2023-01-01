@@ -19,7 +19,7 @@ namespace Gameplay
 
 	public:
 		virtual void Start() override;
-		virtual void Update() override;
+		virtual void UpdateInput() override;
 
 	private:
 		RefPtr<Entity::Transform> m_Transform;

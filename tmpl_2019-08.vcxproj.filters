@@ -36,13 +36,14 @@
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Entity\AudioSource.cpp" />
-    <ClCompile Include="src\Game\Gameplay\Input\TankInputBrownEnemy.cpp" />
     <ClCompile Include="src\Utils\TimedEvent.cpp" />
     <ClCompile Include="src\Game\Scenes\DefaultScene.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGameManager.cpp" />
     <ClCompile Include="src\Game\Scenes\Level2.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankManager.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankTrackSound.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInputBrownEnemy.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
