@@ -44,6 +44,9 @@
     <ClCompile Include="src\Game\Gameplay\TankTrackSound.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInputBrownEnemy.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInput.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInputAshEnemy.cpp" />
+    <ClCompile Include="src\Utils\Random.cpp" />
+    <ClCompile Include="src\Physics\Physics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -94,6 +97,9 @@
     <ClInclude Include="src\Game\Scenes\Level2.h" />
     <ClInclude Include="src\Game\Gameplay\TankManager.h" />
     <ClInclude Include="src\Game\Gameplay\TankTrackSound.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputAshEnemy.h" />
+    <ClInclude Include="src\Utils\Random.h" />
+    <ClInclude Include="src\Physics\Physics.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

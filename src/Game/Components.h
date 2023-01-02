@@ -4,7 +4,7 @@
 
 // This implements all the components that can be used for gameplay.
 
-// ECS Components.
+// ECS components.
 #include "Entity/BoxCollider.h"
 #include "Entity/Camera.h"
 #include "Entity/MeshRenderer.h"
@@ -19,6 +19,10 @@
 #include "Core/Time.h"
 #include "Core/Input.h"
 #include "Core/Core.h"
+
+// Utility components.
+#include "Utils/Random.h"
+#include "Utils/TimedEvent.h"
 
 // Library utils
 #include "glm/glm.hpp"

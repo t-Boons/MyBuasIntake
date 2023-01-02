@@ -9,22 +9,22 @@ namespace Physics
 	AABB::AABB()
 	{
 		// Assign 0 to all points.
-		memset(&Points, 0, sizeof(Points));
-		Position = { 0, 0, 0 };
-		Size = { 1, 1, 1 };
+		memset(&m_Points, 0, sizeof(m_Points));
+		m_Position = { 0, 0, 0 };
+		m_Size = { 1, 1, 1 };
 	}
 
 	void AABB::SetSize(const glm::vec3& size)
 	{
 		ASSERT((size.x > 0 && size.y > 0 && size.z > 0), "Size cannot be negative.")
-		Size = size;
+		m_Size = size;
 
 		RecalculatePoints();
 	}
 
 	void AABB::SetPosition(const glm::vec3& position)
 	{
-		Position = position;
+		m_Position = position;
 
 		RecalculatePoints();
 	}
@@ -36,9 +36,9 @@ namespace Physics
 
 			// Calculate if point intersects with aabb.
 			return(
-				point.x >= Points[0].x && point.x <= Points[1].x &&
-				point.y >= Points[0].x && point.y <= Points[1].y &&
-				point.z >= Points[0].x && point.z <= Points[1].z
+				point.x >= m_Points[0].x && point.x <= m_Points[1].x &&
+				point.y >= m_Points[0].x && point.y <= m_Points[1].y &&
+				point.z >= m_Points[0].x && point.z <= m_Points[1].z
 				);
 	}
 
@@ -49,9 +49,9 @@ namespace Physics
 
 			// Calculates if 2 aabbs are intersecting.
 			bool intersects = (
-				aabb.Points[0].x <= Points[1].x && aabb.Points[1].x >= Points[0].x &&
-				aabb.Points[0].y <= Points[1].y && aabb.Points[1].y >= Points[0].y &&
-				aabb.Points[0].z <= Points[1].z && aabb.Points[1].z >= Points[0].z
+				aabb.m_Points[0].x <= m_Points[1].x && aabb.m_Points[1].x >= m_Points[0].x &&
+				aabb.m_Points[0].y <= m_Points[1].y && aabb.m_Points[1].y >= m_Points[0].y &&
+				aabb.m_Points[0].z <= m_Points[1].z && aabb.m_Points[1].z >= m_Points[0].z
 				);
 
 		// Return nullptr if object does not intersect.
@@ -64,13 +64,13 @@ namespace Physics
 
 		// Calculate which reference point you measure from for all axis.
 		short xIndex = Center().x > aabb.Center().x ? 1 : 0;
-		size.x = Points[xIndex].x - aabb.Points[xIndex].x;
+		size.x = m_Points[xIndex].x - aabb.m_Points[xIndex].x;
 
 		short yIndex = Center().y > aabb.Center().y ? 1 : 0;
-		size.y = Points[yIndex].y - aabb.Points[yIndex].y;
+		size.y = m_Points[yIndex].y - aabb.m_Points[yIndex].y;
 
 		short zIndex = Center().z > aabb.Center().z ? 1 : 0;
-		size.z = Points[zIndex].z - aabb.Points[zIndex].z;
+		size.z = m_Points[zIndex].z - aabb.m_Points[zIndex].z;
 
 		// Get intersection depth.
 		float ax = glm::abs(size.x);
@@ -101,15 +101,15 @@ namespace Physics
 	bool AABB::IsInverted() const
 	{	
 		// See if point B is lower than point a because that is invalid.
-		return Points[0].x > Points[1].x ||
-			   Points[0].y > Points[1].y ||	
-			   Points[0].z > Points[1].z;
+		return m_Points[0].x > m_Points[1].x ||
+			   m_Points[0].y > m_Points[1].y ||	
+			   m_Points[0].z > m_Points[1].z;
 	}
 
 	void AABB::RecalculatePoints()
 	{
 		// Calculate bounding box points
-		Points[0] = Position - Size * 0.5f;
-		Points[1] = Position + Size * 0.5f;
+		m_Points[0] = m_Position - m_Size * 0.5f;
+		m_Points[1] = m_Position + m_Size * 0.5f;
 	}
 }

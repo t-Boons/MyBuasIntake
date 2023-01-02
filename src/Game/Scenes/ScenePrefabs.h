@@ -6,11 +6,13 @@
 #include "Game/Gameplay/TankEngine.h"
 #include "Game/Gameplay/FlyingCamera.h"
 #include "Game/Gameplay/TankGun.h"
-#include "Game/Gameplay/Input/TankInputPlayer.h"
-#include "Game/Gameplay/Input/TankInputBrownEnemy.h"
 #include "Game/Gameplay/Bullet.h"
 #include "Game/Gameplay/TankManager.h"
 #include "Game/Gameplay/TankTrackSound.h"
+
+#include "Game/Gameplay/Input/TankInputPlayer.h"
+#include "Game/Gameplay/Input/TankInputBrownEnemy.h"
+#include "Game/Gameplay/Input/TankInputAshEnemy.h"
 
 namespace Gameplay
 {
@@ -35,6 +37,9 @@ namespace Gameplay
 
 		// Get Enemy tank gameobject(s) instance.
 		static std::vector<RefPtr<Entity::GameObject>> CreateBrownEnemyTank(const glm::vec2& position);
+		
+		// Get Enemy tank gameobject(s) instance.
+		static std::vector<RefPtr<Entity::GameObject>> CreateAshEnemyTank(const glm::vec2& position);
 
 		// Get Bullet gameobject instance.
 		static RefPtr<Entity::GameObject> CreateBullet();

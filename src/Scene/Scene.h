@@ -5,17 +5,19 @@
 #include "Core/Core.h"
 #include "Entity/GameObject.h"
 #include "Entity/Camera.h"
-#include "Physics/PhysicsEnviroment.h"
+#include "Physics/Physics.h"
+
+#define SCENE_NAME(name) public: virtual std::string GetSceneName() override {return #name;}
 
 namespace Core
 {
 	class Scene
 	{
 	public:
+		Scene();
 
-		Scene()
-			: m_PhysicsEnviroment(Physics::PhysicsEnviroment::Create())
-		{}
+		// Returns the scene name
+		virtual std::string GetSceneName() = 0;
 
 		// Load this scene and instantiate all game objects.
 		virtual void LoadScene() = 0;
@@ -59,9 +61,6 @@ namespace Core
 		// Get active render camera.
 		const RefPtr<Entity::Camera>& GetActiveCamera() const { return m_ActiveCamera; }
 
-		// Get physics scene component.
-		const RefPtr<Physics::PhysicsEnviroment>& GetPhysicsEnviroment() const { return m_PhysicsEnviroment; }
-
 		// Finds the entity with name.
 		RefPtr<Entity::GameObject> FindEntityByName(const std::string& name);
 
@@ -95,7 +94,6 @@ namespace Core
 		std::vector<RefPtr<Entity::GameObject>> m_InstantiationQueue;
 		std::vector<RefPtr<Entity::GameObject>> m_DeletionQueue;
 		std::vector<RefPtr<Physics::Collision>> m_CollisionEvents;
-		RefPtr<Physics::PhysicsEnviroment> m_PhysicsEnviroment;
 		RefPtr<Entity::Camera> m_ActiveCamera;
 
 	};

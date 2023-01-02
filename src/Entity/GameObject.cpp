@@ -85,7 +85,7 @@ namespace Entity
 	void GameObject::RemoveComponent(const RefPtr<Component>& toRemove)
 	{
 		// Get physicsenviroment reference.
-		RefPtr<Physics::PhysicsEnviroment> physicsEnviroment = Core::Game::Get()->GetSceneManager()->GetActiveScene()->GetPhysicsEnviroment();
+		RefPtr<Physics::PhysicsEnviroment> physicsEnviroment = Physics::Physics::GetPhysicsEnviroment();
 
 		for (size_t i = 0; i < m_Components.size(); i++)
 		{

@@ -10,7 +10,7 @@ namespace Gameplay
 	class DefaultScene : public Core::Scene
 	{
 		MAKE_SHARED(DefaultScene)
-
+		SCENE_NAME(DefaultScene)
 	public:
 		// Inherited via Scene.
 		virtual void LoadScene() override;

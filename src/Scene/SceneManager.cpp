@@ -15,7 +15,7 @@ namespace Core
 			// Unload current scene.
 			if (m_ActiveScene)
 			{
-				LOG_NOTIF("UNLOADING SCENE: " + typeid(m_ActiveScene.get()).name())
+				LOG_NOTIF("UNLOADING SCENE: " + m_ActiveScene->GetSceneName())
 				m_ActiveScene->UnloadScene();
 			}
 
@@ -26,7 +26,7 @@ namespace Core
 			m_ActiveScene = m_QueuedScene;
 
 			// Load the scene.
-			LOG_NOTIF("LOADING SCENE: " + typeid(m_ActiveScene.get()).name())
+			LOG_NOTIF("LOADING SCENE: " + m_ActiveScene->GetSceneName())
 			m_ActiveScene->LoadScene();
 
 			// Call start on all the behaviour.

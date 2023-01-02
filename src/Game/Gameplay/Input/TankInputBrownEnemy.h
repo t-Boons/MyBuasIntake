@@ -5,7 +5,9 @@
 #include "Game/Components.h"
 #include "TankInput.h"
 
-#define MAX_STATE_TIME 3.0f
+#define MAX_WAIT_SHOOT_TIME 7.0f
+#define MIN_WAIT_SHOOT_TIME 1.0f
+#define GUN_ROTATION_SPEED 0.3f
 
 namespace Gameplay
 {
@@ -16,8 +18,6 @@ namespace Gameplay
 
 	public:
 		virtual void UpdateInput() override;
-
-		void RandomizeInputs();
 
 	private:
 		float m_Timer;

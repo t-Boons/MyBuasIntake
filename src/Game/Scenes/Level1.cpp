@@ -9,7 +9,7 @@ namespace Gameplay
 {
 	void Level1::LoadScene()
 	{
-		// Initializes tank scene prefab classyou
+		// Initializes tank scene prefab class.
 		ScenePrefabs::Initialize();
 
 		// Add camera to scene.

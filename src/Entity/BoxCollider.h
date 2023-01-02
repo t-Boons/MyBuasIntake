@@ -36,6 +36,9 @@ namespace Entity
 		// See if the last valid position is not infinity
 		bool IsInitialized() const { return m_LastValidPosition != glm::vec3(INFINITE); }
 
+		// Gets the AABB
+		const Physics::AABB& GetAABB() const { return m_BoundingBox; }
+
 	private:
 		glm::vec3 m_LastValidPosition = glm::vec3(INFINITE);
 		glm::vec3 m_DirectionNormal = glm::vec3(0.0f);

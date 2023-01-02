@@ -67,19 +67,20 @@ namespace Physics
 		void RecalculatePoints();
 
 		// Get the center of this AABB.
-		glm::vec3 Center() const { return Points[0] + Points[1] - Points[0]; }
+		glm::vec3 Center() const { return m_Points[0] + m_Points[1] - m_Points[0]; }
 
+		// Gets the points of the aabb
+		std::array<glm::vec3, 2> GetPoints() const { return m_Points; }
 	public:
 		// Overload getter operator to get AABB points.
 		const glm::vec3& operator [](int i) const
 		{
 			ASSERT((i < 2), "Only 2 points on Bounding box")
-			return Points[i];
+			return m_Points[i];
 		}
 
 	private:
-		glm::vec3 Normal;
-		std::array<glm::vec3, 2> Points;
-		glm::vec3 Position, Size;
+		std::array<glm::vec3, 2> m_Points;
+		glm::vec3 m_Position, m_Size;
 	};
 }

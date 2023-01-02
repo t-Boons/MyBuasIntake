@@ -5,14 +5,18 @@
 
 namespace Core
 {
+	Scene::Scene()
+	{
+		// Create physics enviroment
+		Physics::Physics::SetPhysicsEnviroment(Physics::PhysicsEnviroment::Create());
+	}
+
 	void Scene::UnloadScene()
 	{
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
 			m_Entities[i].reset();
 		}
-
-		m_PhysicsEnviroment.reset();
 	}
 
 	void Scene::Start()
@@ -39,10 +43,7 @@ namespace Core
 		}
 		
 		// Update all physics.
-		if (m_PhysicsEnviroment)
-		{
-			m_PhysicsEnviroment->Update();
-		}
+		Physics::Physics::GetPhysicsEnviroment()->Update();
 
 		// Update collision events for scriptcomponents.
 		for (size_t i = 0; i < m_CollisionEvents.size(); i++)
@@ -67,12 +68,12 @@ namespace Core
 
 		if (pbody)
 		{
-			m_PhysicsEnviroment->RegisterComponent(pbody);
+			Physics::Physics::GetPhysicsEnviroment()->RegisterComponent(pbody);
 		}
 
 		if (collider)
 		{
-			m_PhysicsEnviroment->RegisterComponent(collider);
+			Physics::Physics::GetPhysicsEnviroment()->RegisterComponent(collider);
 		}
 
 		// Add entity to component list.
@@ -121,12 +122,12 @@ namespace Core
 
 		if (pbody)
 		{
-			m_PhysicsEnviroment->RemoveComponent(pbody);
+			Physics::Physics::GetPhysicsEnviroment()->RemoveComponent(pbody);
 		}
 
 		if (collider)
 		{
-			m_PhysicsEnviroment->RemoveComponent(collider);
+			Physics::Physics::GetPhysicsEnviroment()->RemoveComponent(collider);
 		}
 
 		// Find object match.

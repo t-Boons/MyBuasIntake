@@ -28,6 +28,9 @@ namespace Physics
 		// Update all physics.
 		void Update();
 
+		// Get all collider components.
+		const std::vector<RefPtr<Entity::BoxCollider>>& GetColliderComponents() const { return m_ColliderComponents; }
+
 	private:
 		// Sees if there are any collisions found.
 		RefPtr<Collision> AnyIntersections(const RefPtr<Entity::BoxCollider>& collider);

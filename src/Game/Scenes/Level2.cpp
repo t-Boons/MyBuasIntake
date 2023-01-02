@@ -1,4 +1,4 @@
-// 2022 Tygo Boons
+// 2023 Tygo Boons
 
 #include "mypch.h"
 #include "Level2.h"
@@ -9,9 +9,6 @@ namespace Gameplay
 {
 	void Level2::LoadScene()
 	{
-		// Initializes tank scene prefab classyou
-		ScenePrefabs::Initialize();
-
 		// Add camera to scene.
 		auto camera = USE_SPECTATOR_CAMERA ? ScenePrefabs::CreateSpectatorCamera() : ScenePrefabs::CreateSceneCamera();
 		AddToScene(camera);

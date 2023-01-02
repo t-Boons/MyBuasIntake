@@ -257,11 +257,14 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Core\Input.cpp" />
+    <ClCompile Include="src\Physics\Physics.cpp" />
+    <ClCompile Include="src\Utils\Random.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
     <ClCompile Include="src\Entity\AudioSource.cpp" />
     <ClCompile Include="src\Entity\BoxCollider.cpp" />
     <ClCompile Include="src\Game\Gameplay\Bullet.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInput.cpp" />
+    <ClCompile Include="src\Game\Gameplay\Input\TankInputAshEnemy.cpp" />
     <ClCompile Include="src\Game\Gameplay\Input\TankInputBrownEnemy.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGameManager.cpp" />
     <ClCompile Include="src\Game\Gameplay\TankGun.cpp" />
@@ -311,12 +314,15 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
   <ItemGroup>
     <ClInclude Include="lib\glad\include\glad\glad.h" />
     <ClInclude Include="src\Core\Input.h" />
+    <ClInclude Include="src\Physics\Physics.h" />
+    <ClInclude Include="src\Utils\Random.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\Entity\AudioSource.h" />
     <ClInclude Include="src\Entity\BoxCollider.h" />
     <ClInclude Include="src\Entity\PhysicsBody.h" />
     <ClInclude Include="src\Game\Components.h" />
     <ClInclude Include="src\Game\Gameplay\Bullet.h" />
+    <ClInclude Include="src\Game\Gameplay\Input\TankInputAshEnemy.h" />
     <ClInclude Include="src\Game\Gameplay\TankManager.h" />
     <ClInclude Include="src\Game\Gameplay\Input\TankInputBrownEnemy.h" />
     <ClInclude Include="src\Game\Gameplay\TankGameManager.h" />

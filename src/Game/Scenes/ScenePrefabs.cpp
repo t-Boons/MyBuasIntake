@@ -298,6 +298,88 @@ namespace Gameplay
 		return objects;
 	}
 
+	std::vector<RefPtr<Entity::GameObject>> ScenePrefabs::CreateAshEnemyTank(const glm::vec2& position)
+	{
+		// Create vector that has to be filled.
+		std::vector<RefPtr<Entity::GameObject>> objects(2);
+
+
+		/// Create tank body object
+		RefPtr<Entity::GameObject> tankBody = Entity::GameObject::Create("EnemyTank");
+
+		// Set tank position.
+		tankBody->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
+
+		/// Rendering components.
+		auto bodyRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
+		bodyRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankBodyEnemy.obj"));
+		bodyRenderer->SetMaterial(Renderer::Material::Create(
+			Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_ash.png"),
+			s_Basic3DShader
+		));
+
+		// Create tank shadow
+		auto shadowRenderer = tankBody->AddComponent(Entity::MeshRenderer::Create());
+		shadowRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankShadow.obj"));
+		shadowRenderer->SetMaterial(Renderer::Material::Create(
+			Renderer::Texture::Create("Assets/Textures/Tanks/tank_shadow.png"),
+			s_Basic3DShader
+		));
+		/// -
+
+		/// Collision components.
+		// Add collision components.
+		auto tankCollider = tankBody->AddComponent(Entity::BoxCollider::Create());
+		tankCollider->SetSize({ 2.0f, 5, 2.0f });
+
+		tankBody->AddComponent(Entity::PhysicsBody::Create());
+		/// -
+
+		/// Behaviour
+		// Add tank movement component.
+		RefPtr<Gameplay::TankEngine> tankEngine = tankBody->AddComponent(Gameplay::TankEngine::Create());
+
+		// Add AI input.
+		tankBody->AddComponent(Gameplay::TankInputAshEnemy::Create());
+		/// -
+
+		/// Create tank gun object.
+		RefPtr<Entity::GameObject> tankGun = Entity::GameObject::Create("EnemyTankGun");
+
+		// Set tank gun position.
+		tankGun->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0, position.y });
+
+		// Create enemy run rendering.
+		auto gunRenderer = tankGun->AddComponent(Entity::MeshRenderer::Create());
+		gunRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Tanks/TankGunEnemy.obj"));
+		gunRenderer->SetMaterial(Renderer::Material::Create(
+			Renderer::Texture::Create("Assets/Textures/Tanks/Enemy/tank_ash.png"),
+			s_Basic3DShader
+		));
+		/// -
+
+		/// Behaviour
+		// Add behaviour component and attach theh tank body to the tank gun.
+		RefPtr<Gameplay::TankGun> gunBehaviour = tankGun->AddComponent(Gameplay::TankGun::Create());
+		gunBehaviour->SetTankParent(tankBody->GetComponent<Entity::Transform>());
+		/// -
+
+		/// Audio
+		// Add track audio.
+		RefPtr<TankTrackSound> trackSound = tankBody->AddComponent(TankTrackSound::Create());
+		trackSound->SetPitch(1.2f);
+		///  - 
+
+
+		// Set tank gun reference in tank engine.
+		tankEngine->SetGunObject(gunBehaviour);
+
+		objects[0] = tankBody;
+		objects[1] = tankGun;
+
+		return objects;
+	}
+
 	RefPtr<Entity::GameObject> ScenePrefabs::CreateBullet()
 	{
 		/// Create bullet game object.

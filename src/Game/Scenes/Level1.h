@@ -12,6 +12,7 @@ namespace Gameplay
 	class Level1 : public Core::Scene
 	{
 		MAKE_SHARED(Level1)
+		SCENE_NAME(Level1)
 
 	public:
 		// Inherited via Scene.

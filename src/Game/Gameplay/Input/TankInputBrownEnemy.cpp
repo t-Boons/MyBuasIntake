@@ -1,4 +1,4 @@
-// Tygo Boons 2022
+// 2022 Tygo Boons
 
 #include "mypch.h"
 
@@ -8,36 +8,26 @@ namespace Gameplay
 {
 	void TankInputBrownEnemy::UpdateInput()
 	{
-		// Make sure enemy tank only shoots once.
+		// Reset shoot input.
 		m_Shoot = false;
 
+		// Make the run rotate around
+		m_GunInput = glm::vec2(glm::sin(glm::pi<float>() * Core::Time::GetElapsedTime() * GUN_ROTATION_SPEED),
+							   glm::cos(glm::pi<float>() * Core::Time::GetElapsedTime() * GUN_ROTATION_SPEED));
 
-		glm::vec3 playerPos = Entity::GameObject::Find("PlayerTank")->GetComponent<Entity::Transform>()->GetPosition();
-		glm::vec3 myPos = GetComponent<Entity::Transform>()->GetPosition();
-		glm::vec2 lookPos = glm::vec2(playerPos.z, playerPos.x) - glm::vec2(myPos.z, myPos.x);
-
-		m_GunInput = lookPos;
-
-
+		// Increment timers
 		m_Timer += Core::Time::GetDeltaTime();
 
+		// Shoot if timer is higher than random value.
 		if (m_Timer > m_RandomValue)
 		{
-			// Reset Timer
 			m_Timer = 0;
 
-			// Generate new random value.
-			m_RandomValue = rand() % 1000 / 1000.0f * MAX_STATE_TIME;
+			// Get new random value.
+			m_RandomValue = Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME);
 
-			RandomizeInputs();
+			// Shoot
+			m_Shoot = true;
 		}
-	}
-
-	void TankInputBrownEnemy::RandomizeInputs()
-	{
-		m_MovementInput.x = (rand() % 1000) / 1000.0f;
-		m_MovementInput.y = (rand() % 1000) / 1000.0f;
-
-		m_Shoot = rand() % 2 == 1;
 	}
 }
