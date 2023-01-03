@@ -112,6 +112,13 @@ namespace Entity
 			return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindObjectOfType<T>();
 		}
 
+		// Find components in scene.
+		template<typename T>
+		static std::vector<RefPtr<T>> FindObjectsOfType()
+		{
+			return Core::Game::Get()->GetSceneManager()->GetActiveScene()->FindObjectsOfType<T>();
+		}
+
 		// Spawn game object with rotation and position.
 		static RefPtr<GameObject> Instantiate(const RefPtr<GameObject>& object, const glm::vec3& position, const glm::quat& rotation);
 

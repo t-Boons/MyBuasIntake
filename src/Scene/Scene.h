@@ -89,6 +89,27 @@ namespace Core
 			return nullptr;
 		}
 
+		template<typename T>
+		std::vector<RefPtr<T>> FindObjectsOfType()
+		{
+			std::vector<RefPtr<T>> components;
+
+			// Loop through all entities.
+			for (auto& entity : m_Entities)
+			{
+				// Try to get the requested component.
+				RefPtr<T> component = entity->GetComponent<T>();
+
+				// If component found return it.
+				if (component)
+				{
+					components.push_back(component);
+				}
+			}
+
+			return components;
+		}
+
 	protected:
 		std::vector<RefPtr<Entity::GameObject>> m_Entities;
 		std::vector<RefPtr<Entity::GameObject>> m_InstantiationQueue;
