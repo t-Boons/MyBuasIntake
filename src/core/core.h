@@ -5,7 +5,6 @@
 #include <Windows.h>
 #include <iostream>
 
-
 // Throw error if not compiled in windows.
 #if !defined(_WIN32) && !defined(WIN64)
 #error This project only supports Windows

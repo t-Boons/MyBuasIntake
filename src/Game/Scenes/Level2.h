@@ -5,8 +5,6 @@
 #include "Scene/Scene.h"
 #include "Core/core.h"
 
-#define USE_SPECTATOR_CAMERA false
-
 namespace Gameplay
 {
 	class Level2 : public Core::Scene

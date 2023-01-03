@@ -5,6 +5,7 @@
 #include "ScenePrefabs.h"
 #include "Game/Components.h"
 #include "Game/Gameplay/Input/TankInputBrownEnemy.h"
+#include "Game/Gameplay/TankGameSettings.h"
 
 namespace Gameplay
 {
