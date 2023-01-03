@@ -11,6 +11,7 @@
 #include "Input.h"
 #include "Game/Scenes/DefaultScene.h"
 #include "Utils/TimedEvent.h"
+#include "Utils/Random.h"
 
 namespace Core
 {
@@ -23,6 +24,9 @@ namespace Core
 	{
 		Renderer::Renderer::Init();
 
+		Utils::Random::RandomizeSeed();
+
+		// Create scene manager instance.
 		m_SceneManager = SceneManager::Create();
 
 		// Load start scene.

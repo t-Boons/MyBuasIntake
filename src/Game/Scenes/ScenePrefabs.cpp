@@ -448,4 +448,16 @@ namespace Gameplay
 
 		return tankManager;
 	}
+	RefPtr<Entity::GameObject> ScenePrefabs::CreateMusic(std::string filepath)
+	{
+		RefPtr<Entity::GameObject> mainTheme = Entity::GameObject::Create("Music");
+
+		// Create audio source and play it.
+		auto aud = mainTheme->AddComponent(Entity::AudioSource::Create());
+		aud->LoadClipFromFile(filepath);
+		aud->SetLooping(true);
+		aud->Play();
+
+		return mainTheme;
+	}
 }

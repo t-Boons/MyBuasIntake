@@ -3,31 +3,54 @@
 #include "mypch.h"
 
 #include "TankInputBrownEnemy.h"
+#include "Game/Gameplay/TankEngine.h"
 
 namespace Gameplay
 {
+	void TankInputBrownEnemy::StartInput()
+	{
+		StartShootInput();
+		StartGunDirectionInput();
+
+		/// Set the current rotation to the gun forward vector
+		// Get tank gun forward vector.
+		glm::vec3 gunForward = GetComponent<TankEngine>()->GetGunObject()->GetComponent<Entity::Transform>()->GetForward();
+		gunForward.y = 0;
+		gunForward = glm::normalize(gunForward);
+
+		// Set the current rotation to the forwrad rotation of the gun.
+		m_CurrentRotation = std::atan2(gunForward.x, gunForward.z) - glm::pi<float>() * 0.5f;
+	}
+
 	void TankInputBrownEnemy::UpdateInput()
 	{
-		// Reset shoot input.
-		m_Shoot = false;
+		// Update rotation.
+		m_CurrentRotation += m_RotationMultiplier * Core::Time::GetDeltaTime();
 
 		// Make the run rotate around
-		m_GunInput = glm::vec2(glm::sin(glm::pi<float>() * Core::Time::GetElapsedTime() * GUN_ROTATION_SPEED),
-							   glm::cos(glm::pi<float>() * Core::Time::GetElapsedTime() * GUN_ROTATION_SPEED));
+		m_GunInput = glm::vec2(glm::sin(glm::pi<float>() * m_CurrentRotation),
+							   glm::cos(glm::pi<float>() * m_CurrentRotation));
 
-		// Increment timers
-		m_Timer += Core::Time::GetDeltaTime();
+	}
 
-		// Shoot if timer is higher than random value.
-		if (m_Timer > m_RandomValue)
-		{
-			m_Timer = 0;
+	void TankInputBrownEnemy::StartShootInput()
+	{
+		// Create timed event to shoot the gun;
+		Utils::TimedEvent e(Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME), [=]()
+			{
+				Shoot();
+				StartShootInput();
+			});
+	}
 
-			// Get new random value.
-			m_RandomValue = Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME);
+	void TankInputBrownEnemy::StartGunDirectionInput()
+	{
+		// Set random rotation multiplier.
+		m_RotationMultiplier = Utils::Random::Range(-GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f, GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f);
 
-			// Shoot
-			m_Shoot = true;
-		}
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_CHANGE_TIME), [=]()
+			{
+				StartGunDirectionInput();
+			});
 	}
 }

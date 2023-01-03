@@ -53,6 +53,9 @@ namespace Gameplay
 		// Get tank manager instance.
 		static RefPtr<Entity::GameObject> CreateTankManager(uint32_t amountOfEnemyTanksInLevel);
 
+		// Get music instance
+		static RefPtr<Entity::GameObject> CreateMusic(std::string filepath);
+
 		static RefPtr<Renderer::Shader> s_Basic3DShader;
 		static RefPtr<Renderer::Texture> s_TextureAtlasTexture;
 		static RefPtr<Renderer::Material> s_TextureAtlasMaterial;

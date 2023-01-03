@@ -13,10 +13,6 @@ namespace Gameplay
 
 	void TankInputPlayer::UpdateInput()
 	{
-		auto hits = Physics::Physics::RayCast(GetComponent<Entity::Transform>()->GetPosition() + GetComponent<Entity::Transform>()->GetForward() * 2.0f, GetComponent<Entity::Transform>()->GetForward(), 1000);
-
-		LOG(hits->HitObject->GetName())
-
 		/// Movement input
 		// Reset input.
 		m_MovementInput = glm::vec2(0.0f, 0.0f);

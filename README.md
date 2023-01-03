@@ -19,7 +19,7 @@ https://glad.dav1d.de/
 
 Used assets:
 
-Wii tanks Tank model
+Wii tanks Tank models
 https://www.models-resource.com/wii/wiiplay/model/41959/
 
 Wii tanks bullet model

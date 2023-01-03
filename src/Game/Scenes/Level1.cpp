@@ -4,6 +4,7 @@
 #include "Level1.h"
 #include "ScenePrefabs.h"
 #include "Game/Components.h"
+#include "Game/Gameplay/Input/TankInputBrownEnemy.h"
 
 namespace Gameplay
 {
@@ -23,7 +24,13 @@ namespace Gameplay
 		// Add player tank to scene.
 		AddToScene(ScenePrefabs::CreatePlayerTank({ 0, -15}));
 
-		AddToScene(ScenePrefabs::CreateBrownEnemyTank({ 0, 10 }));
+
+		auto enemyTank = ScenePrefabs::CreateBrownEnemyTank({ 0, 10 });
+
+		// Get the enemy tank gun component and make the barrel point the -1, 0 direction.
+		enemyTank[0]->GetComponent<TankInputBrownEnemy>()->SetInitialGunRotation({-1, 0});
+
+		AddToScene(enemyTank);
 
 
 		///   Load obstacles on the left.
@@ -69,13 +76,6 @@ namespace Gameplay
 		// Create tank manager that keeps track of all enemy tanks.
 		AddToScene(ScenePrefabs::CreateTankManager(1));
 
-
-		RefPtr<Entity::GameObject> mainTheme = Entity::GameObject::Create("Speaker");
-		auto aud = mainTheme->AddComponent(Entity::AudioSource::Create());
-		aud->LoadClipFromFile("Assets/Audio/Music/Tanks_Variation_1.ogg");
-		aud->SetLooping(true);
-		aud->Play();
-
-		AddToScene(mainTheme);
+		AddToScene(ScenePrefabs::CreateMusic("Assets/Audio/Music/Tanks_Variation_1.ogg"));
 	}
 }
