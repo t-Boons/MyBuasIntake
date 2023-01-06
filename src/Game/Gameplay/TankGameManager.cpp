@@ -7,6 +7,7 @@
 #include "Game/Scenes/Level1.h"
 #include "Game/Scenes/Level2.h"
 #include "Game/Scenes/Level3.h"
+#include "Game/Scenes/Level4.h"
 
 namespace Gameplay
 {
@@ -24,7 +25,7 @@ namespace Gameplay
 		s_Levels.push_back([]() {return std::static_pointer_cast<Core::Scene>(Level1::Create()); });
 		s_Levels.push_back([]() {return std::static_pointer_cast<Core::Scene>(Level2::Create()); });
 		s_Levels.push_back([]() {return std::static_pointer_cast<Core::Scene>(Level3::Create()); });
-
+		s_Levels.push_back([]() {return std::static_pointer_cast<Core::Scene>(Level4::Create()); });
 
 		// Load first level.
 		s_CurrentLevel = 0;

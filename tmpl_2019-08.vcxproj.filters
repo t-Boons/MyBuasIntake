@@ -48,6 +48,7 @@
     <ClCompile Include="src\Utils\Random.cpp" />
     <ClCompile Include="src\Physics\Physics.cpp" />
     <ClCompile Include="src\Game\Scenes\Level3.cpp" />
+    <ClCompile Include="src\Game\Scenes\Level4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />
@@ -103,6 +104,7 @@
     <ClInclude Include="src\Physics\Physics.h" />
     <ClInclude Include="src\Game\Scenes\Level3.h" />
     <ClInclude Include="src\Game\Gameplay\TankGameSettings.h" />
+    <ClInclude Include="src\Game\Scenes\Level4.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="template code">

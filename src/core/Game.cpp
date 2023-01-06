@@ -49,8 +49,9 @@ namespace Core
 	// -----------------------------------------------------------
 	void Game::Tick()
 	{
+
 		// Update utils Timedevent timings.
-		Utils::TimedEventContainer::Update(Time::GetDeltaTime());
+		Utils::TimedEventContainer::Update(Time::GetRealDeltaTime());
 
 		// Update scene changes.
 		m_SceneManager->Update();
@@ -71,14 +72,11 @@ namespace Core
 		Renderer::Renderer::EndScene();
 
 
-
-		// TODO
-		// 
+		// OUTSIDE OF SCOPE OF THE PROJECT.
 		// TODO 2D Sfml rendering.
 		m_Window->PushGLStates();
 		// sfml drawing needs to be inside the push and pop function.
 		m_Window->PopGLStates();
-
 
 
 		// Display the rendered frame.

@@ -5,11 +5,14 @@
 #include "TankGameManager.h"
 #include "Bullet.h"
 #include "Game/Gameplay/Input/TankInput.h"
+#include "Game/Gameplay/TankEngine.h"
 
 namespace Gameplay
 {
 	void TankManager::Start()
 	{
+		Core::Time::SetTimeScale(1);
+
 		// Create audio source instances.
 		m_WinSound = Entity::AudioSource::Create();
 		m_WinSound->LoadClipFromFile("Assets/Audio/Effects/RoundWin.ogg");
@@ -32,7 +35,7 @@ namespace Gameplay
 		// Runs if all enemies are dead.
 		if (m_EnemyCount <= 0)
 		{
-			Utils::TimedEvent e(2.1f, [=]()
+			Utils::TimedEvent e(2.1f, this, [=]()
 				{
 					TankGameManager::OnWin();
 				});
@@ -45,7 +48,7 @@ namespace Gameplay
 
 	void TankManager::OnPlayerDie()
 	{
-		Utils::TimedEvent e(2.6f, [=]()
+		Utils::TimedEvent e(2.6f, this, [=]()
 			{
 				TankGameManager::OnDie();
 			});
@@ -59,19 +62,6 @@ namespace Gameplay
 	{
 		// Delete main music
 		Entity::GameObject::Find("Music")->Destroy();
-
-		// Delete tank input components in the scene.
-		auto tankInputControllers = Entity::GameObject::FindObjectsOfType<TankInput>();
-		for (auto& tic : tankInputControllers)
-		{
-			tic->Destroy();
-		}
-
-		// Destroy bullets
-		auto bullets = Entity::GameObject::FindObjectsOfType<Bullet>();
-		for (auto& bullet : bullets)
-		{
-			bullet->Destroy();
-		}	
+		Core::Time::SetTimeScale(0);
 	}
 }

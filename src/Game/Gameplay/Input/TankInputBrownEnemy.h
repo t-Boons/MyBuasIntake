@@ -5,8 +5,8 @@
 #include "Game/Components.h"
 #include "TankInput.h"
 
-#define MAX_WAIT_SHOOT_TIME 7.0f
-#define MIN_WAIT_SHOOT_TIME 1.0f
+#define MAX_WAIT_SHOOT_TIME 3.0f
+#define MIN_WAIT_SHOOT_TIME 0.25f
 #define RANDOM_GUN_DIRECTION_CHANGE_TIME 9.0f
 #define GUN_ROTATION_SPEED_MAX_MULTIPLIER 0.8f
 
@@ -30,5 +30,7 @@ namespace Gameplay
 	private:
 		float m_RotationMultiplier;
 		float m_CurrentRotation;
+		bool m_AimingAtEnemy;
+		RefPtr<Entity::Transform> m_GunTransform;
 	};
 }

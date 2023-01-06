@@ -10,6 +10,8 @@ namespace Gameplay
 {
 	void Level2::LoadScene()
 	{
+		ScenePrefabs::Initialize();
+
 		// Add camera to scene.
 		auto camera = USE_SPECTATOR_CAMERA ? ScenePrefabs::CreateSpectatorCamera() : ScenePrefabs::CreateSceneCamera();
 		AddToScene(camera);

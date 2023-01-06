@@ -258,6 +258,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     </ClCompile>
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Game\Scenes\Level3.cpp" />
+    <ClCompile Include="src\Game\Scenes\Level4.cpp" />
     <ClCompile Include="src\Physics\Physics.cpp" />
     <ClCompile Include="src\Utils\Random.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
@@ -317,6 +318,7 @@ xcopy $(SolutionDir)assets  $(ProjectDir)\bin\$(Configuration)\$(Platform)\asset
     <ClInclude Include="src\Core\Input.h" />
     <ClInclude Include="src\Game\Gameplay\TankGameSettings.h" />
     <ClInclude Include="src\Game\Scenes\Level3.h" />
+    <ClInclude Include="src\Game\Scenes\Level4.h" />
     <ClInclude Include="src\Physics\Physics.h" />
     <ClInclude Include="src\Utils\Random.h" />
     <ClInclude Include="src\Core\Window.h" />

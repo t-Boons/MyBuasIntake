@@ -14,8 +14,14 @@ namespace Core
 		// Update Time.
 		static void	Tick();
 
+		// Set time speed.
+		static void SetTimeScale(float timeScale) { s_Instance->m_TimeScale = timeScale; }
+
 		// Get Delta time.
 		static float GetDeltaTime() { return s_Instance->m_DeltaTime; }
+
+		// Get Realtime delta time
+		static float GetRealDeltaTime() {return s_Instance->m_RealDeltaTime;}
 
 		// Get Elapsed time.
 		static float GetElapsedTime() { return s_Instance->m_ElapsedTime; }
@@ -30,5 +36,7 @@ namespace Core
 		sf::Clock m_SfmlTimer;
 		float m_DeltaTime;
 		float m_ElapsedTime;
+		float m_TimeScale;
+		float m_RealDeltaTime;
 	};
 }

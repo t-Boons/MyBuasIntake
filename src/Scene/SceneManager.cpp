@@ -19,14 +19,19 @@ namespace Core
 				m_ActiveScene->UnloadScene();
 			}
 
-			// Clear all timed events to avoid nullref errors.
-			Utils::TimedEventContainer::Reset();
 
 			// Set active scene to current scene.
 			m_ActiveScene = m_QueuedScene;
 
 			// Load the scene.
-			LOG_NOTIF("LOADING SCENE: " + m_ActiveScene->GetSceneName())
+			if (m_ActiveScene)
+			{
+				LOG_NOTIF("LOADING SCENE: " + m_ActiveScene->GetSceneName())
+			}
+
+			// Clear all timed events to avoid nullref errors.
+			Utils::TimedEventContainer::Reset();
+
 			m_ActiveScene->LoadScene();
 
 			// Call start on all the behaviour.

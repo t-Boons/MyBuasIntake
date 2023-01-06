@@ -95,6 +95,7 @@ namespace Core
 		for (size_t i = 0; i < m_DeletionQueue.size(); i++)
 		{
 			RemoveFromScene(m_DeletionQueue[i]);
+			m_DeletionQueue[i].reset();
 		}
 
 		// Clear the queue.
@@ -133,7 +134,7 @@ namespace Core
 		// Find object match.
 		for (size_t i = 0; i < m_Entities.size(); i++)
 		{
-			if (m_Entities[i] == object)
+			if (m_Entities[i].get() == object.get())
 			{
 				// Remove object from array.
 				m_Entities.erase(m_Entities.begin() + i);

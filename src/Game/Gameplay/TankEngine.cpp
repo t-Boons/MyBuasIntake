@@ -48,7 +48,7 @@ namespace Gameplay
 			m_ExplosionSound->Play();
 			
 			// Remove collider.
-			Parent->GetComponent<Entity::BoxCollider>()->Destroy();
+			GetComponent<Entity::BoxCollider>()->Destroy();
 
 			// Remove all renderers from tank body.
 			std::vector<RefPtr<Entity::MeshRenderer>> renderers = Parent->GetComponents<Entity::MeshRenderer>();
@@ -62,7 +62,7 @@ namespace Gameplay
 
 			LOG_WARN(GAMEOBJECT_IDENTITY + "Has died.")
 
-			Utils::TimedEvent(DELETION_DELAY, [=]()
+			Utils::TimedEvent(DELETION_DELAY, this, [=]()
 				{
 					// Call OnDie function on tank manager. Changes depending on if its an enemy or player tank.
 					if (Parent->GetName() == "PlayerTank")
@@ -77,9 +77,6 @@ namespace Gameplay
 					// Destroy this gameobject.
 					Parent->Destroy();
 				});
-
-
-
 		}
 	}
 	

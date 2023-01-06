@@ -12,6 +12,8 @@ namespace Gameplay
 		StartShootInput();
 		StartGunDirectionInput();
 
+		m_GunTransform = GetComponent<TankEngine>()->GetGunObject()->GetComponent<Entity::Transform>();
+
 		/// Set the current rotation to the gun forward vector
 		// Get tank gun forward vector.
 		glm::vec3 gunForward = GetComponent<TankEngine>()->GetGunObject()->GetComponent<Entity::Transform>()->GetForward();
@@ -31,14 +33,28 @@ namespace Gameplay
 		m_GunInput = glm::vec2(glm::sin(glm::pi<float>() * m_CurrentRotation),
 							   glm::cos(glm::pi<float>() * m_CurrentRotation));
 
+
+		// Get raycast data.
+		glm::vec3 origin = m_GunTransform->GetPosition() + m_GunTransform->GetForward() * 2.0f;
+		glm::vec3 direction = m_GunTransform->GetForward();
+
+		// Shoot ray.
+		RefPtr<Physics::RaycastHit> hit = Physics::Physics::RayCast(origin, direction, 1000);
+
+		// Flag bool if aiming at enemy.
+		m_AimingAtEnemy = hit && hit->HitObject->GetName() == "EnemyTank";
 	}
 
 	void TankInputBrownEnemy::StartShootInput()
 	{
 		// Create timed event to shoot the gun;
-		Utils::TimedEvent e(Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME), [=]()
+		Utils::TimedEvent e(Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME), this, [=]()
 			{
-				Shoot();
+				if (!m_AimingAtEnemy)
+				{
+					Shoot();
+				}
+
 				StartShootInput();
 			});
 	}
@@ -48,7 +64,7 @@ namespace Gameplay
 		// Set random rotation multiplier.
 		m_RotationMultiplier = Utils::Random::Range(-GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f, GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f);
 
-		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_CHANGE_TIME), [=]()
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_CHANGE_TIME), this, [=]()
 			{
 				StartGunDirectionInput();
 			});

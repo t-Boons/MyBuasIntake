@@ -63,14 +63,14 @@ namespace Gameplay
 			GetComponent<Entity::MeshRenderer>()->Destroy();
 
 			// Run deletion event
-			Utils::TimedEvent(DESTROY_DELAY, [=]() {Parent->Destroy(); });
+			Utils::TimedEvent(DESTROY_DELAY, this, [=]() {if(Parent) Parent->Destroy(); });
 
 			m_Destroyed = true;
 		}
 		else
 		{
 			// Play clack sound.
-			m_Clack->SetPitch((rand() % 250) / 1000.0f + 0.95f);
+			m_Clack->SetPitch(Utils::Random::Range(0.75f, 1.2f));
 			m_Clack->Play();
 		}
 	}

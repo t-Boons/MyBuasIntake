@@ -94,7 +94,7 @@ namespace Gameplay
 		{
 			m_Reloaded = true;
 
-			Utils::TimedEvent(BULLET_REFIL_DELAY, [=]()
+			Utils::TimedEvent(BULLET_REFIL_DELAY, this, [=]()
 				{
 				m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
 				m_Reloaded = false;

@@ -8,7 +8,7 @@ namespace Utils
 	struct TimedEvent
 	{
 		//template<typename Function>
-		TimedEvent(float time, std::function<void()> eventFunc);
+		TimedEvent(float time, void* caller, std::function<void()> eventFunc);
 	};
 
 	// Timed container contains all the events.
@@ -20,7 +20,7 @@ namespace Utils
 		static void Update(float deltaTime);
 
 		// Add event to container.
-		static void AddEvent(float timeUntillExecute, std::function<void()> eventFunc);
+		static void AddEvent(float timeUntillExecute, void* caller, std::function<void()> eventFunc);
 
 		// Destroys all events.
 		static void Reset();
@@ -28,5 +28,6 @@ namespace Utils
 	private:
 		static std::vector<std::pair<std::function<void()>, float>> s_ActiveEvents;
 		static std::vector<float> s_ActiveEventTimes;
+		static std::vector<void*> s_ActiveEventCallers;
 	};
 }
