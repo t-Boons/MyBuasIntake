@@ -21,16 +21,8 @@ namespace Utils
 			// If time has expired the event should be executed.
 			if (s_ActiveEventTimes[i] > s_ActiveEvents[i].second)
 			{
-				// Run if caller is still alive.
-				if (s_ActiveEventCallers[i] != nullptr)
-				{
-					// Execute event.
-					s_ActiveEvents[i].first();
-				}
-				else
-				{
-					LOG_ERROR("TIMEDEVENT: Event caller was nullptr")
-				}
+				// Execute event.
+				s_ActiveEvents[i].first();
 
 				// Delete event and timing.
 				s_ActiveEventTimes.erase(s_ActiveEventTimes.begin() + i);
@@ -53,6 +45,23 @@ namespace Utils
 		s_ActiveEvents.clear();
 		s_ActiveEventTimes.clear();
 		s_ActiveEventCallers.clear();
+	}
+
+	void TimedEventContainer::DeleteCaller(void* caller)
+	{
+		// Delete matching caller and event.
+		for (size_t i = 0; i < s_ActiveEventCallers.size(); i++)
+		{
+			if (caller == s_ActiveEventCallers[i])
+			{
+				s_ActiveEventTimes.erase(s_ActiveEventTimes.begin() + i);
+				s_ActiveEvents.erase(s_ActiveEvents.begin() + i);
+				s_ActiveEventCallers.erase(s_ActiveEventCallers.begin() + i);
+
+				// Index decremented due to caller having multiple events potentially and make it so it does not skip.
+				i--;
+			}
+		}
 	}
 
 	TimedEvent::TimedEvent(float time, void* caller, std::function<void()> eventFunc)

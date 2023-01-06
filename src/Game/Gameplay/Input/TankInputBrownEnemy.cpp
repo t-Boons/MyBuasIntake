@@ -48,7 +48,7 @@ namespace Gameplay
 	void TankInputBrownEnemy::StartShootInput()
 	{
 		// Create timed event to shoot the gun;
-		Utils::TimedEvent e(Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME), this, [=]()
+		Utils::TimedEvent e(Utils::Random::Range(MIN_WAIT_SHOOT_TIME, MAX_WAIT_SHOOT_TIME), this, [&]()
 			{
 				if (!m_AimingAtEnemy)
 				{
@@ -64,7 +64,7 @@ namespace Gameplay
 		// Set random rotation multiplier.
 		m_RotationMultiplier = Utils::Random::Range(-GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f, GUN_ROTATION_SPEED_MAX_MULTIPLIER * 0.5f);
 
-		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_CHANGE_TIME), this, [=]()
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_CHANGE_TIME), this, [&]()
 			{
 				StartGunDirectionInput();
 			});

@@ -70,7 +70,8 @@ namespace Gameplay
 	void TankGun::Shoot()
 	{
 		// Play gun audio.
-		m_GunShot->SetPitch((rand() % 1000) / 1000.0f * 0.5f + 0.60f);
+		
+		m_GunShot->SetPitch(Utils::Random::Range(0.5f, 1.1f));
 		m_GunShot->Play();
 
 		// Reduce bullet count. 
@@ -94,7 +95,7 @@ namespace Gameplay
 		{
 			m_Reloaded = true;
 
-			Utils::TimedEvent(BULLET_REFIL_DELAY, this, [=]()
+			Utils::TimedEvent(BULLET_REFIL_DELAY, this, [&]()
 				{
 				m_BulletsInChamber = CONSECUTIVE_BULLET_COUNT;
 				m_Reloaded = false;

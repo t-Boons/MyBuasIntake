@@ -104,6 +104,8 @@ namespace Entity
 			// Remove component if it matches type.
 			if (m_Components[i] == toRemove)
 			{
+				m_Components[i]->Parent = nullptr;
+
 				// Remove component.
 				m_Components.erase(m_Components.begin() + i);
 			}

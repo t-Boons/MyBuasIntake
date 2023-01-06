@@ -62,7 +62,7 @@ namespace Gameplay
 
 			LOG_WARN(GAMEOBJECT_IDENTITY + "Has died.")
 
-			Utils::TimedEvent(DELETION_DELAY, this, [=]()
+			Utils::TimedEvent(DELETION_DELAY, this, [&]()
 				{
 					// Call OnDie function on tank manager. Changes depending on if its an enemy or player tank.
 					if (Parent->GetName() == "PlayerTank")

@@ -27,7 +27,7 @@ namespace Gameplay
 	void TankInputAshEnemy::StartShootInput()
 	{
 		// Create timed event to shoot the gun;
-		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_SHOOT_MAX_DELAY), this,[=]()
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_SHOOT_MAX_DELAY), this, [&]()
 			{
 				// Send a shot input.
 				if (IsPlayerSpotted() && !IsAimingAtEnemy())
@@ -44,7 +44,7 @@ namespace Gameplay
 		RandomizeMovementInput();
 
 		// Create timed event to move the tank;
-		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_DIRECTION_MAX_DELAY), this, [=]()
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_DIRECTION_MAX_DELAY), this, [&]()
 			{
 				StartMovementInput();
 			});
@@ -67,7 +67,7 @@ namespace Gameplay
 			LockOnToPlayer(false);
 		}
 
-		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_MAX_DELAY), this, [=]()
+		Utils::TimedEvent e(Utils::Random::Range(0.0f, RANDOM_GUN_DIRECTION_MAX_DELAY), this, [&]()
 			{
 				StartGunDirectionInput();
 			});
@@ -75,7 +75,12 @@ namespace Gameplay
 
 	void TankInputAshEnemy::UpdateGunToPlayerDirection()
 	{
-		m_GunToPlayerDirection = glm::normalize(Entity::GameObject::Find("PlayerTank")->GetComponent<Entity::Transform>()->GetPosition() - GetComponent<Entity::Transform>()->GetPosition());
+		RefPtr<Entity::GameObject> player = Entity::GameObject::Find("PlayerTank");
+
+		if (player)
+		{
+			m_GunToPlayerDirection = glm::normalize(player->GetComponent<Entity::Transform>()->GetPosition() - GetComponent<Entity::Transform>()->GetPosition());
+		}
 	}
 
 	bool TankInputAshEnemy::IsPlayerSpotted()

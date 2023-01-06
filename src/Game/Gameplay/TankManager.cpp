@@ -35,7 +35,7 @@ namespace Gameplay
 		// Runs if all enemies are dead.
 		if (m_EnemyCount <= 0)
 		{
-			Utils::TimedEvent e(2.1f, this, [=]()
+			Utils::TimedEvent e(2.1f, this, [&]()
 				{
 					TankGameManager::OnWin();
 				});
@@ -48,7 +48,7 @@ namespace Gameplay
 
 	void TankManager::OnPlayerDie()
 	{
-		Utils::TimedEvent e(2.6f, this, [=]()
+		Utils::TimedEvent e(2.6f, this, [&]()
 			{
 				TankGameManager::OnDie();
 			});
@@ -61,7 +61,12 @@ namespace Gameplay
 	void TankManager::EndGameplayInScene()
 	{
 		// Delete main music
-		Entity::GameObject::Find("Music")->Destroy();
+		auto music = Entity::GameObject::Find("Music");
+		if (music)
+		{
+			music->Destroy();
+		}
+
 		Core::Time::SetTimeScale(0);
 	}
 }

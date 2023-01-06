@@ -74,7 +74,7 @@ namespace Entity
 		}
 
 		// Virtual destructor for memory cleanup.
-		virtual ~Component() = default;
+		virtual ~Component();
 
 	public:
 		GameObject* Parent = nullptr;

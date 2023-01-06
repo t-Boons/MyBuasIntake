@@ -49,6 +49,7 @@
     <ClCompile Include="src\Physics\Physics.cpp" />
     <ClCompile Include="src\Game\Scenes\Level3.cpp" />
     <ClCompile Include="src\Game\Scenes\Level4.cpp" />
+    <ClCompile Include="src\Entity\Component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Game.h" />

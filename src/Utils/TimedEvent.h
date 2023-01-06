@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "Entity/Component.h"
+
 namespace Utils
 {
 	// Timed event is used to add events to the event container so they don't rely on lifetime.
@@ -24,6 +26,9 @@ namespace Utils
 
 		// Destroys all events.
 		static void Reset();
+
+		// Delete a caller.
+		static void DeleteCaller(void* caller);
 
 	private:
 		static std::vector<std::pair<std::function<void()>, float>> s_ActiveEvents;

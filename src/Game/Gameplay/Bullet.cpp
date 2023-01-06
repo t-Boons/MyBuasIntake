@@ -63,7 +63,7 @@ namespace Gameplay
 			GetComponent<Entity::MeshRenderer>()->Destroy();
 
 			// Run deletion event
-			Utils::TimedEvent(DESTROY_DELAY, this, [=]() {if(Parent) Parent->Destroy(); });
+			Utils::TimedEvent(DESTROY_DELAY, this, [&]() {Parent->Destroy(); });
 
 			m_Destroyed = true;
 		}
