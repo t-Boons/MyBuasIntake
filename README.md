@@ -1,5 +1,21 @@
 # MyBuasIntake
 
+,
+|
+|       Wii Tanks Remake - BUAS Intake assignment
+|       by: Tygo Boons
+|
+|       Controls:
+|       To control the tanks use WASD to move around and the Mouse position to move the tank gun.
+|       Use the left mouse button to shoot a bullet in the direction the tank gun is facing.
+|
+|       Goal:
+|       The goal of the game is to defeat all the enemy tanks and not get hit yourself.
+|       Bullets will ricochet off of the walls and blocks so try to not get hit by bouncing bullets. 
+|       
+,
+
+
 Used Libraries:
 
 SFML 2.5.1
@@ -15,6 +31,10 @@ https://github.com/g-truc/glm
 
 GLAD:
 https://glad.dav1d.de/
+
+Other:
+Some code snippets have resource or inspiration links on the top of the file.
+
 
 
 Used assets:
@@ -33,6 +53,3 @@ https://downloads.khinsider.com/game-soundtracks/album/wii-play
 
 Wii tanks sound effects:
 https://www.sounds-resource.com/wii/wiiplay/sound/28569/?source=genre
-
-FOT-RodinNTLG Pro DB font:
-https://fontsgeek.com/fonts/fot-rodinntlg-pro-db

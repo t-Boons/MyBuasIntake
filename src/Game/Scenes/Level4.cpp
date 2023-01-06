@@ -57,6 +57,6 @@ namespace Gameplay
 		// Create tank manager that keeps track of all enemy tanks.
 		AddToScene(ScenePrefabs::CreateTankManager(3));
 
-		AddToScene(ScenePrefabs::CreateMusic("Assets/Audio/Music/Tanks_Variation_3.ogg"));
+		AddToScene(ScenePrefabs::CreateMusic("Assets/Audio/Music/Tanks_Variation_4.ogg"));
 	}
 }
