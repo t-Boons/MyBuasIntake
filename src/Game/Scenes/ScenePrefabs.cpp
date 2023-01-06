@@ -422,7 +422,7 @@ namespace Gameplay
 		return block;
 	}
 
-	RefPtr<Entity::GameObject> ScenePrefabs::CreateCollider(const glm::vec2& position, const glm::vec2& scale)
+	RefPtr<Entity::GameObject> ScenePrefabs::CreateCollider(const glm::vec2& position, const glm::vec2& scale, bool enableDebug)
 	{
 		/// Create collider game object.
 		RefPtr<Entity::GameObject> collider = Entity::GameObject::Create("Collider");
@@ -431,6 +431,20 @@ namespace Gameplay
 		auto col = collider->AddComponent(Entity::BoxCollider::Create());
 		col->GetComponent<Entity::Transform>()->SetPosition({ position.x, 0.0f, position.y });
 		col->SetSize({ scale.x, 5, scale.y });
+
+
+		/// Create debug mesh
+		if (enableDebug)
+		{
+			auto shadowRenderer = collider->AddComponent(Entity::MeshRenderer::Create());
+			shadowRenderer->SetMesh(Renderer::Mesh::Create("Assets/Models/Cube.obj"));
+			shadowRenderer->SetMaterial(Renderer::Material::Create(
+				Renderer::Texture::Create("Assets/Textures/Test.png"),
+				s_Basic3DShader
+			));
+
+			collider->GetComponent<Entity::Transform>()->SetScale({ scale.x, 1, scale.y });
+		}
 
 		return collider;
 	}

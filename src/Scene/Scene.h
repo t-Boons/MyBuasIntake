@@ -7,7 +7,9 @@
 #include "Entity/Camera.h"
 #include "Physics/Physics.h"
 
-#define SCENE_NAME(name) public: virtual std::string GetSceneName() override {return #name;}
+// Macro to simplify inserting scene name.
+#define SCENE_NAME(name) public:\
+							virtual std::string GetSceneName() override {return #name;}
 
 namespace Core
 {
@@ -116,6 +118,5 @@ namespace Core
 		std::vector<RefPtr<Entity::GameObject>> m_DeletionQueue;
 		std::vector<RefPtr<Physics::Collision>> m_CollisionEvents;
 		RefPtr<Entity::Camera> m_ActiveCamera;
-
 	};
 }

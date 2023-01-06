@@ -48,7 +48,7 @@ namespace Gameplay
 		static RefPtr<Entity::GameObject> CreateBlockMesh(const glm::vec2& position);
 
 		// Get collider instance
-		static RefPtr<Entity::GameObject> CreateCollider(const glm::vec2& position, const glm::vec2& scale);
+		static RefPtr<Entity::GameObject> CreateCollider(const glm::vec2& position, const glm::vec2& scale, bool enableDebug = false);
 
 		// Get tank manager instance.
 		static RefPtr<Entity::GameObject> CreateTankManager(uint32_t amountOfEnemyTanksInLevel);

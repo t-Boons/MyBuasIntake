@@ -11,6 +11,7 @@ namespace Gameplay
 	{
 		MAKE_SHARED(Level3)
 		SCENE_NAME(Level3)
+
 	public:
 		// Inherited via Scene.
 		virtual void LoadScene() override;

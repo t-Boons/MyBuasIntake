@@ -69,8 +69,8 @@ namespace Gameplay
 		AddToScene(ScenePrefabs::CreateBlockMesh({ -6, 10 }));
 		AddToScene(ScenePrefabs::CreateBlockMesh({ -6, 12 }));
 
-		AddToScene(ScenePrefabs::CreateCollider({ -6, 1 }, { 1, 24 }));
-		AddToScene(ScenePrefabs::CreateCollider({ 6, -3 }, { 1, 24 }));
+		AddToScene(ScenePrefabs::CreateCollider({ -6, 1 }, { 2, 24 }));
+		AddToScene(ScenePrefabs::CreateCollider({ 6, -3 }, { 2, 24 }));
 
 		// Create tank manager that keeps track of all enemy tanks.
 		AddToScene(ScenePrefabs::CreateTankManager(1));
