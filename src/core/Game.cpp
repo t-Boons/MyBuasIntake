@@ -40,8 +40,7 @@ namespace Core
 	{
 		LOG_WARN("Shutting down Game")
 
-		// Clear all scene memory.
-		m_SceneManager->GetActiveScene()->UnloadScene();
+		m_Window->Close();
 	}
 
 	// -----------------------------------------------------------
@@ -100,14 +99,14 @@ namespace Core
 		settings.antialiasingLevel = 16;
 
 		// Create resolution.
-		glm::ivec2 resolution = glm::ivec2(1280, 720);
+		glm::ivec2 resolution = glm::ivec2(1920, 1080);
 
 		// Create windowproperties instance and set it.
 		Core::WindowProperties properties;
 		properties.ContextSettings = settings;
 		properties.Resolution = resolution;
 		properties.Name = "Wii Tanks - BUAS Intake Tygo Boons";
-		properties.Fullscreen = false;
+		properties.Fullscreen = true;
 
 		return Core::Window::Create(properties);
 	}

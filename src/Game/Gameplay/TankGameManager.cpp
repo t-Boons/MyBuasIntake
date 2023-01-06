@@ -43,6 +43,15 @@ namespace Gameplay
 	{
 		LOG_WARN("Player Won. Loading next level.")
 		s_CurrentLevel++;
-		LoadLevel(s_CurrentLevel);
+
+		// If all levels are completed exit the game
+		if (s_CurrentLevel >= s_Levels.size())
+		{
+			Core::Game::Get()->Shutdown();
+		}
+		else
+		{
+			LoadLevel(s_CurrentLevel);
+		}
 	}
 }
