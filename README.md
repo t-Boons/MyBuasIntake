@@ -3,7 +3,6 @@
 ,
 |
 |       Wii Tanks Remake - BUAS Intake assignment
-|       by: Tygo Boons
 |
 |       Controls:
 |       To control the tanks use WASD to move around and the Mouse position to move the tank gun.
@@ -28,13 +27,11 @@ IGAD/BUAS(NHTV)/UU - Jacco Bikker - 2006-2020
 GLM 0.9.9.8
 https://github.com/g-truc/glm 
 
-
 GLAD:
 https://glad.dav1d.de/
 
 Other:
 Some code snippets have resource or inspiration links on the top of the file.
-
 
 
 Used assets:
